@@ -1,0 +1,277 @@
+\Chapter{RÉSULTATS THÉORIQUES}\label{sec:Theme2}
+
+Après avoir déterminé des expressions analytiques pour les différentes fonctions étudiées, il est essentiel d'analyser les résultats obtenus afin de vérifier leur validité et leur cohérence avec le modèle théorique. 
+
+Pour évaluer le comportement des fonctions obtenues, il est nécessaire de se placer dans un cadre particulier du processus étudié. En se basant sur la définition du processus \acs{CIR} (\ref{cir_eq}) et du problème de premier passage (\ref{fpt_definition}), les paramètres suivants sont considérés pour l'ensemble des analyses:
+
+\begin{itemize}
+    \item Vitesse de retour à la moyenne du \acs{CIR}: $a=0.1$
+    \item Niveau moyen du \acs{CIR}: $b=0.9$
+    \item Volatilité instantanée du \acs{CIR}: $\sigma=1$
+    \item Frontière supérieure pour le \acs{TPP}: $c=2$
+\end{itemize}
+
+\section{Diffusion pure}
+
+D'abord, les résultats trouvés pour le processus de diffusion \acs{CIR} sont abordés.
+
+\subsection{Fonction Génératrice des Moments}
+
+\paragraph{Visualisation}\phantom{}\\
+Pour commencer, il convient de valider le comportement de la \acl{FGM} $M(x;\alpha)$ définie par (\ref{fgm}), (\ref{sol_fgm}) et (\ref{fgm_constants}). À cet effet, il faut tracer son évolution sur l'intervalle $[0, c]$ pour plusieurs valeurs du paramètre $\alpha \in \{1, 2, 5, 10\}$. 
+
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/validation/fgm.pdf}
+    \caption{Visualisation de la \acl{FGM} $M(x;\alpha)$}\label{fig:FGMVisualisation}
+\end{figure}
+\FloatBarrier\paragraph{Analyse}\phantom{}\\
+Il est important de souligner les points suivants:
+\begin{itemize}
+    \item Les conditions aux limites $M(0; \alpha) = M(c; \alpha) = 1$ sont respectées;
+    \item Puisque $\alpha$ est par définition un paramètre positif (\ref{fgm}), la fonction est bien comprise dans l'intervalle $(0, 1)$, car elle correspond à l'exponentielle d'un nombre négatif; 
+    \item Par ailleurs, et pour la même raison, lorsque $\alpha$ augmente, la fonction diminue.
+\end{itemize}
+
+L'expression obtenue pour la \acl{FGM} est ainsi validée. 
+
+
+\subsection{Fonction Temps Moyen}
+
+\paragraph{Visualisation}\phantom{}\\
+Ensuite, il est nécessaire de valider le comportement de la fonction Temps Moyen $m(x)$ définie par (\ref{mean}), (\ref{sol_mean}) et (\ref{mean_constants}). La fonction est donc tracée pour différentes valeurs des paramètres $a,\;\forall\;a\in\{0.1,0.2,0.4\}$ et $\sigma,\;\forall\;\sigma\in\{1,\sqrt{2},2\}$.
+
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Mean/mean_a.pdf}
+        \caption{Sensibilité de la vitesse $a$}\label{fig:Mean_a_visualisation}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Mean/mean_sigma.pdf}
+        \caption{Sensibilité de la volatilité infinitésimale $\sigma$}\label{fig:Mean_sigma_visualisation}
+    \end{subfigure}
+    \caption{Visualisation de la fonction Temps Moyen $m(x)$}\label{fig:MeanVisualisation}
+\end{figure}
+\FloatBarrier\paragraph{Analyse}\phantom{}\\
+Il est important de noter les points suivants concernant toutes les valeurs différentes des paramètres:
+\begin{itemize}
+    \item Les conditions aux limites $m(0)=m(c)=0$ sont respectées;
+    \item Cette fonction représente un \textit{temps moyen de premier passage}, elle doit donc être positive pour toute valeur de $x$ dans $[0,c]$;
+    \item Une augmentation de la vitesse de retour $a$ entraîne une hausse du temps moyen de sortie de l'intervalle. En effet, plus la force de rappel vers la moyenne est forte (i.e., $a$ élevé), plus une déviation significative — et donc peu probable — est nécessaire pour franchir les bornes de l'intervalle;
+    \item À l'inverse, une augmentation de la volatilité infinitésimale $\sigma$ diminue le temps moyen de sortie. Cela s'explique naturellement: des fluctuations plus intenses accroissent la probabilité de quitter rapidement l'intervalle.
+\end{itemize}
+
+L'expression obtenue pour la fonction de temps moyen de premier passage est ainsi validée.
+
+\subsection{Fonction Aire Moyenne}
+
+\paragraph{Visualisation}\phantom{}\\
+Par ailleurs, la même démarche de validation est effectuée pour la fonction Aire Moyenne $A(x)$ définie par (\ref{area}), (\ref{sol_area}) et (\ref{area_constants}).
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Area/area_a.pdf}
+        \caption{Sensibilité de la vitesse $a$}\label{fig:Area_a_visualisation}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Area/area_sigma.pdf}
+        \caption{Sensibilité de la volatilité infinitésimale $\sigma$}\label{fig:Area_sigma_visualisation}
+    \end{subfigure}
+    \caption{Visualisation de la fonction Aire Moyenne $A(x)$}\label{fig:AreaVisualisation}
+\end{figure}
+\FloatBarrier\paragraph{Analyse}\phantom{}\\
+Il convient de souligner les points suivants:
+\begin{itemize}
+    \item Les conditions aux limites $A(0)=A(c)=0$ sont respectées;
+    \item Cette fonction représente une \textit{aire moyenne} sous un processus positif, elle doit donc être positive pour toute valeur de $x$ dans $[0,c]$;
+    \item Une augmentation de la vitesse de retour $a$ entraîne une augmentation de l'aire moyenne sous le processus avant la sortie de l'intervalle. En effet, une force de rappel plus intense maintient le processus autour de sa moyenne plus longtemps, retardant la sortie et augmentant ainsi l'accumulation totale;
+    \item À l'inverse, une augmentation de la volatilité infinitésimale $\sigma$ réduit l'aire moyenne. Des fluctuations plus fortes rendent les sorties plus précoces, limitant la durée pendant laquelle le processus peut contribuer à l'intégrale.
+\end{itemize}
+
+L'expression obtenue pour la fonction Aire Moyenne est ainsi validée.
+
+\subsection{Commande Optimale Stochastique}
+
+Enfin, il est nécessaire de valider les expressions obtenues dans le cadre des deux problèmes de commande optimale. Pour cela, il convient de tracer la fonction valeur $F(x)$ ainsi que le contrôle optimal $u^*(x)$ pour différentes valeurs des paramètres étudiés. Lors de l'analyse d'un paramètre donné, les autres paramètres sont fixés à $1$ afin d'isoler son influence.
+
+\subsubsection{Problème linéarisable 1}\phantom{}\\
+D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p1}). D'un autre côté, la fonction valeur $F(x)$ est définie par (\ref{sol_control_1},\ref{control_constants}) et le contrôle optimal est défini par (\ref{optimal_control_1}). Les différentes valeurs des paramètres suivants sont évaluées:
+\begin{itemize}
+    \item Paramètre du coût immédiat $\rho,\;\forall\;\rho\in\{1,2,5,10\}$
+    \item Paramètre du coût de contrôle $\beta,\;\forall\;\beta\in\{1,2,3,4\}$
+    \item Paramètre du poids pénalisant l'intensité du contrôle $\kappa,\;\forall\;\kappa\in\{1,2,5,10\}$
+\end{itemize}
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P1/p1_R_value.pdf}
+        \caption{Fonction Valeur $F(x)$}\label{fig:RhoValueVisualisation1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P1/p1_R_control.pdf}
+        \caption{Contrôle Optimale $u^*(x)$}\label{fig:RhoControlVisualisation1}
+    \end{subfigure}
+    \caption{Sensibilité du coût immédiat $r(x)=\rho$}\label{fig:RhoValueControlComparison1}
+\end{figure}
+\FloatBarrier\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P1/p1_B_value.pdf}
+        \caption{Fonction Valeur $F(x)$}\label{fig:BetaValueVisualisation1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P1/p1_B_control.pdf}
+        \caption{Contrôle Optimale $u^*(x)$}\label{fig:BetaControlVisualisation1}
+    \end{subfigure}
+    \caption{Sensibilité du coût du contrôle $b(x)=\beta x$}\label{fig:BetaValueControlComparison}
+\end{figure}
+\FloatBarrier\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P1/p1_K_value.pdf}
+        \caption{Fonction Valeur $F(x)$}\label{fig:KappaValueVisualisation1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P1/p1_K_control.pdf}
+        \caption{Contrôle Optimale $u^*(x)$}\label{fig:KappaControlVisualisation1}
+    \end{subfigure}
+    \caption{Sensibilité de la pondération du contrôle $q(x)=\kappa x$}\label{fig:KappaValueControlComparison1}
+\end{figure}
+\FloatBarrier\subsubsection{Problème linéarisable 2}\phantom{}\\
+D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p2}). D'un autre côté, la fonction valeur $F(x)$ est définie par (\ref{sol_control_2},\ref{control_constants}) et le contrôle optimal est défini par (\ref{optimal_control_2}). Les mêmes valeurs des différents paramètres $\rho$, $\beta$ et $\kappa$ sont évaluées.
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_R_value.pdf}
+        \caption{Fonction Valeur $F(x)$}\label{fig:RhoValueVisualisation2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_R_control.pdf}
+        \caption{Contrôle Optimale $u^*(x)$}\label{fig:RhoControlVisualisation2}
+    \end{subfigure}
+    \caption{Sensibilité du coût immédiat $r(x)=\rho x$}\label{fig:RhoValueControlComparison2}
+\end{figure}
+\FloatBarrier\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_B_value.pdf}
+        \caption{Fonction Valeur $F(x)$}\label{fig:BetaValueVisualisation2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_B_control.pdf}
+        \caption{Contrôle Optimale $u^*(x)$}\label{fig:BetaControlVisualisation2}
+    \end{subfigure}
+    \caption{Sensibilité du coût du contrôle $b(x)=\beta \sqrt{x}$}\label{fig:BetaValueControlComparison1}
+\end{figure}
+\FloatBarrier\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_K_value.pdf}
+        \caption{Fonction Valeur $F(x)$}\label{fig:KappaValueVisualisation2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_K_control.pdf}
+        \caption{Contrôle Optimale $u^*(x)$}\label{fig:KappaControlVisualisation2}
+    \end{subfigure}
+    \caption{Sensibilité de la pondération du contrôle $q(x)=\kappa x$}\label{fig:KappaValueControlComparison2}
+\end{figure}
+\FloatBarrier\subsubsection{Problème non linéarisable}\phantom{}\\
+L'expression de la fonction valeur (\ref{sol_control_3}) ainsi que la commande optimale (\ref{optimal_control_3}) sont tracés.
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P3/p3_value.pdf}
+        \caption{Fonction Valeur $F(x)$}\label{fig:ValueVisualisation3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P3/p3_control.pdf}
+        \caption{Contrôle Optimale $u^*(x)$}\label{fig:ControlVisualisation3}
+    \end{subfigure}
+    \caption{Visualisation de la fonction valeur et du contrôle optimale dans le cas d'un problème non linéarisable}\label{fig:ValueControlComparison3}
+\end{figure}
+\FloatBarrier\paragraph{Analyse}\phantom{}\\
+Il est important de souligner que, dans les trois problèmes étudiés et pour les différentes valeurs des paramètres considérés:
+\begin{itemize}
+    \item Les conditions aux limites $F(0)=F(c)=0$ sont toujours respectées;
+    \item La fonction valeur est toujours positive, le coût encouru étant nécessairement positif;
+    \item Le contrôle optimal est généralement négatif sur \( x \in \left(0, \frac{c}{2}\right) \), l'optimiseur cherchant à diriger rapidement le processus vers la frontière \( 0 \), plus proche. Inversement, pour \( x \in \left(\frac{c}{2}, c\right) \), le contrôle devient positif afin d'accélérer l'atteinte de la frontière supérieure \( c \).
+    \item Une augmentation du coût immédiat $\rho$, induisant une hausse du coût encouru, entraîne un renforcement du contrôle optimal ($|u^*(x)|$ augmente), traduisant ainsi une volonté accrue de quitter l'intervalle aussi rapidement que possible;
+    \item Une hausse du coût du contrôle $\beta$ incite à intensifier le contrôle optimal afin de quitter l'intervalle plus rapidement. Cette stratégie réduit la durée d'exposition au coût instantané, ce qui compense partiellement le surcoût du contrôle et diminue le coût total encouru $F(x)$.
+    \item Une augmentation du poids pénalisant le contrôle $\kappa$, induisant une hausse du coût encouru, entraîne une relaxation du contrôle optimal. En effet, plus le poids du contrôle est élevé, moins il est intéressant d'appliquer un contrôle fort.
+\end{itemize}
+Ainsi, les expressions obtenues pour la fonction valeur $F(x)$ et le contrôle optimal $u^*(x)$ sont validées.
+
+\section{Diffusion avec sauts}
+
+Cette section est consacrée à la présentation des résultats portant sur le \acs{CIR} avec sauts défini en (\ref{jump_cir_sde}).
+\subsection{Fonction Temps moyen -- Sauts uniformes}
+Les paramètres utilisés sont ceux introduits lors de l'étude du temps moyen de sortie, avec et sans sauts, à la sous-partie (\ref{subsection_mean_jumps}). Les fonctions \( m(x) \) et \( m_0(x) \), données respectivement par (\ref{sol_mean_with_jumps}) et (\ref{sol_mean_with_0_jumps}), sont représentées graphiquement.
+\paragraph{Visualisation}\phantom{}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/validation/Jumps/mean_jumps.pdf}
+    \caption{Visualisation des temps moyens de sortie $m(x)$ et $m_0(x)$}\label{fig:JumpsMeanVisualisation}
+\end{figure}
+\FloatBarrier\paragraph{Analyse}\phantom{}\\
+Il convient de souligner les observations suivantes:
+\begin{itemize}
+    \item Les conditions aux limites \( m(0) = m(c) = m_0(0) = m_0(c) = 0 \) sont bien vérifiées.
+    \item Le temps moyen de sortie en présence de sauts ($m(x)$ en bleu) est inférieur à celui observé sans sauts ($m_0(x)$ en orange), ce qui illustre l'accélération du processus induite par ces derniers.
+\end{itemize}
+
+\subsection{Fonction Probabilité de sortie en zéro -- Sauts uniformes}
+Les paramètres considérés sont ceux définis dans l'étude de la probabilité de sortie en zéro, avec et sans sauts, présentée en sous-partie (\ref{subsection_probability_jumps}). Les fonctions \( p(x) \) et \( p_0(x) \), correspondant respectivement aux expressions (\ref{sol_probability_with_jumps}) et (\ref{sol_probability}), sont représentées graphiquement.
+\paragraph{Visualisation}\phantom{}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/validation/Jumps/probability_jumps.pdf}
+    \caption{Visualisation des probabilité de sortir en zéro $p(x)$ et $p_0(x)$}\label{fig:JumpsProbabilityVisualisation}
+\end{figure}
+\FloatBarrier\paragraph{Analyse}\mbox{}\\
+Les observations suivantes peuvent être formulées:
+\begin{itemize}
+    \item Les conditions aux limites sont correctement satisfaites, à savoir \( p(0) = p_0(0) = 1 \) et \( p(c) = p_0(c) = 0 \).
+    \item Les sauts étant négatifs, ils favorisent une sortie par la borne inférieure. La probabilité de franchissement par zéro est donc plus élevée dans le cas avec sauts ($p(x)$ en bleu).
+\end{itemize}
+
+\subsection{Fonction Dépassement Moyen -- Sauts exponentiels}
+Enfin, la variante à sauts exponentiels est considérée.
+\paragraph{Visualisation}\phantom{}\\
+Toujours dans la même optique, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée.
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Ovs/overshoot_lambda.pdf}
+        \caption{Sensibilité de la fréquence des sauts $\lambda,\;\forall\;\lambda\in\{2,3,6\}$}\label{fig:Overshoot_lambda_visualisation}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Ovs/overshoot_nu.pdf}
+        \caption{Sensibilité de la taille des sauts $\nu,\;\forall\;\nu\in\{5,10,15\}$}\label{fig:Overshoot_nu_visualisation}
+    \end{subfigure}
+    \hfill
+    \caption{Visualisation de la fonction Dépassement Moyen $D(x)$}\label{fig:AreaVisualisation}
+\end{figure}
+\FloatBarrier\paragraph{Analyse}\phantom{}\\
+Les différents points suivants sont relevés:
+\begin{itemize}
+    \item Les conditions aux limites $D(0)=D(c)=0$ sont respectées;
+    \item La fonction représente un \textit{dépassement moyen}, elle doit donc être positive pour toute valeur $x$ dans $[0,c]$;
+    \item Une augmentation de la fréquence des sauts induit une augmentation du dépassement moyen. En effet, il devient plus probable que le processus effectue un saut juste avant d'atteindre la frontière, ce qui augmente les chances de la franchir avec un certain excès.
+    \item Une réduction de la taille des sauts induit une diminution du dépassement moyen. En effet, même si un saut survient à proximité de la frontière, sa faible amplitude limite la distance franchie au-delà de celle-ci.
+\end{itemize}
+

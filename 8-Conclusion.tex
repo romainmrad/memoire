@@ -1,0 +1,36 @@
+\Chapter{CONCLUSION}\label{sec:Conclusion}
+\section{Synthèse des travaux}
+
+Ce mémoire s'inscrit dans le cadre de l'étude des temps de premier passage et des problèmes de commande optimale appliqués au processus \acs{CIR}, à la fois en diffusion pure et en présence de sauts. L'objectif principal consistait à obtenir, sous forme analytique, plusieurs fonctions d'intérêt : la fonction génératrice des moments du temps de sortie, la fonction temps moyen, l'aire moyenne sous la trajectoire ainsi que la fonction de dépassement moyen dans le cas avec sauts.
+
+Ces résultats ont été obtenus en résolvant des équations différentielles linéaires issues de l'application du générateur infinitésimal du processus. Les méthodes utilisées incluent notamment des changements de variables adaptés (comme la transformation de Kummer), l'usage de fonctions spéciales (fonctions hypergéométriques, fonctions Gamma), ainsi que le recours à l'outil de calcul symbolique comme \textit{Wolfram Mathematica} ou encore \textit{Maple}.
+
+L'analyse des résultats a permis de valider les expressions obtenues à l'aide des conditions aux limites et des propriétés structurelles attendues des solutions. Les visualisations produites viennent renforcer cette validation en illustrant les comportements théoriques anticipés.
+
+Enfin, l'étude des problèmes de commande optimale associés au processus \acs{CIR} a permis de déterminer les fonctions valeur et les stratégies optimales dans trois configurations de coût différentes. Les solutions proposées satisfont les conditions de régularité et de positivité attendues, confirmant ainsi la solidité des approches analytiques adoptées.
+
+Les résultats relatifs à la fonction génératrice des moments, à l'aire moyenne, au temps moyen de sortie (avec et sans sauts), à la probabilité de sortie en zéro (avec et sans sauts), ainsi qu'au problème de contrôle non linéarisable, exposés dans ce mémoire, ont fait l'objet d'un article de recherche publié dans la revue internationale \textit{WSEAS Transactions on Mathematics} (voir\cite{lefebvre2025}).
+
+\section{Limitations}
+
+Les résultats présentés dans ce mémoire reposent sur des hypothèses spécifiques concernant les paramètres du processus CIR et la structure des coûts dans les problèmes de commande optimale. En particulier, les paramètres \(a\), \(b\) et \(\sigma\) du processus \acs{CIR} sont supposés constants dans le cadre de cette étude. Cette hypothèse permet de simplifier les équations différentielles associées, mais elle peut s'avérer restrictive lorsque ces paramètres varient en fonction du temps ou de l'état du processus. 
+
+De plus, bien que les solutions analytiques proposées soient valides dans ces contextes particuliers, comme le \acs{CIR} sans retour à la moyenne, elles peuvent perdre en pertinence dans des configurations plus complexes ou lorsque les hypothèses sur les fonctions de coût sont modifiées. En effet, si ces dernières sont non linéaires ou aléatoires, l'équation \acs{HJB} ne permet plus une linéarisation facile (comme dans\cite{whittle1982}).
+
+\section{Perspectives et améliorations futures}
+
+Afin de surmonter les limitations identifiées, plusieurs pistes de recherche peuvent être explorées. Une première perspective consisterait à étendre l'étude au processus de Chen (voir\cite{chen1996}):
+\[
+\begin{aligned}
+    dX(t) &= \kappa[\theta(t)-X(t)]dt+\sqrt{\sigma(t)X(t)}dW_1(t) \\
+    d\theta(t) &= \nu[\zeta-\theta(t)]dt+\alpha\sqrt{\theta(t)}dW_2(t) \\
+    d\sigma(t) &= \mu[\beta-\sigma(t)]dt+\eta\sqrt{\sigma(t)}dW_3(t)
+\end{aligned}
+\]
+dans lequel la volatilité et la moyenne long-terme du processus sont stochastiques
+
+Une deuxième piste pourrait consister à explorer des méthodes numériques permettant de compléter les résultats analytiques dans des situations où les solutions exactes ne sont pas accessibles. L'utilisation de techniques de simulation Monte Carlo ou de méthodes numériques pour la résolution des équations de \acs{HJB} pourrait permettre de mieux appréhender les comportements dans des cadres plus réalistes.
+
+Enfin, l'extension des modèles de commande optimale pour inclure des coûts non linéaires ou des contraintes supplémentaires pourrait offrir de nouvelles perspectives, en particulier dans le cadre de la gestion de portefeuille ou de la couverture d'actifs financiers sous contraintes réglementaires. Cependant, la difficulté de résolution des équations associées augmentera.
+
+En conclusion, ce mémoire propose une approche analytique rigoureuse pour l'étude des problèmes de premier passage et de commande optimale appliqués au processus \acs{CIR}. Les résultats obtenus constituent une base solide pour des développements futurs dans des contextes plus généraux ou appliqués, notamment dans le domaine de la finance quantitative.

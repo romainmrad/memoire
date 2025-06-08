@@ -1,0 +1,49 @@
+\Chapter{REVUE DE LITTÉRATURE}\label{sec:RevLitt}
+
+Le problème du \textit{temps de premier passage} (\acs{TPP}) consiste à déterminer le moment où un processus stochastique atteint un seuil prédéfini pour la première fois. Ce concept joue un rôle central dans de nombreuses disciplines, notamment en physique, biologie, ingénierie, et particulièrement en mathématiques financières. Parmi les modèles les plus utilisés dans ce contexte, le processus de \ac{CIR}, également appelé processus racine-carrée de Feller (ou encore une transformation du processus de Bessel au carré), occupe une place importante en raison de sa propriété de non-négativité et de son comportement attractif autour d'une moyenne. Ce processus est notamment utilisé pour modéliser les dynamiques des taux d'intérêt.
+
+Ce chapitre propose une synthèse des travaux existants sur les \acs{TPP} appliqués au processus \acs{CIR} (\cite{dinardo2021,dinardo2024,kepplinger2017,giorno2021,giorno2023,martin2011,masoliver2012}), en mettant l'accent sur les méthodes analytiques, numériques et statistiques. L'objectif est de situer le présent mémoire dans l'état de l'art et de justifier les approches retenues par la suite.
+
+\paragraph{Approche par cumulants et fonctions de Kummer}
+
+Dans\cite{dinardo2021}, l'auteur développe une approche analytique du \acs{TPP} pour le processus \acs{CIR} en utilisant la transformée de Laplace de la densité de passage. Celle-ci s'exprime via la fonction hypergéométrique confluente de Kummer:
+\[
+\tilde{g}(z) = \frac{\Phi\left(\frac{z}{\tau}, s, \frac{2\tau(y_0-c)}{\sigma^2}\right)}{\Phi\left(\frac{z}{\tau}, s, \frac{2\tau(S-c)}{\sigma^2}\right)}, \quad z > 0.
+\]
+Les moments du \acs{TPP} sont ensuite obtenus à partir des cumulants, exprimés en fonction de polynômes logarithmiques et de nombres de Stirling. Cela permet, entre autres, de construire des développements en série à l'aide de polynômes de Bell. L'auteur propose également une approximation de la fonction de répartition à l'aide d'un développement en séries basé sur la densité Gamma et les polynômes de Laguerre.
+
+\paragraph{Développement orthogonal basé sur la densité Gamma}
+
+Dans\cite{dinardo2024}, cette approche est affinée par un développement tronqué de la densité du \acs{TPP}:
+\[
+g(t) \approx \hat{g}_n(t) = \frac{\beta {(\beta t)}^\alpha e^{-\beta t}}{\Gamma(\alpha+1)} \sum_{k=0}^n a_k^{(\alpha)} Q_k^{(\alpha)}(\beta t),
+\]
+où \( Q_k^{(\alpha)} \) sont des polynômes de Laguerre orthonormés, et \( a_k^{(\alpha)} \) des coefficients dépendant des moments. Cette méthode est accompagnée d'une analyse de convergence et d'un algorithme d'acceptation-rejet pour la simulation du \acs{TPP}.
+
+\paragraph{Méthodes analytiques et intégrales de Volterra}
+
+L'article\cite{kepplinger2017} traite le \acs{TPP} pour des processus de diffusion généraux en formulant une équation intégrale de Volterra du premier type. Pour le processus \acs{CIR}, l'auteur utilise un changement de mesure transformant le problème en celui du processus de Feller. Les moments sont ensuite dérivés à l'aide de la transformée de Laplace et des fonctions de Kummer.
+
+\paragraph{Formules analytiques pour le processus de Feller}
+
+Dans\cite{giorno2021}, les auteurs généralisent les résultats précédents à différents régimes de dérive du processus de Feller, en exprimant la densité du \acs{TPP} à travers la fonction de Kummer du second type \( \Psi \) ou la fonction de Bessel modifiée \( K_\nu \), selon la valeur du paramètre \( a \) (positif, nul ou négatif). Des expressions explicites pour la densité et l'espérance du \acs{TPP} sont fournies.
+
+\paragraph{Comparaison avec les processus de Wiener et d'Ornstein-Uhlenbeck}
+
+Dans\cite{giorno2023}, une comparaison est effectuée entre les comportements de \acs{TPP} pour les processus de Wiener, d'Ornstein-Uhlenbeck (OU) et de Feller. Pour chacun, la probabilité d'atteindre l'état zéro est analysée. Des formules explicites sont données pour la densité du \acs{TPP} avec absorption à zéro, et une étude asymptotique met en lumière les différences structurelles entre ces modèles.
+
+\paragraph{Lien avec les processus de type Bessel}
+
+L'article\cite{martin2011} s'intéresse à un processus de type Bessel gouverné par l'équation:
+\[
+dX_t = \left(\frac{nD}{X_t}\right) dt + \sqrt{2D}\, dW_t,
+\]
+présentant des similarités structurelles avec le processus \acs{CIR}. Selon le paramètre \( n \), le comportement au voisinage de zéro varie (absorbant, réfléchissant, ou entrée). Les auteurs proposent une résolution du problème de passage à l'aide de la théorie de Sturm-Liouville et des fonctions de Bessel, et obtiennent des densités de \acs{TPP} analytiques. Une validation par simulation de type Euler-Maruyama complète l'étude.
+
+\paragraph{Temps de premier passage avec sauts}
+
+Dans le cas de processus à sauts, le franchissement du seuil peut se faire par discontinuité, générant un dépassement (\textit{overshoot}) dont l'analyse complique considérablement le calcul du \acs{TPP}. Pour un processus de diffusion avec sauts doublement exponentiels, Kou et Wang\cite{kou2003} obtiennent des expressions fermées pour la transformée de Laplace du \acs{TPP} et de la distribution conjointe entre le temps de passage et l'overshoot. Ils montrent que l'overshoot est exponentiel conditionnellement à sa positivité, et que l'indépendance conditionnelle entre le \acs{TPP} et le dépassement peut être exploitée pour simplifier les calculs.
+
+\paragraph{Extensions à des lois plus générales}
+
+Yin et al.\cite{yin2014} généralisent ce cadre aux sauts suivant une loi mixte exponentielle, obtenant également des formules explicites pour la transformée de Laplace jointe du \acs{TPP} et de l'overshoot. Par ailleurs, Klüppelberg, Kyprianou et Maller\cite{kluppelberg2004} analysent le cas de processus de Lévy à queue lourde et dérivent une expression asymptotique explicite de l'overshoot conditionnellement au franchissement d'un niveau élevé. Ces résultats constituent les rares cas où des expressions analytiques sont disponibles, et fournissent un point de comparaison pour l'étude du processus de \acs{CIR} avec sauts.

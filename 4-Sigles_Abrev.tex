@@ -1,0 +1,32 @@
+% Liste des sigles et abbréviations / List of symbols and acronyms
+\ifthenelse{\equal{\Langue}{english}}{
+	\newcommand\abbrevname{LIST OF SYMBOLS AND ACRONYMS}
+}{
+	\newcommand\abbrevname{LISTE DES SIGLES ET ABRÉVIATIONS}
+}
+\chapter*{\abbrevname}
+\addcontentsline{toc}{compteur}{\abbrevname}
+\pagestyle{pagenumber}
+%
+\begin{acronym}
+  \acro{CIR}{Cox--Ingersoll--Ross}
+  \acro{MBS}{Mouvement Brownien Standard}
+  \acro{EDO}{Équation Différentielle Ordinaire}
+  \acro{EID}{Équation Integro-différentielle}
+  \acro{EDS}{Équation Différentielle Stochastique}
+  \acro{FGM}{Fonction Génératrice des Moments}
+  \acro{TPP}{Temps de Premier Passage}
+  \acro{HJB}{Hamilton--Jacobi--Bellman}
+\end{acronym}
+%
+\begin{longtable}{lp{5in}}
+CIR & Cox--Ingersoll--Ross\\
+MBS & Mouvement Brownien Standard\\
+EDO & Équation Différentielle Ordinaire\\
+EID & Équation Integro-différentielle\\
+EDS & Équation Différentielle Stochastique\\
+FGM & Fonction Génératrice des Moments\\
+TPP & Temps de Premier Passage \\
+HJB & Hamilton--Jacobi--Bellman
+\end{longtable}
+

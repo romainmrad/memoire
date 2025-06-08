@@ -1,0 +1,95 @@
+% %%
+% %%  Annexes
+% %%
+% %%  Note: Ne pas modifier la ligne ci-dessous. / Do not modify the following line.
+% \ifthenelse{\equal{\Langue}{english}}{
+% 	\addcontentsline{toc}{compteur}{APPENDICES}
+% }{
+% 	\addcontentsline{toc}{compteur}{ANNEXES}
+% }
+% %%
+% %%
+% %%  Toutes les annexes doivent être inclues dans ce document
+% %%  les unes à la suite des autres.
+% %%  All annexes must be included in this document one after the other.
+% \Annexe{Démo}
+% Texte de l'annexe A\@. Remarquez que la phrase précédente se termine
+% par une lettre majuscule suivie d'un point. On indique explicitement
+% cette situation à \LaTeX{} afin que ce dernier ajuste correctement
+% l'espacement entre le point final de la phrase et le début de la
+% phrase suivante.
+
+
+% \begin{landscape}
+% \Annexe{Encore une annexe / Another Appendix}
+% Texte de l'annexe B\@ en mode «landscape».
+% \end{landscape}
+
+% \Annexe{Une dernière annexe / The Last Appendix}
+% Texte de l'annexe C\@.
+
+\Annexe{Fonctions spéciales}\label{special_functions}
+
+Cette annexe contient une définition de toutes les fonctions spéciales utilisées dans ce mémoire. Pour plus d'information, voir\cite{NIST:DLMF}.
+\paragraph{Fonctions Gamma}
+\begin{itemize}
+    \item La fonction Gamma est définie par:
+    \[
+        \begin{aligned}
+            \Gamma(z)&:=\int_0^{+\infty}t^{z-1}e^{-t}dt \\
+            \Gamma(n)&:=(n-1)!
+        \end{aligned}
+    \]
+    \item Les fonction Gamma incomplètes sont définies par:
+    \[
+    \begin{aligned}
+        \Gamma(s,x)&:=\int_x^{+\infty}t^{s-1}e^{-t}dt \\
+        \gamma(s,x)&:=\int_0^x t^{s-1}e^{-t}dt
+    \end{aligned}
+    \] 
+\end{itemize}
+
+\paragraph{Symbole de Pochhammer}
+\[
+{(a)}_n:=\prod_{i=1}^n (a+i-1)
+\]
+
+\paragraph{Fonctions hypergéométriques}
+\begin{itemize}
+    \item Les fonctions hypergéométriques confluentes de première et seconde espèce (aussi appelées fonctions de Kummer et Tricomi) sont définies par:
+    \[
+        \begin{aligned}
+            \Phi(s, t, z) &:= \sum_{n=0}^{\infty} \frac{{(s)}_n \, x^n}{{(t)}_n \, n!}  \\
+            \Psi(s,t,z) &:= \frac{\Gamma(1-t)}{\Gamma(s+1-t)}\Phi(s,t,z)+\frac{\Gamma(t-1)}{\Gamma(s)}z^{1-t}\Phi(s+1-t,2-t,z)
+        \end{aligned}
+    \] 
+    \item La fonction hypergéométrique généralisée est définie par:
+    \[
+    _p F_q\left([s_1,\dots s_p],\,[t_1\dots t_q],\,z\right):=\sum_{n=0}^\infty\frac{{(s_1)}_n\cdots{(s_p)}_n}{{(t_1)}_n\cdots {(t_q)}_n}\frac{z^n}{n!}
+    \]
+    Il est intéressant de noter que la fonction hypergéométrique confluente de première espèce $\Phi(\cdot,\cdot,\cdot)$ n'est autre que le cas particulier $_1F_1(\cdot,\cdot,\cdot)$.
+\end{itemize}
+
+\paragraph{Fonction intégrale exponentielle généralisée}
+\[
+E_n(x):=\int_1^{+\infty}\frac{e^{xt}}{t^n}dt
+\]
+
+\paragraph{Fonctions de Bessel}
+\begin{itemize}
+    \item Les fonctions de Bessel de première et seconde espèce sont définies par:
+    \[
+    \begin{aligned}
+        J_\alpha(x)&:=\sum_{m=0}^{+\infty}\frac{(-1)^m}{m!\Gamma(m+\alpha+1)}{\left(\frac{x}{2}\right)}^{2m+\alpha} \\
+        Y_\alpha(x)&:=\frac{J_\alpha(x)\cos(\alpha\pi)-J_{-\alpha}(x)}{\sin(\alpha\pi)}
+    \end{aligned}
+    \]
+    \item Les fonctions de Bessel modifiées de première et seconde espèce sont définies par:
+    \[
+    \begin{aligned}
+        I_\alpha(x)&:=i^{-\alpha}J_\alpha(ix)\\
+        K_\alpha(x)&:=\frac{\pi}{2}\frac{I_{-\alpha}(x)-I_\alpha(x)}{\sin(\alpha\pi)}
+    \end{aligned}
+    \]
+\end{itemize}
+
