@@ -41,7 +41,7 @@ L'équation devient:
 \end{equation}
 La solution générale de cette dernière (\ref{kummer_eq2}) est de la forme (voir\cite{magnus1966}): 
 \[G(y;\alpha) = C_1\Phi\left(\frac{\alpha}{a}, \frac{2ab}{\sigma^2}, y\right) + C_2\Psi\left(\frac{\alpha}{a}, \frac{2ab}{\sigma^2}, y\right)\]
-avec $C_1$ et $C_2$ des constantes à déterminer, et $\Phi(\cdot, \cdot, \cdot)$ et $\Psi(\cdot, \cdot, \cdot)$ sont les fonctions hypergéométriques confluentes de première et seconde espèce, ${(a)}_n$ est le symbole de Pochhammer et $\Gamma(\cdot)$ est la fonction Gamma (voir annexe \ref{special_functions}).
+avec $C_1$ et $C_2$ des constantes à déterminer, et $\Phi(\cdot, \cdot, \cdot)$ et $\Psi(\cdot, \cdot, \cdot)$ sont les fonctions hypergéométriques confluentes de première et seconde espèce (voir annexe \ref{special_functions}).
 
 Finalement, l'expression analytique de la \acs{FGM} de $\tau(x)$ est: 
 \begin{equation}\label{sol_fgm}
@@ -260,9 +260,8 @@ Les constantes $C_1$ et $C_2$ s'écrivent donc:
 \end{equation}
 
 \subsection{Commande Optimale Stochastique}
-
-\paragraph{Dérivation de l'équation de programmation dynamique}\phantom{}\\
 Cette section est consacrée à l'étude du problème de commande optimale défini en (\ref{definition_optimal_control}).
+\paragraph{Dérivation de l'équation de programmation dynamique}\phantom{}\\
 En reprenant la définition (\ref{value_function}) et en appliquant le principe d'optimalité de Bellman, il découle:
 \begin{equation}\label{Bellman_optimality}
         F(x) = \inf_u\mathds{E}\left[\int_0^{\delta t}\left(\frac{1}{2}q\left[X_u(s)\right]u^2\left[X_u(s)\right]+r\left[X_u(s)\right]\right)ds+F(X_u(\delta t))\right]
@@ -292,7 +291,7 @@ Ensuite, en retranchant $F(x)$ des deux côtés, en divisant partout par $\delta
 \paragraph{Détermination de la commande optimale et dérivation de l'équation associée}\phantom{}\\
 La minimisation à faire dans (\ref{minimisation_problem}) est en fonction de $u(x)$. Le terme à minimiser est:
 \[
-f(u(x))=\frac{1}{2}q(x)u^2(x)+b(x)u(x)F'(x)
+f(u(x))=\frac{1}{2}q(x){u(x)}^2+b(x)u(x)F'(x)
 \]
 La minimisation donne:
 \begin{equation}\label{optimal_control}
@@ -308,7 +307,7 @@ f''(u(x))=q(x)\quad\forall\;u(x)
 \]
 Puisque \( q(x) > 0 \) par hypothèse (\ref{definition_optimal_control}), la dérivée seconde par rapport au contrôle est strictement positive. L'expression de \( u^*(x) \) obtenue en (\ref{optimal_control}) réalise donc bien un minimum global. Il s'agit ainsi du contrôle optimal.
 
-En injectant ce dernier (\ref{optimal_control}) dans (\ref{minimisation_problem}), l'équation Hamilton-Jacobi-Bellman est obtenue, régissant la fonction valeur associée à la commande optimale:
+En injectant ce dernier (\ref{optimal_control}) dans (\ref{minimisation_problem}), l'équation \acl{HJB} est obtenue, régissant la fonction valeur associée à la commande optimale:
 \begin{equation}\label{control_equation}
     r(x) - \frac{{b(x)}^2}{2q(x)}{\left[F'(x)\right]}^2 + a(b - x)F'(x) + \frac{1}{2}\sigma^2 x F''(x) = 0
 \end{equation}
@@ -477,7 +476,7 @@ Soit les valeurs suivantes des paramètres: $\sigma=\sqrt{2}$, $\lambda=1$ et $c
 \begin{equation}\label{sol_mean_with_jumps}
     m(x)=C_1I_0(2\sqrt{x})+C_2K_0(2\sqrt{x})+2\ln(2\sqrt{x})+C_3
 \end{equation}
-avec $C_1$, $C_2$, $C_3$ des constantes à déterminer et $I_0(\cdot)$, $K_0(\cdot)$ les fonctions de Bessel modifiées.
+avec $C_1$, $C_2$, $C_3$ des constantes à déterminer et $I_0(\cdot)$, $K_0(\cdot)$ les fonctions de Bessel modifiées (voir annexe~\ref{special_functions}).
 
 Les constantes $C_1$, $C_2$ et $C_3$ sont déterminées en imposant les conditions aux limites $m(0)=m(1)=0$ et $m(0.5)=r$. Ensuite, la valeur de $r$ permettant de satisfaire l'équation originale (\ref{mean_ide}) est trouvée: $r\simeq0.3281$.
 
@@ -486,7 +485,7 @@ Afin de comparer l'effet de la présence des sauts, il est intéressant de réso
 \begin{equation}\label{mean_3rd_order_without_jumps}
     xm_0''(x)=-1
 \end{equation}
-La solution qui satisfait $m_0(x)=m_0(1)=0$ est:
+La solution qui satisfait $m_0(0)=m_0(1)=0$ est:
 \begin{equation}\label{sol_mean_with_0_jumps}
     m_0(x)=-x\ln(x)
 \end{equation}
@@ -510,7 +509,8 @@ En reprenant les mêmes valeurs des paramètres ($\sigma=\sqrt{2}$, $\lambda=1$ 
 \begin{equation}\label{sol_probability_with_jumps}
     p(x)=\frac{I_0(2)-I_0(2\sqrt{x})}{I_0(2)-1}
 \end{equation}
-Cette dernière est valide si $r\simeq0.5567$.
+avec $I_0(\cdot)$ la fonction de Bessel modifiée de première espèce (voir annexe~\ref{special_functions}).
+L'expression obtenue (\ref{sol_probability_with_jumps}) est valide si $r\simeq0.5567$.
 \paragraph{Étude du cas sans sauts}\phantom{}\\
 Dans la même logique, le même problème en absence des sauts est résolu pour $p_0(x)=\mathds{P}[X(\tau(x))=0]$. L'équation (\ref{probability_3rd_order}) devient:
 \[
@@ -540,7 +540,7 @@ Ensuite, le terme de droite peut être simplifié:
 \begin{equation}\label{dynkin_right_simplification_1}
     X(0)=x\in(0,c)\implies f(x)=0
 \end{equation}
-Par ailleurs, en développant le générateur infinitésimal appliqué à la fonction $f(x)$, il découle que:
+Par ailleurs, en développant le générateur infinitésimal (voir annexe \ref{infinitesimal_generator}) appliqué à la fonction $f(x)$, il découle que:
 \begin{equation}\label{dynkin_right_simplification_2}
     \begin{aligned}
         \mathcal{L}f(x)&=\frac{1}{2}\sigma^2xf''(x)+a(b-x)f'(x)+\lambda\int_0^{+\infty}\left[f(x+y)-f(x)\right]\nu e^{-\nu y}dy \\
@@ -548,7 +548,7 @@ Par ailleurs, en développant le générateur infinitésimal appliqué à la fon
         &=\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
     \end{aligned}
 \end{equation}
-En prenant en compte (\ref{dynkin_left_simplification}), (\ref{dynkin_right_simplification_1}) et (\ref{dynkin_right_simplification_2}), l'équation (\ref{initial_dynkin}) devient:
+En prenant en compte (\ref{dynkin_left_simplification},\ref{dynkin_right_simplification_1},\ref{dynkin_right_simplification_2}), l'équation (\ref{initial_dynkin}) devient:
 \begin{equation}\label{simplified_dynkin}
     D(x)=\frac{\lambda}{\nu e^{\nu c}}\mathds{E}\left[\int_0^{\tau(x)}e^{\nu X(s)}ds\right]
 \end{equation}

@@ -1,37 +1,25 @@
-% %%
-% %%  Annexes
-% %%
-% %%  Note: Ne pas modifier la ligne ci-dessous. / Do not modify the following line.
-% \ifthenelse{\equal{\Langue}{english}}{
-% 	\addcontentsline{toc}{compteur}{APPENDICES}
-% }{
-% 	\addcontentsline{toc}{compteur}{ANNEXES}
-% }
-% %%
-% %%
-% %%  Toutes les annexes doivent être inclues dans ce document
-% %%  les unes à la suite des autres.
-% %%  All annexes must be included in this document one after the other.
-% \Annexe{Démo}
-% Texte de l'annexe A\@. Remarquez que la phrase précédente se termine
-% par une lettre majuscule suivie d'un point. On indique explicitement
-% cette situation à \LaTeX{} afin que ce dernier ajuste correctement
-% l'espacement entre le point final de la phrase et le début de la
-% phrase suivante.
+%%
+%%  Annexes
+%%
+%%  Note: Ne pas modifier la ligne ci-dessous. / Do not modify the following line.
+\phantomsection
+\ifthenelse{\equal{\Langue}{english}}{
+	\addcontentsline{toc}{compteur}{APPENDICES}
+}{
+	\addcontentsline{toc}{compteur}{ANNEXES}
+}
+%%
+%%
+%%  Toutes les annexes doivent être inclues dans ce document
+%%  les unes à la suite des autres.
+%%  All annexes must be included in this document one after the other.
 
 
-% \begin{landscape}
-% \Annexe{Encore une annexe / Another Appendix}
-% Texte de l'annexe B\@ en mode «landscape».
-% \end{landscape}
 
-% \Annexe{Une dernière annexe / The Last Appendix}
-% Texte de l'annexe C\@.
-
-\Annexe{Fonctions spéciales}\label{special_functions}
+\Annexe{Fonctions Spéciales}\label{special_functions}
 
 Cette annexe contient une définition de toutes les fonctions spéciales utilisées dans ce mémoire. Pour plus d'information, voir\cite{NIST:DLMF}.
-\paragraph{Fonctions Gamma}
+\section*{Fonctions Gamma}
 \begin{itemize}
     \item La fonction Gamma est définie par:
     \[
@@ -49,12 +37,12 @@ Cette annexe contient une définition de toutes les fonctions spéciales utilis�
     \] 
 \end{itemize}
 
-\paragraph{Symbole de Pochhammer}
+\section*{Symbole de Pochhammer}
 \[
 {(a)}_n:=\prod_{i=1}^n (a+i-1)
 \]
 
-\paragraph{Fonctions hypergéométriques}
+\section*{Fonctions hypergéométriques}
 \begin{itemize}
     \item Les fonctions hypergéométriques confluentes de première et seconde espèce (aussi appelées fonctions de Kummer et Tricomi) sont définies par:
     \[
@@ -70,12 +58,12 @@ Cette annexe contient une définition de toutes les fonctions spéciales utilis�
     Il est intéressant de noter que la fonction hypergéométrique confluente de première espèce $\Phi(\cdot,\cdot,\cdot)$ n'est autre que le cas particulier $_1F_1(\cdot,\cdot,\cdot)$.
 \end{itemize}
 
-\paragraph{Fonction intégrale exponentielle généralisée}
+\section*{Fonction intégrale exponentielle généralisée}
 \[
 E_n(x):=\int_1^{+\infty}\frac{e^{xt}}{t^n}dt
 \]
 
-\paragraph{Fonctions de Bessel}
+\section*{Fonctions de Bessel}
 \begin{itemize}
     \item Les fonctions de Bessel de première et seconde espèce sont définies par:
     \[
@@ -93,3 +81,66 @@ E_n(x):=\int_1^{+\infty}\frac{e^{xt}}{t^n}dt
     \]
 \end{itemize}
 
+\Annexe{Générateur Infinitésimal}\label{infinitesimal_generator}
+
+Le générateur infinitésimal \( \mathcal{L} \) associé à un processus \( \{X(t), t\geq0\} \) est défini, pour toute fonction \( f \in C^2(\mathds{R}) \), par:
+\[
+    \mathcal{L}f(x) = \lim_{t \to 0} \frac{\mathds{E}_x[f(X(t))] - f(x)}{t}
+\]
+Cet opérateur permet d'établir des équations différentielles décrivant l'évolution d'une statistique du processus étudié. Pour plus d'informations, voir\cite{bakry2014}.
+
+\section*{Diffusion pure}
+
+Soit \( \{X(t),\, t \geq 0\} \) un processus de diffusion pure à valeurs réelles, solution forte de l'équation différentielle stochastique:
+\[
+    dX(t) = \mu(t,X(t))\,dt + \sigma(t,X(t))\,dW(t)
+\]
+Sous des hypothèses standards d'unicité trajectorielle, le générateur infinitésimal s'écrit:
+\[
+    \mathcal{L}f(x) = \mu(x) f'(x) + \frac{1}{2} \sigma^2(x) f''(x)
+\]
+
+\section*{Diffusion avec sauts}
+
+Soit \( \{X(t),\, t \geq 0\} \) un processus de diffusion avec sauts à valeurs réelles, solution forte de l'équation différentielle stochastique:
+\[
+    dX(t) = \mu(t, X(t))\,dt + \sigma(t, X(t))\,dW(t) + \int_0^t\int_{\mathds{R}} yN(ds,dy)
+\]
+Sous des hypothèses standards d'unicité trajectorielle, le générateur infinitésimal s'écrit:
+\[
+    \mathcal{L}f(x) = \mu(x) f'(x) + \frac{1}{2} \sigma^2(x) f''(x) + \int_{\mathds{R}} \left[f(x+y) - f(x)\right] \nu(dy)
+\]
+
+\Annexe{Unicité Trajectorielle}\label{trajecotry_uniqueness}
+
+\section*{Diffusion pure}
+
+Soit un processus \( \{X(t),\, t \geq 0\} \) défini par une certaine \ac{EDS}:
+\begin{equation}\label{diffusion_sde}
+    dX(t) = \mu(t,X(t))\,dt + \sigma(t,X(t))\,dW(t)
+\end{equation}
+Si les conditions suivantes sont satisfaites:
+\begin{itemize}
+    \item \textbf{Dérive et Diffusion Lipschitz} \\
+    Il existe une constante \( K > 0 \) telle que, pour tout \( x,y \in \mathds{R} \),
+    \[
+    |\mu(x)-\mu(y)|^2+|\sigma(x)-\sigma(y)|^2\leq K|x-y|^2
+    \]
+    \item \textbf{Croissance au plus linéaire} \\
+    Il existe une constante \( K > 0 \) telle que, pour tout \( x \in \mathds{R} \),
+    \[
+    |\mu(x)|^2 + |\sigma(x)|^2 \leq K(1 + |x|^2)
+    \]
+\end{itemize}
+$X(t)$ est alors l'unique solution forte, càdlàg, non-explosive  et adaptée de l'équation (\ref{diffusion_sde}).
+
+\section*{Diffusion avec sauts}
+Soit un processus \( \{X(t),\, t \geq 0\} \) défini par une certaine \ac{EDS}:
+\begin{equation}\label{jump_diffusion_sde}
+    dX(t) = \mu(t, X(t))\,dt + \sigma(t, X(t))\,dW(t) + \int_0^t\int_{\mathds{R}} yN(ds,dy)
+\end{equation}
+Si les conditions d'unicité trajectorielle associées à la diffusion sont satisfaites (dérive et diffusion Lipschitz, croissance au plus linéaire), et si la mesure \( \nu \), modélisant la loi des tailles des sauts, vérifie la \textbf{Condition de Lévy minimale}:
+\[
+\int_{\mathds{R}}\min(1, y^2)\, \nu(dy) < \infty
+\]
+$X(t)$ est alors l'unique solution forte, càdlàg, non-explosive et adaptée de l'équation (\ref{jump_diffusion_sde}).

@@ -37,7 +37,7 @@ Un processus stochastique $\{W(t),\;t\geq0\}$ est un mouvement brownien standard
 \end{itemize}
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{img/intro/path_MBS.pdf}
+    \includegraphics[width=0.9\linewidth]{img/intro/path_MBS.pdf}
     \caption{Une trajectoire du \acl{MBS}}\label{fig:TrajMBS}
 \end{figure}
 \FloatBarrier Le \acs{MBS} constitue la base de la construction des processus de diffusion employés dans de nombreux domaines tels que la finance, la physique ou la biologie. Ces processus sont modélisés par des \acf{EDS}, qui consistent à enrichir le mouvement brownien en y ajoutant un terme de dérive et un terme de diffusion. Il en résulte une classe de processus dits \textit{d'Itô}.
@@ -57,14 +57,14 @@ Dans cette formulation, $\mu(t, X(t))$ est appelé le \textit{terme de dérive} 
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{img/intro/path_drift.pdf}
+    \includegraphics[width=0.9\linewidth]{img/intro/path_drift.pdf}
     \caption{Une trajectoire d'un processus d'Itô avec $\mu(t, X(t)) \equiv \mu = 2$}\label{fig:TrajIto}
 \end{figure}
-\FloatBarrier
+\FloatBarrier La figure~\ref{fig:TrajIto} illustre l'effet de la dérive constante: la trajectoire du processus s'organise autour de la courbe moyenne \( y = 2x \), tout en étant perturbée par la composante aléatoire de la diffusion.
 
-Il est important de noter que les termes de dérive et de diffusion peuvent eux-mêmes dépendre de l'état du processus ou du temps, ce qui permet de capturer des dynamiques complexes, comme une volatilité ou une dérive variable. Cette flexibilité permet notamment de modéliser des phénomènes réalistes dans les systèmes financiers ou physiques.
+De plus, il est important de noter que les termes de dérive et de diffusion peuvent eux-mêmes dépendre de l'état du processus ou du temps, ce qui permet de capturer des dynamiques complexes, comme une volatilité ou une dérive variable. Cette flexibilité permet notamment de modéliser des phénomènes réalistes dans les systèmes financiers ou physiques.
 
-Il est parfois intéressant d'enrichir les processus d'Itô en leur ajoutant une composante de sauts, gouvernée par un processus de Poisson (processus de comptage classique modélisant une file d'attente).
+Par ailleurs, Il est parfois intéressant d'enrichir les processus d'Itô en leur ajoutant une composante de sauts, gouvernée par un processus de Poisson (processus de comptage classique modélisant une file d'attente).
 
 \paragraph{Définition: Processus de Poisson}\mbox{}\\
 Un processus $\{N(t),\;t\geq0\}$ est un processus de Poisson de taux $\lambda$ s'il vérifie:
@@ -93,7 +93,7 @@ Ce processus correspond à une somme aléatoire de sauts, où:
 La figure ci-dessous visualise différentes réalisation d'un processus de sauts pur gouverné par un processus de Poisson de paramètre $\lambda=2$. La taille des sauts correspond à des réalisations d'une variable aléatoire exponentielle de paramètre $\nu=1.5$.
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{img/intro/path_jump.pdf}
+    \includegraphics[width=0.9\linewidth]{img/intro/path_jump.pdf}
     \caption{Simulation de 10 trajectoire d'un processus de sauts pur $J(t)$}\label{fig:TrajJump}
 \end{figure}
 \FloatBarrier\clearpage
@@ -131,7 +131,7 @@ Ce processus est particulièrement adapté à la modélisation des taux d'intér
 \end{itemize}
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{img/intro/path_cir.pdf}
+    \includegraphics[width=0.9\linewidth]{img/intro/path_cir.pdf}
     \caption{Une trajectoire du processus \acs{CIR} avec $a=1$, $b=0.02$, $\sigma=0.1$}\label{fig:TrajCIR}
 \end{figure}
 \FloatBarrier
@@ -153,7 +153,7 @@ L'étude de ce temps d'arrêt est particulièrement pertinente dans le cadre du 
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{img/intro/cir_first_passage.pdf}
+    \includegraphics[width=0.9\linewidth]{img/intro/cir_first_passage.pdf}
     \caption{Simulations de 30 trajectoires du \acs{CIR} avec deux frontières absorbantes}\label{fig:FPTCIR}
 \end{figure}
 \FloatBarrier L'étude portera principalement sur le processus \acs{CIR}, noté $X(t)$, ainsi que sur la variable aléatoire associée au temps de premier passage $\tau(x)$.\\
@@ -200,7 +200,7 @@ La fonction dépassement moyen est définie par:
 Elle quantifie le dépassement moyen au-dessus de la frontière \( c \), à partir d'une condition initiale \( X(0) = x \in (0, c) \). Il est essentiel de souligner que cette fonction ne présente un intérêt que dans le cas où le processus comporte des sauts. En effet, dans le cadre purement continu, la trajectoire atteint la frontière exactement, sans possibilité de la franchir.
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{img/intro/overshoot.pdf}
+    \includegraphics[width=0.9\linewidth]{img/intro/overshoot.pdf}
     \caption{Simulations de 30 trajectoires du \acs{CIR} avec sauts dépassants la frontière $c$}\label{fig:OvershootViz}
 \end{figure}
 \FloatBarrier
@@ -231,7 +231,7 @@ Le problème consiste à déterminer une stratégie optimale \( u^*(x) \) minimi
 La figure ci-dessous illustre l'effet d'une stratégie de contrôle sur la dynamique du processus. Dans cet exemple, la commande utilisée est de la forme \( u(x) = u_0(c - x) \), ce qui génère une force dirigée vers la frontière supérieure \( c \) et accélère ainsi la sortie du processus par le haut.
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{img/intro/control.pdf}
+    \includegraphics[width=0.9\linewidth]{img/intro/control.pdf}
     \caption{Simulations de deux trajectoires du CIR avec et sans contrôle}\label{fig:ControlViz}
 \end{figure}
 \FloatBarrier
