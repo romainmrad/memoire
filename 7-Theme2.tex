@@ -117,7 +117,7 @@ D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p1})
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P1/p1_R_control.pdf}
-        \caption{Contrôle Optimale $u^*(x)$}\label{fig:RhoControlVisualisation1}
+        \caption{Contrôle Optimal $u^*(x)$}\label{fig:RhoControlVisualisation1}
     \end{subfigure}
     \caption{Sensibilité du coût immédiat $r(x)=\rho$}\label{fig:RhoValueControlComparison1}
 \end{figure}
@@ -130,7 +130,7 @@ D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p1})
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P1/p1_B_control.pdf}
-        \caption{Contrôle Optimale $u^*(x)$}\label{fig:BetaControlVisualisation1}
+        \caption{Contrôle Optimal $u^*(x)$}\label{fig:BetaControlVisualisation1}
     \end{subfigure}
     \caption{Sensibilité du coût du contrôle $b(x)=\beta x$}\label{fig:BetaValueControlComparison}
 \end{figure}
@@ -143,7 +143,7 @@ D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p1})
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P1/p1_K_control.pdf}
-        \caption{Contrôle Optimale $u^*(x)$}\label{fig:KappaControlVisualisation1}
+        \caption{Contrôle Optimal $u^*(x)$}\label{fig:KappaControlVisualisation1}
     \end{subfigure}
     \caption{Sensibilité de la pondération du contrôle $q(x)=\kappa x$}\label{fig:KappaValueControlComparison1}
 \end{figure}
@@ -158,7 +158,7 @@ D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p2})
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P2/p2_R_control.pdf}
-        \caption{Contrôle Optimale $u^*(x)$}\label{fig:RhoControlVisualisation2}
+        \caption{Contrôle Optimal $u^*(x)$}\label{fig:RhoControlVisualisation2}
     \end{subfigure}
     \caption{Sensibilité du coût immédiat $r(x)=\rho x$}\label{fig:RhoValueControlComparison2}
 \end{figure}
@@ -171,7 +171,7 @@ D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p2})
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P2/p2_B_control.pdf}
-        \caption{Contrôle Optimale $u^*(x)$}\label{fig:BetaControlVisualisation2}
+        \caption{Contrôle Optimal $u^*(x)$}\label{fig:BetaControlVisualisation2}
     \end{subfigure}
     \caption{Sensibilité du coût du contrôle $b(x)=\beta \sqrt{x}$}\label{fig:BetaValueControlComparison1}
 \end{figure}
@@ -184,7 +184,7 @@ D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p2})
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P2/p2_K_control.pdf}
-        \caption{Contrôle Optimale $u^*(x)$}\label{fig:KappaControlVisualisation2}
+        \caption{Contrôle Optimal $u^*(x)$}\label{fig:KappaControlVisualisation2}
     \end{subfigure}
     \caption{Sensibilité de la pondération du contrôle $q(x)=\kappa x$}\label{fig:KappaValueControlComparison2}
 \end{figure}
@@ -199,9 +199,9 @@ L'expression de la fonction valeur (\ref{sol_control_3}) ainsi que la commande o
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P3/p3_control.pdf}
-        \caption{Contrôle Optimale $u^*(x)$}\label{fig:ControlVisualisation3}
+        \caption{Contrôle Optimal $u^*(x)$}\label{fig:ControlVisualisation3}
     \end{subfigure}
-    \caption{Visualisation de la fonction valeur et du contrôle optimale dans le cas d'un problème non linéarisable}\label{fig:ValueControlComparison3}
+    \caption{Visualisation de la fonction valeur et du contrôle optimal dans le cas d'un problème non linéarisable}\label{fig:ValueControlComparison3}
 \end{figure}
 \FloatBarrier\paragraph{Analyse}\phantom{}\\
 Il est important de souligner que, dans les trois problèmes étudiés et pour les différentes valeurs des paramètres considérés:
@@ -219,11 +219,19 @@ Ainsi, les expressions obtenues pour la fonction valeur $F(x)$ et le contrôle o
 
 Cette section est consacrée à la présentation des résultats portant sur le \acs{CIR} avec sauts défini en (\ref{jump_cir_sde}).
 \subsection{Fonction Temps moyen -- Sauts uniformes}
-Les paramètres utilisés sont ceux introduits lors de l'étude du temps moyen de sortie, avec et sans sauts, à la sous-partie (\ref{subsection_mean_jumps}). Les fonctions \( m(x) \) et \( m_0(x) \), données respectivement par (\ref{sol_mean_with_jumps}) et (\ref{sol_mean_with_0_jumps}), sont représentées graphiquement.
+Les paramètres utilisés sont ceux introduits lors de l'étude du temps moyen de sortie, à la sous-partie (\ref{subsection_mean_jumps}). Les fonctions \( m(x) \) (avec sauts) et \( m_0(x) \) (sans sauts), données respectivement par (\ref{sol_mean_with_jumps}) et (\ref{sol_mean_with_0_jumps}), sont tracées.
 \paragraph{Visualisation}\phantom{}
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{img/validation/Jumps/mean_jumps.pdf}
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Jumps/mean_jumps.pdf}
+        \caption{Fréquence des sauts $\lambda=1$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Jumps/mean_big_jumps.pdf}
+        \caption{Fréquence des sauts $\lambda=10$}
+    \end{subfigure}
     \caption{Visualisation des temps moyens de sortie $m(x)$ et $m_0(x)$}\label{fig:JumpsMeanVisualisation}
 \end{figure}
 \FloatBarrier\paragraph{Analyse}\phantom{}\\
@@ -231,25 +239,35 @@ Il convient de souligner les observations suivantes:
 \begin{itemize}
     \item Les conditions aux limites \( m(0) = m(c) = m_0(0) = m_0(c) = 0 \) sont bien vérifiées.
     \item Le temps moyen de sortie en présence de sauts ($m(x)$ en bleu) est inférieur à celui observé sans sauts ($m_0(x)$ en orange), ce qui illustre l'accélération du processus induite par ces derniers.
+    \item Une augmentation de la fréquence des sauts $\lambda$ induit une diminution du temps moyen de sortie. Ce comportement est attendu comme les sauts augmente la probabilité que le \acs{CIR} quitte l'intervalle rapidement.
 \end{itemize}
 
 \subsection{Fonction Probabilité de sortie en zéro -- Sauts uniformes}
-Les paramètres considérés sont ceux définis dans l'étude de la probabilité de sortie en zéro, avec et sans sauts, présentée en sous-partie (\ref{subsection_probability_jumps}). Les fonctions \( p(x) \) et \( p_0(x) \), correspondant respectivement aux expressions (\ref{sol_probability_with_jumps}) et (\ref{sol_probability}), sont représentées graphiquement.
+Les paramètres considérés sont ceux définis dans l'étude de la probabilité de sortie en zéro, présentée en sous-partie (\ref{subsection_probability_jumps}). Les fonctions \( p(x) \) (avec sauts) et \( p_0(x) \) (sans sauts), correspondant respectivement aux expressions (\ref{sol_probability_with_jumps}) et (\ref{sol_probability}), sont représentées graphiquement.
 \paragraph{Visualisation}\phantom{}
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{img/validation/Jumps/probability_jumps.pdf}
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Jumps/probability_jumps.pdf}
+        \caption{Fréquence des sauts $\lambda=1$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Jumps/probability_big_jumps.pdf}
+        \caption{Fréquence des sauts $\lambda=10$}
+    \end{subfigure}
     \caption{Visualisation des probabilité de sortir en zéro $p(x)$ et $p_0(x)$}\label{fig:JumpsProbabilityVisualisation}
 \end{figure}
 \FloatBarrier\paragraph{Analyse}\mbox{}\\
 Les observations suivantes peuvent être formulées:
 \begin{itemize}
     \item Les conditions aux limites sont correctement satisfaites, à savoir \( p(0) = p_0(0) = 1 \) et \( p(c) = p_0(c) = 0 \).
-    \item Les sauts étant négatifs, ils favorisent une sortie par la borne inférieure. La probabilité de franchissement par zéro est donc plus élevée dans le cas avec sauts ($p(x)$ en bleu).
+    \item Les sauts étant négatifs, ils favorisent une sortie par la borne inférieure. La probabilité de franchissement par zéro est donc plus élevée dans le cas avec sauts ($p(x)$ en bleu);
+    \item Une augmentation de la fréquence des sauts $\lambda$ entraîne une augmentation considérable de la probabilité de sortir par zéro. En effet, les sauts étant négatifs, leur multiplication tend à entraîner le processus vers la borne inférieure.
 \end{itemize}
 
 \subsection{Fonction Dépassement Moyen -- Sauts exponentiels}
-Enfin, la variante à sauts exponentiels est considérée.
+La variante du \acs{CIR} à sauts exponentiels est considérée.
 \paragraph{Visualisation}\phantom{}\\
 Toujours dans la même optique, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée.
 \begin{figure}[htb]

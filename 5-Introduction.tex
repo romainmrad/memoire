@@ -40,16 +40,13 @@ Un processus stochastique $\{W(t),\;t\geq0\}$ est un mouvement brownien standard
     \includegraphics[width=\linewidth]{img/intro/path_MBS.pdf}
     \caption{Une trajectoire du \acl{MBS}}\label{fig:TrajMBS}
 \end{figure}
-\FloatBarrier 
-
-Le \acs{MBS} constitue la base de la construction des processus de diffusion employés dans de nombreux domaines tels que la finance, la physique ou la biologie. Ces processus sont modélisés par des \acf{EDS}, qui consistent à enrichir le mouvement brownien en y ajoutant un terme de dérive et un terme de diffusion. Il en résulte une classe de processus dits \textit{d'Itô}.
+\FloatBarrier Le \acs{MBS} constitue la base de la construction des processus de diffusion employés dans de nombreux domaines tels que la finance, la physique ou la biologie. Ces processus sont modélisés par des \acf{EDS}, qui consistent à enrichir le mouvement brownien en y ajoutant un terme de dérive et un terme de diffusion. Il en résulte une classe de processus dits \textit{d'Itô}.
 
 \paragraph{Définition: Processus d'Itô}\mbox{}\\
 Un processus $\{X(t),\;t \geq 0\}$ est dit d'Itô (voir\cite{ito1944}) s'il satisfait une équation différentielle stochastique de la forme:
 \begin{equation}
     dX(t) = \mu(t, X(t))\,dt + \sigma(t, X(t))\,dW(t)
 \end{equation}\label{ito_eq}
-
 où:
 \begin{itemize}
     \item $\mu(t, X(t))$ et $\sigma(t, X(t))$ sont des fonctions mesurables et adaptées à la filtration brownienne standard $\mathcal{F}_t=\sigma\{W(s),\;s\leq t\}$;
@@ -93,11 +90,11 @@ Ce processus correspond à une somme aléatoire de sauts, où:
     \item Les instants des sauts sont donnés par les temps d'arrivée du processus de Poisson;
     \item Entre deux sauts, le processus reste constant.
 \end{itemize}
-
+La figure ci-dessous visualise différentes réalisation d'un processus de sauts pur gouverné par un processus de Poisson de paramètre $\lambda=2$. La taille des sauts correspond à des réalisations d'une variable aléatoire exponentielle de paramètre $\nu=1.5$.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\linewidth]{img/intro/path_jump.pdf}
-    \caption{Simulation de 10 trajectoire d'un processus de sauts pur $J(t)$ de paramètre $\lambda=5$ avec sauts exponentiels de paramètre $\nu=1.5$}\label{fig:TrajPoi}
+    \caption{Simulation de 10 trajectoire d'un processus de sauts pur $J(t)$}\label{fig:TrajJump}
 \end{figure}
 \FloatBarrier\clearpage
 
@@ -128,7 +125,7 @@ Ce processus est particulièrement adapté à la modélisation des taux d'intér
     \item Le terme de diffusion $\sigma(t, X(t))\equiv \sigma(X(t)) = \sigma \sqrt{X(t)}$ garantit la non-négativité du processus, car la racine carrée empêche des évolutions négatives.
     \item Enfin, le comportement à proximité de zéro est gouverné par la \textit{condition de Feller}, selon laquelle:
     \[
-    \mathds{P} \left[ \exists\, t < \infty \text{ tel que } X(t) = 0 \right] = 1 \quad \text{si et seulement si} \quad \sigma^2 \geq 2ab.
+    \mathds{P} \left[ \exists\, t < \infty \text{ tel que } X(t) = 0 \right] = 1 \quad \text{si et seulement si} \quad \sigma^2 \geq 2ab
     \]
     Cela signifie que le processus peut atteindre zéro en un temps fini lorsque cette condition est satisfaite, mais il reste strictement positif sinon.
 \end{itemize}
@@ -146,7 +143,7 @@ Soit $\{X(t),\, t \geq 0\}$ un processus \acs{CIR}. Le \textit{temps de premier 
 \begin{equation}\label{fpt_definition}
     \tau(x) = \inf \left\{ t \geq 0: X(t) \notin (0, c) \,\middle|\, X(0) = x \in (0, c) \right\}
 \end{equation}
-Autrement dit, $\tau(x)$ correspond au premier instant où le processus atteint l'une des bornes de l'intervalle $(0, c)$, soit $0$ ou $c$. \\
+Autrement dit, $\tau(x)$ correspond au premier instant où le processus atteint l'une des bornes de l'intervalle $(0, c)$. \\
 
 L'étude de ce temps d'arrêt est particulièrement pertinente dans le cadre du processus \acs{CIR}, pour plusieurs raisons:
 \begin{itemize}
@@ -208,33 +205,36 @@ Elle quantifie le dépassement moyen au-dessus de la frontière \( c \), à part
 \end{figure}
 \FloatBarrier
 En complément de l'étude des temps de premier passage, ce mémoire s'intéresse également à un problème de \textit{commande optimale stochastique} appliqué au processus \acs{CIR}.\\
-Ce cadre permet de modéliser une situation dans laquelle un agent cherche à influencer dynamiquement l'évolution du processus, à l'aide d'un contrôle $u(x)$, tout en minimisant un coût total cumulé jusqu'à un temps d'arrêt.
-
-\paragraph{Définition: Problème de commande optimale}\label{definition_optimal_control}\mbox{}\\
-On considère un processus \acs{CIR} contrôlé $\{X_u(t),\, t \geq 0\}$ de la forme:
+\paragraph{Définition: Problème de commande optimale -- Homing Problem}\label{definition_optimal_control}\mbox{}\\
+Le \textit{Homing problem} consiste à piloter un processus stochastique dynamiquement jusqu'à ce qu'il atteigne un ensemble d'arrêt donné, tout en optimisant un objectif. La configuration étudiée dans ce mémoire correspond à un processus \acs{CIR} contrôlé \( \{X_u(t),\, t \geq 0\} \) évoluant dans l'intervalle \( (0, c) \), avec un arrêt déclenché dès que la trajectoire atteint l'une des deux frontières. Ce processus est défini par:
 \begin{equation}\label{controlled_process}
     dX_u(t) = a[b - X_u(t)]dt + b[X_u(t)]u[X_u(t)]dt + \sigma \sqrt{X_u(t)} dW(t)
 \end{equation}
-où $u(\cdot)$ est la variable de contrôle.\\
+où \( u(\cdot) \) est une stratégie de contrôle.
 
-L'objectif est de minimiser une fonction coût de la forme:
+Le processus est contrôlé jusqu'à l'instant d'arrêt $\tau(x)$ défini précédemment (\ref{fpt_definition}).
+Par ailleurs, l'objectif est de minimiser une fonction coût de type intégral, définie par:
 \begin{equation}\label{cost_function}
-    J(x):=\int_0^{\tau(x)} \left(\frac{1}{2}q[X_u(t)]u^2[X_u(t)] + r[X_u(t)] \right) dt
+    J(x) := \int_0^{\tau(x)} \left( \frac{1}{2}q[X_u(t)]u^2[X_u(t)] + r[X_u(t)] \right) dt
 \end{equation}
 où:
 \begin{itemize}
-    \item $\tau(x)$ désigne le temps de premier passage associé au processus contrôlé $X_u(t)$;
-    \item $r(x)\neq0$ est le coût d'état (sans contrôle) associé au niveau $x$;
-    \item $b(x)\neq0$ est le coût du contrôle appliqué;
-    \item $q(x)>0$ est un poids pénalisant l'intensité du contrôle $u[X_u(t)]$.
+    \item \( r(x) \neq 0 \) est le coût d'état (non associé au contrôle);
+    \item \( b(x) \neq 0 \) est le coût du contrôle appliqué;
+    \item \( q(x) > 0 \) est un poids pénalisant l'intensité du contrôle.
 \end{itemize}
 
-Ce problème vise à déterminer une stratégie optimale $u^*[X_u(t)]$ minimisant le coût $J(x)$ tout en tenant compte des dynamiques spécifiques du processus \acs{CIR} et des contraintes imposées par les frontières $0$ et $c$.
-
-La fonction valeur associée au problème est alors définie par:
+Le problème consiste à déterminer une stratégie optimale \( u^*(x) \) minimisant ce coût. La fonction valeur associée au problème s'écrit:
 \begin{equation}\label{value_function}
-    F(x):= \inf_{\underset{0\leq t\leq \tau(x)}{u[X_u(t)]}} \mathds{E}[J(x)]
+    F(x) := \inf_{\underset{0 \leq t \leq \tau(x)}{u[X_u(t)]}} \mathds{E}[J(x)]
 \end{equation}
+La figure ci-dessous illustre l'effet d'une stratégie de contrôle sur la dynamique du processus. Dans cet exemple, la commande utilisée est de la forme \( u(x) = u_0(c - x) \), ce qui génère une force dirigée vers la frontière supérieure \( c \) et accélère ainsi la sortie du processus par le haut.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{img/intro/control.pdf}
+    \caption{Simulations de deux trajectoires du CIR avec et sans contrôle}\label{fig:ControlViz}
+\end{figure}
+\FloatBarrier
 
 
 
@@ -252,7 +252,7 @@ Après avoir exposé les fondements théoriques de l'étude, nous pouvons désor
     \item Obtenir une expression explicite de la fonction génératrice des moments du temps de premier passage à deux frontières, définie par \( M(x;\alpha) = \mathds{E}[e^{-\alpha \tau(x)}] \), en fonction des paramètres du modèle;
     \item Expliciter une formule analytique pour le temps moyen de premier passage, \( m(x) = \mathds{E}[\tau(x)] \), pour une entrée initiale \( x \in (0,c) \);
     \item Déduire l'aire moyenne sous la trajectoire jusqu'au franchissement de l'intervalle \( (0,c) \);
-    \item Résoudre un problème de commande optimale associé au processus, en déterminant la fonction valeur \( F(x) = \underset{u}{inf}\mathds{E}[J(x)] \), ainsi que la politique de contrôle optimale.
+    \item Résoudre un problème de commande optimale associé au processus, en déterminant la fonction valeur \( F(x) = \underset{u}{inf}\mathds{E}[J(x)] \), ainsi que la politique de contrôle optimal.
 \end{itemize}
 
 \paragraph{Objectifs pour le processus de diffusion avec sauts}
