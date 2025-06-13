@@ -26,7 +26,6 @@ Ce mémoire s'intéresse à l'analyse conjointe des temps de franchissement et d
 
 Avant d'approfondir le sujet, il est essentiel de poser clairement les fondements théoriques sur lesquels repose cette étude.\\
 L'élément central à introduire en premier lieu est le \textit{mouvement brownien standard}, pierre angulaire des processus de diffusion.
-
 \paragraph{Définition: Le \acl{MBS}}\mbox{}\\ 
 Un processus stochastique $\{W(t),\;t\geq0\}$ est un mouvement brownien standard s'il vérifie:
 \begin{itemize}
@@ -41,9 +40,8 @@ Un processus stochastique $\{W(t),\;t\geq0\}$ est un mouvement brownien standard
     \caption{Une trajectoire du \acl{MBS}}\label{fig:TrajMBS}
 \end{figure}
 \FloatBarrier Le \acs{MBS} constitue la base de la construction des processus de diffusion employés dans de nombreux domaines tels que la finance, la physique ou la biologie. Ces processus sont modélisés par des \acf{EDS}, qui consistent à enrichir le mouvement brownien en y ajoutant un terme de dérive et un terme de diffusion. Il en résulte une classe de processus dits \textit{d'Itô}.
-
 \paragraph{Définition: Processus d'Itô}\mbox{}\\
-Un processus $\{X(t),\;t \geq 0\}$ est dit d'Itô (voir\cite{ito1944}) s'il satisfait une équation différentielle stochastique de la forme:
+Un processus $\{X(t),\;t \geq 0\}$ est dit d'Itô (voir~\cite{ito1944}) s'il satisfait une équation différentielle stochastique de la forme:
 \begin{equation}
     dX(t) = \mu(t, X(t))\,dt + \sigma(t, X(t))\,dW(t)
 \end{equation}\label{ito_eq}
@@ -54,7 +52,6 @@ où:
     \item $\mathbb{P}\left( \int_0^T \sigma^2(s, X(s))\,ds < +\infty \right) = 1$.
 \end{itemize}
 Dans cette formulation, $\mu(t, X(t))$ est appelé le \textit{terme de dérive} et $\sigma(t, X(t))$ le \textit{terme de diffusion}.
-
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/intro/path_drift.pdf}
@@ -65,7 +62,6 @@ Dans cette formulation, $\mu(t, X(t))$ est appelé le \textit{terme de dérive} 
 De plus, il est important de noter que les termes de dérive et de diffusion peuvent eux-mêmes dépendre de l'état du processus ou du temps, ce qui permet de capturer des dynamiques complexes, comme une volatilité ou une dérive variable. Cette flexibilité permet notamment de modéliser des phénomènes réalistes dans les systèmes financiers ou physiques.
 
 Par ailleurs, Il est parfois intéressant d'enrichir les processus d'Itô en leur ajoutant une composante de sauts, gouvernée par un processus de Poisson (processus de comptage classique modélisant une file d'attente).
-
 \paragraph{Définition: Processus de Poisson}\mbox{}\\
 Un processus $\{N(t),\;t\geq0\}$ est un processus de Poisson de taux $\lambda$ s'il vérifie:
 \begin{itemize}
@@ -75,9 +71,7 @@ Un processus $\{N(t),\;t\geq0\}$ est un processus de Poisson de taux $\lambda$ s
     \item Le nombre d'occurrences dans un intervalle de longueur $t$ suit une loi poisson: $N(t)\sim \text{Poi}(\lambda t)$;
     \item Le temps d'arrivé du $n$-ème événement $T_n$ suis une loi exponentielle: $T_n\sim\text{Exp}(\lambda)$.
 \end{itemize}
-
 En utilisant un processus de Poisson, il est donc possible de définir un processus de sauts pur.
-
 \paragraph{Définition: Processus de sauts purs}\mbox{}\\
 Soit $\{N(t),\;t \geq 0\}$ un processus de Poisson de taux $\lambda > 0$ indépendant d'une suite de variables aléatoires indépendantes et identiquement distribuées $\{Y_i\}_{i \in \mathbb{N}^*}$. On définit le processus de sauts purs $\{J(t),\;t \geq 0\}$ par:
 \[
@@ -104,7 +98,6 @@ La figure ci-dessous visualise différentes réalisation d'un processus de sauts
 \section{Éléments de la problématique}  % environ 3 pages
 
 Comme évoqué précédemment, cette étude s'intéresse à deux types de problématiques appliquées au processus \acl{CIR}. Il convient donc d'en donner une définition formelle.
-
 \paragraph{Définition: Le processus \acl{CIR}}\mbox{}\\
 Le processus \ac{CIR}~\cite{cox1985} est un processus d'Itô défini par l'équation différentielle stochastique suivante:
 \begin{equation}
@@ -117,9 +110,7 @@ où:
     \item $\sigma > 0$ est volatilité instantanée;
     \item $W(t)$ désigne un mouvement brownien standard.
 \end{itemize}
-
 Ce processus est particulièrement adapté à la modélisation des taux d'intérêt en raison de plusieurs propriétés clés:
-
 \begin{itemize}
     \item Le terme de dérive $\mu(t, X(t)) \equiv \mu(X(t))= a[b - X(t)]$ induit un mécanisme de retour vers la moyenne $b$, avec une vitesse déterminée par $a$.
     \item Le terme de diffusion $\sigma(t, X(t))\equiv \sigma(X(t)) = \sigma \sqrt{X(t)}$ garantit la non-négativité du processus, car la racine carrée empêche des évolutions négatives.
@@ -134,23 +125,19 @@ Ce processus est particulièrement adapté à la modélisation des taux d'intér
     \includegraphics[width=0.9\linewidth]{img/intro/path_cir.pdf}
     \caption{Une trajectoire du processus \acs{CIR} avec $a=1$, $b=0.02$, $\sigma=0.1$}\label{fig:TrajCIR}
 \end{figure}
-\FloatBarrier
-
-Le prochain élément de problématique à introduire dans le cadre de cette étude est celui du \textit{temps de premier passage}.
-
+\FloatBarrier Le prochain élément de problématique à introduire dans le cadre de cette étude est celui du \textit{temps de premier passage}.
 \paragraph{Définition: Temps de premier passage}\mbox{}\\
 Soit $\{X(t),\, t \geq 0\}$ un processus \acs{CIR}. Le \textit{temps de premier passage à deux frontières} est défini, pour un seuil $c > 0$, par:
 \begin{equation}\label{fpt_definition}
     \tau(x) = \inf \left\{ t \geq 0: X(t) \notin (0, c) \,\middle|\, X(0) = x \in (0, c) \right\}
 \end{equation}
-Autrement dit, $\tau(x)$ correspond au premier instant où le processus atteint l'une des bornes de l'intervalle $(0, c)$. \\
+Autrement dit, $\tau(x)$ correspond au premier instant où le processus atteint l'une des bornes de l'intervalle $(0, c)$. 
 
 L'étude de ce temps d'arrêt est particulièrement pertinente dans le cadre du processus \acs{CIR}, pour plusieurs raisons:
 \begin{itemize}
     \item \textbf{Modélisation du passage aux taux négatifs:} lors de la crise économique japonaise de 2016, des taux d'intérêt négatifs ont été instaurés pour stimuler l'activité. Or, le processus \acs{CIR}, à valeurs strictement positives, ne permet pas de modéliser ce phénomène. Introduire une barrière à zéro permet de considérer le franchissement de ce seuil, au-delà duquel le modèle cesse d'être valide et les taux deviennent négatifs.
     \item \textbf{Surveillance des taux élevés:} en gestion des risques, il est crucial de modéliser l'éventualité d'une hausse brutale ou excessive des taux d'intérêt. L'introduction d'un seuil supérieur $c$ permet de caractériser ces situations critiques et de quantifier leur probabilité d'occurrence via le temps de franchissement.
 \end{itemize}
-
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/intro/cir_first_passage.pdf}
@@ -158,13 +145,12 @@ L'étude de ce temps d'arrêt est particulièrement pertinente dans le cadre du 
 \end{figure}
 \FloatBarrier L'étude portera principalement sur le processus \acs{CIR}, noté $X(t)$, ainsi que sur la variable aléatoire associée au temps de premier passage $\tau(x)$.\\
 Nous introduisons à présent les fonctions analytiques qui feront l'objet de l'analyse. La première est la \textit{fonction génératrice des moments}, outil central pour caractériser la distribution du temps d'arrêt.
-
 \paragraph{Définition: \ac{FGM}}\mbox{}\\
 La fonction génératrice des moments du temps de premier passage $\tau(x)$ est définie, pour tout $\alpha > 0$, par:
 \begin{equation}\label{fgm}
     M(x;\alpha):= \mathds{E} \left[ e^{-\alpha \tau(x)} \right]
 \end{equation}
-Cette fonction permet de résumer l'information probabiliste sur la variable $\tau(x)$, en particulier sa distribution. De plus, elle encode l'ensemble des moments de $\tau(x)$, lorsque ceux-ci existent, via dérivation en $\alpha$. \\
+Cette fonction permet de résumer l'information probabiliste sur la variable $\tau(x)$, en particulier sa distribution. De plus, elle encode l'ensemble des moments de $\tau(x)$, lorsque ceux-ci existent, via dérivation en $\alpha$. 
 
 La deuxième fonction d'intérêt est celle du \textit{temps moyen de premier passage}, qui correspond à l'espérance de la variable aléatoire $\tau(x)$.
 \paragraph{Définition: Temps moyen de premier passage}\mbox{}\\
@@ -180,7 +166,6 @@ La fonction d'aire moyenne est définie par:
 \begin{equation}\label{area}
     A(x):= \mathds{E} \left[ \int_0^{\tau(x)} X(t)\,dt \right]
 \end{equation}
-
 Elle mesure l'accumulation moyenne de la valeur du processus jusqu'au temps de franchissement.
 
 La quatrième fonction étudiée est celle de la probabilité toucher la frontière inférieure.
@@ -203,9 +188,8 @@ Elle quantifie le dépassement moyen au-dessus de la frontière \( c \), à part
     \includegraphics[width=0.9\linewidth]{img/intro/overshoot.pdf}
     \caption{Simulations de 30 trajectoires du \acs{CIR} avec sauts dépassants la frontière $c$}\label{fig:OvershootViz}
 \end{figure}
-\FloatBarrier
-En complément de l'étude des temps de premier passage, ce mémoire s'intéresse également à un problème de \textit{commande optimale stochastique} appliqué au processus \acs{CIR}.\\
-\paragraph{Définition: Problème de commande optimale -- Homing Problem}\label{definition_optimal_control}\mbox{}\\
+\FloatBarrier En complément de l'étude des temps de premier passage, ce mémoire s'intéresse également à un problème de \textit{commande optimale stochastique} appliqué au processus \acs{CIR}.\\
+\paragraph{Définition: Problème de commande optimale \textemdash~Homing Problem}\label{definition_optimal_control}\mbox{}\\
 Le \textit{Homing problem} consiste à piloter un processus stochastique dynamiquement jusqu'à ce qu'il atteigne un ensemble d'arrêt donné, tout en optimisant un objectif. La configuration étudiée dans ce mémoire correspond à un processus \acs{CIR} contrôlé \( \{X_u(t),\, t \geq 0\} \) évoluant dans l'intervalle \( (0, c) \), avec un arrêt déclenché dès que la trajectoire atteint l'une des deux frontières. Ce processus est défini par:
 \begin{equation}\label{controlled_process}
     dX_u(t) = a[b - X_u(t)]dt + b[X_u(t)]u[X_u(t)]dt + \sigma \sqrt{X_u(t)} dW(t)
@@ -223,7 +207,6 @@ où:
     \item \( b(x) \neq 0 \) est le coût du contrôle appliqué;
     \item \( q(x) > 0 \) est un poids pénalisant l'intensité du contrôle.
 \end{itemize}
-
 Le problème consiste à déterminer une stratégie optimale \( u^*(x) \) minimisant ce coût. La fonction valeur associée au problème s'écrit:
 \begin{equation}\label{value_function}
     F(x) := \inf_{\underset{0 \leq t \leq \tau(x)}{u[X_u(t)]}} \mathds{E}[J(x)]
@@ -246,15 +229,13 @@ La figure ci-dessous illustre l'effet d'une stratégie de contrôle sur la dynam
 \section{Objectifs de recherche}  % 0.5 page
 
 Après avoir exposé les fondements théoriques de l'étude, nous pouvons désormais énoncer précisément les objectifs poursuivis dans ce mémoire. Ceux-ci se répartissent en deux volets: l'analyse des temps de premier passage pour le processus \acs{CIR} en diffusion pure, puis l'étude de son extension avec sauts.
-
 \paragraph{Objectifs pour le processus de diffusion}
 \begin{itemize}
     \item Obtenir une expression explicite de la fonction génératrice des moments du temps de premier passage à deux frontières, définie par \( M(x;\alpha) = \mathds{E}[e^{-\alpha \tau(x)}] \), en fonction des paramètres du modèle;
     \item Expliciter une formule analytique pour le temps moyen de premier passage, \( m(x) = \mathds{E}[\tau(x)] \), pour une entrée initiale \( x \in (0,c) \);
-    \item Déduire l'aire moyenne sous la trajectoire jusqu'au franchissement de l'intervalle \( (0,c) \);
-    \item Résoudre un problème de commande optimale associé au processus, en déterminant la fonction valeur \( F(x) = \underset{u}{inf}\mathds{E}[J(x)] \), ainsi que la politique de contrôle optimal.
+    \item Déduire l'aire moyenne sous la trajectoire $A(x)$ jusqu'au franchissement de l'intervalle \( (0,c) \);
+    \item Résoudre un problème de commande optimale associé au processus, en déterminant la fonction valeur \( F(x) = \underset{u}{\inf}\mathds{E}[J(x)] \), ainsi que la politique de contrôle optimal $u^*(x)$.
 \end{itemize}
-
 \paragraph{Objectifs pour le processus de diffusion avec sauts}
 \begin{itemize}
     \item Obtenir une expression analytique du temps moyen de sortie dans ce nouveau cadre, en tenant compte de l'impact des sauts sur la dynamique du processus;
@@ -277,14 +258,14 @@ Après avoir exposé les fondements théoriques de l'étude, nous pouvons désor
 \section{Plan du mémoire}  % 0.5 page
 Afin de répondre aux objectifs de recherche définis précédemment, ce mémoire est structuré de la manière suivante.
 
-Dans un premier temps, une revue de la littérature est proposée afin de replacer l'étude dans le cadre des travaux existants sur les temps de premier passage et les problèmes de commande optimale, avec une attention particulière portée au processus \acs{CIR} et à ses extensions.
+Dans un premier temps, une revue de la littérature est proposée afin de replacer l'étude dans le cadre des travaux existants sur les temps de premier passage et les problèmes de dépassement, avec une attention particulière portée au processus \acs{CIR} et à ses extensions.
 
 La suite du mémoire est consacrée à l'étude analytique des fonctions caractéristiques associées au processus. L'analyse se divise en deux parties distinctes: 
 \begin{itemize}
     \item la première porte sur le processus \acs{CIR} en diffusion pure;
     \item la seconde examine sa version modifiée par l'introduction de sauts discrets.
 \end{itemize}
-Dans chaque cas, les équations différentielles correspondantes sont établies puis résolues, qu'il s'agisse de temps de premier passage, d'aires intégrées, ou de problèmes de commande optimale.
+Dans chaque cas, les équations différentielles correspondantes sont établies puis résolues.
 
 Une section est ensuite dédiée à l'analyse des résultats obtenus. Cette dernière permet de vérifier la cohérence des solutions, d'en évaluer la sensibilité aux paramètres du modèle, et de comparer les dynamiques avec et sans sauts.
 

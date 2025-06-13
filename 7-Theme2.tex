@@ -13,7 +13,7 @@ Pour évaluer le comportement des fonctions obtenues, il est nécessaire de se p
 
 \section{Diffusion pure}
 
-D'abord, les résultats trouvés pour le processus de diffusion \acs{CIR} sont abordés.
+D'abord, les résultats trouvés pour le processus de diffusion pure sont abordés.
 
 \subsection{Fonction Génératrice des Moments}
 
@@ -61,7 +61,7 @@ Il est important de noter les points suivants concernant toutes les valeurs diff
 \begin{itemize}
     \item Les conditions aux limites $m(0)=m(c)=0$ sont respectées;
     \item Cette fonction représente un \textit{temps moyen de premier passage}, elle doit donc être positive pour toute valeur de $x$ dans $[0,c]$;
-    \item Une augmentation de la vitesse de retour $a$ entraîne une hausse du temps moyen de sortie de l'intervalle. En effet, plus la force de rappel vers la moyenne est forte (i.e., $a$ élevé), plus une déviation significative — et donc peu probable — est nécessaire pour franchir les bornes de l'intervalle;
+    \item Une augmentation de la vitesse de retour $a$ entraîne une hausse du temps moyen de sortie de l'intervalle. En effet, plus la force de rappel vers la moyenne est forte (i.e., $a$ élevé), plus une déviation significative et peu probable est nécessaire pour franchir les bornes de l'intervalle;
     \item À l'inverse, une augmentation de la volatilité infinitésimale $\sigma$ diminue le temps moyen de sortie. Cela s'explique naturellement: des fluctuations plus intenses accroissent la probabilité de quitter rapidement l'intervalle.
 \end{itemize}
 
@@ -100,8 +100,8 @@ L'expression obtenue pour la fonction Aire Moyenne est ainsi validée.
 
 Enfin, il est nécessaire de valider les expressions obtenues dans le cadre des deux problèmes de commande optimale. Pour cela, il convient de tracer la fonction valeur $F(x)$ ainsi que le contrôle optimal $u^*(x)$ pour différentes valeurs des paramètres étudiés. Lors de l'analyse d'un paramètre donné, les autres paramètres sont fixés à $1$ afin d'isoler son influence.
 
-\subsubsection{Problème linéarisable 1}\phantom{}\\
-D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p1}). D'un autre côté, la fonction valeur $F(x)$ est définie par (\ref{sol_control_1},\ref{control_constants}) et le contrôle optimal est défini par (\ref{optimal_control_1}). Les différentes valeurs des paramètres suivants sont évaluées:
+\subsubsection{Problème linéarisable 1 \textemdash~P1}\phantom{}\\
+Le problème (\ref{p1}) est considéré. D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p1}). D'un autre côté, la fonction valeur $F(x)$ est définie par (\ref{sol_control_1},\ref{control_constants}) et le contrôle optimal est défini par (\ref{optimal_control_1}). Les différentes valeurs des paramètres suivants sont évaluées:
 \begin{itemize}
     \item Paramètre du coût immédiat $\rho,\;\forall\;\rho\in\{1,2,5,10\}$
     \item Paramètre du coût de contrôle $\beta,\;\forall\;\beta\in\{1,2,3,4\}$
@@ -112,113 +112,145 @@ D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p1})
     \centering
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P1/p1_R_value.pdf}
-        \caption{Fonction Valeur $F(x)$}\label{fig:RhoValueVisualisation1}
+        \caption{P1 \textemdash~Fonction Valeur $F(x)$}\label{fig:RhoValueVisualisation1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P1/p1_R_control.pdf}
-        \caption{Contrôle Optimal $u^*(x)$}\label{fig:RhoControlVisualisation1}
+        \caption{P1 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:RhoControlVisualisation1}
     \end{subfigure}
-    \caption{Sensibilité du coût immédiat $r(x)=\rho$}\label{fig:RhoValueControlComparison1}
+    \caption{P1 \textemdash~Sensibilité du coût immédiat $r(x)=\rho$}\label{fig:RhoValueControlComparison1}
 \end{figure}
 \FloatBarrier\begin{figure}[htb]
     \centering
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P1/p1_B_value.pdf}
-        \caption{Fonction Valeur $F(x)$}\label{fig:BetaValueVisualisation1}
+        \caption{P1 \textemdash~Fonction Valeur $F(x)$}\label{fig:BetaValueVisualisation1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P1/p1_B_control.pdf}
-        \caption{Contrôle Optimal $u^*(x)$}\label{fig:BetaControlVisualisation1}
+        \caption{P1 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:BetaControlVisualisation1}
     \end{subfigure}
-    \caption{Sensibilité du coût du contrôle $b(x)=\beta x$}\label{fig:BetaValueControlComparison}
+    \caption{P1 \textemdash~Sensibilité du coût du contrôle $b(x)=\beta x$}\label{fig:BetaValueControlComparison}
 \end{figure}
 \FloatBarrier\begin{figure}[htb]
     \centering
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P1/p1_K_value.pdf}
-        \caption{Fonction Valeur $F(x)$}\label{fig:KappaValueVisualisation1}
+        \caption{P1 \textemdash~Fonction Valeur $F(x)$}\label{fig:KappaValueVisualisation1}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P1/p1_K_control.pdf}
-        \caption{Contrôle Optimal $u^*(x)$}\label{fig:KappaControlVisualisation1}
+        \caption{P1 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:KappaControlVisualisation1}
     \end{subfigure}
-    \caption{Sensibilité de la pondération du contrôle $q(x)=\kappa x$}\label{fig:KappaValueControlComparison1}
+    \caption{P1 \textemdash~Sensibilité de la pondération du contrôle $q(x)=\kappa x$}\label{fig:KappaValueControlComparison1}
 \end{figure}
-\FloatBarrier\subsubsection{Problème linéarisable 2}\phantom{}\\
-D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p2}). D'un autre côté, la fonction valeur $F(x)$ est définie par (\ref{sol_control_2},\ref{control_constants}) et le contrôle optimal est défini par (\ref{optimal_control_2}). Les mêmes valeurs des différents paramètres $\rho$, $\beta$ et $\kappa$ sont évaluées.
+\FloatBarrier Une simulation d'une trajectoire contrôlée et d'une trajectoire non contrôlée est effectuée en utilisant un même tirage aléatoire, afin de permettre une comparaison pertinente entre les deux dynamiques. Les paramètres du processus \acs{CIR} sont ceux introduits en début de section, avec $\rho = \beta = \kappa = 1$.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/validation/P1/p1_control_simulation.pdf}
+    \caption{P1 \textemdash~Simulation de deux trajectoires du \acs{CIR} avec et sans contrôle}
+\end{figure}
+\FloatBarrier\subsubsection{Problème linéarisable 2 \textemdash~P2}\phantom{}\\
+Les résultats du problème (\ref{p2}) sont analysés. D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p2}). D'un autre côté, la fonction valeur $F(x)$ est définie par (\ref{sol_control_2},\ref{control_constants}) et le contrôle optimal est défini par (\ref{optimal_control_2}). Les mêmes valeurs des différents paramètres $\rho$, $\beta$ et $\kappa$ sont évaluées.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P2/p2_R_value.pdf}
-        \caption{Fonction Valeur $F(x)$}\label{fig:RhoValueVisualisation2}
+        \caption{P2 \textemdash~Fonction Valeur $F(x)$}\label{fig:RhoValueVisualisation2}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P2/p2_R_control.pdf}
-        \caption{Contrôle Optimal $u^*(x)$}\label{fig:RhoControlVisualisation2}
+        \caption{P2 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:RhoControlVisualisation2}
     \end{subfigure}
-    \caption{Sensibilité du coût immédiat $r(x)=\rho x$}\label{fig:RhoValueControlComparison2}
+    \caption{P2 \textemdash~Sensibilité du coût immédiat $r(x)=\rho x$}\label{fig:RhoValueControlComparison2}
 \end{figure}
 \FloatBarrier\begin{figure}[htb]
     \centering
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P2/p2_B_value.pdf}
-        \caption{Fonction Valeur $F(x)$}\label{fig:BetaValueVisualisation2}
+        \caption{P2 \textemdash~Fonction Valeur $F(x)$}\label{fig:BetaValueVisualisation2}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P2/p2_B_control.pdf}
-        \caption{Contrôle Optimal $u^*(x)$}\label{fig:BetaControlVisualisation2}
+        \caption{P2 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:BetaControlVisualisation2}
     \end{subfigure}
-    \caption{Sensibilité du coût du contrôle $b(x)=\beta \sqrt{x}$}\label{fig:BetaValueControlComparison1}
+    \caption{P2 \textemdash~Sensibilité du coût du contrôle $b(x)=\beta \sqrt{x}$}\label{fig:BetaValueControlComparison1}
 \end{figure}
 \FloatBarrier\begin{figure}[htb]
     \centering
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P2/p2_K_value.pdf}
-        \caption{Fonction Valeur $F(x)$}\label{fig:KappaValueVisualisation2}
+        \caption{P2 \textemdash~Fonction Valeur $F(x)$}\label{fig:KappaValueVisualisation2}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P2/p2_K_control.pdf}
-        \caption{Contrôle Optimal $u^*(x)$}\label{fig:KappaControlVisualisation2}
+        \caption{P2 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:KappaControlVisualisation2}
     \end{subfigure}
-    \caption{Sensibilité de la pondération du contrôle $q(x)=\kappa x$}\label{fig:KappaValueControlComparison2}
+    \caption{P2 \textemdash~Sensibilité de la pondération du contrôle $q(x)=\kappa x$}\label{fig:KappaValueControlComparison2}
 \end{figure}
-\FloatBarrier\subsubsection{Problème non linéarisable}\phantom{}\\
-L'expression de la fonction valeur (\ref{sol_control_3}) ainsi que la commande optimale (\ref{optimal_control_3}) sont tracés.
+\FloatBarrier Comme précédemment, une trajectoire contrôlée est comparée à une trajectoire non contrôlée à partir d'un même tirage aléatoire. Les paramètres utilisés sont identiques à ceux de la dernière simulation.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/validation/P2/p2_control_simulation.pdf}
+    \caption{P2 \textemdash~Simulation de deux trajectoires du \acs{CIR} avec et sans contrôle}
+\end{figure}
+\subsubsection{Problème non linéarisable \textemdash~P3}\phantom{}\\
+Le problème (\ref{p3}) est porté à l'étude. L'expression de la fonction valeur (\ref{sol_control_3}) ainsi que la commande optimale (\ref{optimal_control_3}) sont tracés.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P3/p3_value.pdf}
-        \caption{Fonction Valeur $F(x)$}\label{fig:ValueVisualisation3}
+        \caption{P3 \textemdash~Fonction Valeur $F(x)$}\label{fig:ValueVisualisation3}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P3/p3_control.pdf}
-        \caption{Contrôle Optimal $u^*(x)$}\label{fig:ControlVisualisation3}
+        \caption{P3 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:ControlVisualisation3}
     \end{subfigure}
-    \caption{Visualisation de la fonction valeur et du contrôle optimal}\label{fig:ValueControlComparison3}
+    \caption{P3 \textemdash~Visualisation de la fonction valeur et du contrôle optimal}\label{fig:ValueControlComparison3}
 \end{figure}
-\FloatBarrier\paragraph{Analyse}\phantom{}\\
+\FloatBarrier Toujours dans la même optique de visualisation de l'effet du contrôle, une simulation est effectuée. 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/validation/P3/p3_control_simulation.pdf}
+    \caption{P3 \textemdash~Simulation de deux trajectoires du \acs{CIR} avec et sans contrôle}\label{fig:Simulation3}
+\end{figure}
+\paragraph{Analyse}\phantom{}\\
 Il est important de souligner que, dans les trois problèmes étudiés et pour les différentes valeurs des paramètres considérés:
 \begin{itemize}
     \item Les conditions aux limites $F(0)=F(c)=0$ sont toujours respectées;
     \item La fonction valeur est toujours positive, le coût encouru étant nécessairement positif;
-    \item Le contrôle optimal est généralement négatif sur \( x \in \left(0, \frac{c}{2}\right) \), l'optimiseur cherchant à diriger rapidement le processus vers la frontière \( 0 \), plus proche. Inversement, pour \( x \in \left(\frac{c}{2}, c\right) \), le contrôle devient positif afin d'accélérer l'atteinte de la frontière supérieure \( c \).
+    \item Le contrôle optimal est généralement négatif sur \( x \in \left(0, \frac{c}{2}\right) \), l'optimiseur cherchant à diriger rapidement le processus vers la frontière \( 0 \), plus proche. Inversement, pour \( x \in \left(\frac{c}{2}, c\right) \), le contrôle devient positif afin d'accélérer l'atteinte de la frontière supérieure \( c \);
     \item Une augmentation du coût immédiat $\rho$, induisant une hausse du coût encouru, entraîne un renforcement du contrôle optimal ($|u^*(x)|$ augmente), traduisant ainsi une volonté accrue de quitter l'intervalle aussi rapidement que possible;
-    \item Une hausse du coût du contrôle $\beta$ incite à intensifier le contrôle optimal afin de quitter l'intervalle plus rapidement. Cette stratégie réduit la durée d'exposition au coût instantané, ce qui compense partiellement le surcoût du contrôle et diminue le coût total encouru $F(x)$.
-    \item Une augmentation du poids pénalisant le contrôle $\kappa$, induisant une hausse du coût encouru, entraîne une relaxation du contrôle optimal. En effet, plus le poids du contrôle est élevé, moins il est intéressant d'appliquer un contrôle fort.
+    \item Une hausse du coût du contrôle $\beta$ incite à intensifier le contrôle optimal afin de quitter l'intervalle plus rapidement. Cette stratégie réduit la durée d'exposition au coût instantané, ce qui compense partiellement le surcoût du contrôle et diminue le coût total encouru $F(x)$;
+    \item Une augmentation du poids pénalisant le contrôle $\kappa$, induisant une hausse du coût encouru, entraîne une relaxation du contrôle optimal. En effet, plus le poids du contrôle est élevé, moins il est intéressant d'appliquer un contrôle fort;
+    \item Les simulations mettent en évidence l'effet du contrôle optimal, qui accélère significativement la sortie du processus par rapport au cas non contrôlé. Pour valider cette observation, 1000 trajectoires sont simulées pour chaque problème, et la durée moyenne jusqu'à la sortie est comparée. Un facteur d'accélération est ensuite estimé en rapportant la longueur moyenne des trajectoires non contrôlées à celle des trajectoires contrôlées (voir annexe~\ref{control_simulations}):
+    \begin{table}[htb]
+        \centering
+        \caption{Comparaison des accélérations moyennes du temps de sortie}\label{tab:acceleration_results}
+        \renewcommand{\arraystretch}{1.1}
+        \begin{tabular}{||c|c||}
+        \hline
+        Problème de Commande & Accélération Moyenne \\\hline\hline
+        P1 & 2.660552 \\
+        P2 & 2.690582 \\
+        P3 & 1.065163 \\\hline
+        \end{tabular}
+    \end{table}\FloatBarrier
+    \item La suppression du retour à la moyenne entraîne une réduction de l'intensité du contrôle (voir~\ref{fig:Simulation3}). En l'absence de force de rappel, le processus est naturellement plus enclin à atteindre une des deux frontières, ce qui permet d'intervenir avec une commande de faible amplitude.
 \end{itemize}
 Ainsi, les expressions obtenues pour la fonction valeur $F(x)$ et le contrôle optimal $u^*(x)$ sont validées.
 
 \section{Diffusion avec sauts}
 
 Cette section est consacrée à la présentation des résultats portant sur le \acs{CIR} avec sauts défini en (\ref{jump_cir_sde}).
-\subsection{Fonction Temps moyen -- Sauts uniformes}
+\subsection{Fonction Temps moyen \textemdash~Sauts uniformes}
 Les paramètres utilisés sont ceux introduits lors de l'étude du temps moyen de sortie, à la sous-partie (\ref{subsection_mean_jumps}). Les fonctions \( m(x) \) (avec sauts) et \( m_0(x) \) (sans sauts), données respectivement par (\ref{sol_mean_with_jumps}) et (\ref{sol_mean_with_0_jumps}), sont tracées.
 \paragraph{Visualisation}\phantom{}
 \begin{figure}[htb]
@@ -242,7 +274,7 @@ Il convient de souligner les observations suivantes:
     \item Une augmentation de la fréquence des sauts $\lambda$ induit une diminution du temps moyen de sortie. Ce comportement est attendu comme les sauts augmente la probabilité que le \acs{CIR} quitte l'intervalle rapidement.
 \end{itemize}
 
-\subsection{Fonction Probabilité de sortie en zéro -- Sauts uniformes}
+\subsection{Fonction Probabilité de sortie en zéro \textemdash~Sauts uniformes}
 Les paramètres considérés sont ceux définis dans l'étude de la probabilité de sortie en zéro, présentée en sous-partie (\ref{subsection_probability_jumps}). Les fonctions \( p(x) \) (avec sauts) et \( p_0(x) \) (sans sauts), correspondant respectivement aux expressions (\ref{sol_probability_with_jumps}) et (\ref{sol_probability}), sont représentées graphiquement.
 \paragraph{Visualisation}\phantom{}
 \begin{figure}[htb]
@@ -266,7 +298,7 @@ Les observations suivantes peuvent être formulées:
     \item Une augmentation de la fréquence des sauts $\lambda$ entraîne une augmentation considérable de la probabilité de sortir par zéro. En effet, les sauts étant négatifs, leur multiplication tend à entraîner le processus vers la borne inférieure.
 \end{itemize}
 
-\subsection{Fonction Dépassement Moyen -- Sauts exponentiels}
+\subsection{Fonction Dépassement Moyen \textemdash~Sauts exponentiels}
 La variante du \acs{CIR} à sauts exponentiels est considérée.
 \paragraph{Visualisation}\phantom{}\\
 Toujours dans la même optique, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée.

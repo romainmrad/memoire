@@ -6,14 +6,14 @@ Cette partie du mémoire est consacrée à la résolution analytique des équati
 D'abord, le processus \acs{CIR} sous forme de diffusion pure est considéré. 
 \subsection{Fonction Génératrice des Moments}\label{subsection_fgm_eq}
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
-Soit un processus d'Itô défini par l'\acs{EDS} (\ref{ito_eq}).
-Il est connu que la \acl{FGM} d'un temps de premier passage $\tau(x)$ satisfait l'équation du passé de Kolmogorov (voir, par exemple,\cite{cox2017} ou\cite{lefebvre2007}): 
+Soit un processus d'Itô défini par l'\ac{EDS} (\ref{ito_eq}).
+Il est connu que la \acl{FGM} d'un temps de premier passage $\tau(x)$ satisfait l'équation du passé de Kolmogorov (voir~\cite{cox2017} ou~\cite{lefebvre2007}): 
 \[
 \frac{1}{2}\sigma{(t,x)}^2M''(x;\alpha)+\mu(t,x)M'(x;\alpha)-\alpha M(x;\alpha)=0
 \]
 avec $M(0;\alpha)=M(c;\alpha)=1$. 
 
-En reprenant les termes de dérive et de diffusion du \acs{CIR} (\ref{cir_eq}), l'\acs{EDO} linéaire de second ordre à résoudre devient: 
+En reprenant les termes de dérive et de diffusion du \acs{CIR} (\ref{cir_eq}), l'\ac{EDO} linéaire de second ordre à résoudre devient: 
 \begin{equation}\label{ode_fgm}
     \frac{1}{2}\sigma^2xM''(x;\alpha)+a(b-x)M'(x;\alpha)-\alpha M(x;\alpha)=0
 \end{equation}
@@ -39,9 +39,9 @@ L'équation devient:
 \begin{equation}\label{kummer_eq2}
     yG''(y;\alpha)-\left(y-\frac{2ab}{\sigma^2}\right)G'(y;\alpha)-\frac{\alpha}{a}G(y;\alpha) = 0
 \end{equation}
-La solution générale de cette dernière (\ref{kummer_eq2}) est de la forme (voir\cite{magnus1966}): 
+La solution générale de cette dernière (\ref{kummer_eq2}) est de la forme (voir~\cite{magnus1966}): 
 \[G(y;\alpha) = C_1\Phi\left(\frac{\alpha}{a}, \frac{2ab}{\sigma^2}, y\right) + C_2\Psi\left(\frac{\alpha}{a}, \frac{2ab}{\sigma^2}, y\right)\]
-avec $C_1$ et $C_2$ des constantes à déterminer, et $\Phi(\cdot, \cdot, \cdot)$ et $\Psi(\cdot, \cdot, \cdot)$ sont les fonctions hypergéométriques confluentes de première et seconde espèce (voir annexe \ref{special_functions}).
+avec $C_1$ et $C_2$ des constantes à déterminer, et $\Phi(\cdot, \cdot, \cdot)$ et $\Psi(\cdot, \cdot, \cdot)$ sont les fonctions hypergéométriques confluentes de première et seconde espèce (voir annexe~\ref{special_functions}).
 
 Finalement, l'expression analytique de la \acs{FGM} de $\tau(x)$ est: 
 \begin{equation}\label{sol_fgm}
@@ -106,7 +106,7 @@ Pour procéder à sa résolution, il faut résoudre l'équation homogène associ
 \begin{equation}\label{sol_first_order_mean}
     u(x)=x^{-\beta}e^{\alpha x}(C_1-\theta \alpha^{-\beta}\Gamma(\beta, \alpha x))
 \end{equation}
-où $\Gamma(\cdot,\cdot)$ est la fonction Gamma incomplète (\ref{special_functions}).
+où $\Gamma(\cdot,\cdot)$ est la fonction Gamma incomplète (voir annexe~\ref{special_functions}).
 Il suffit donc d'intégrer $u(x)$ et d'ajouter une constante $C_2$ pour obtenir l'expression de $m(x)$: 
 \begin{equation}\label{intergration_sol_first_order}
     m(x)=\int u(x)dx+C_2
@@ -117,7 +117,7 @@ Cependant, un problème survient lors de l'intégration du terme:
 \end{equation}
 dans l'expression de $u(x)$ donnée par (\ref{sol_first_order_mean}). En effet, cette intégrale ne possède pas de solution analytique. Les logiciels de calcul symbolique tels que \textit{Mathematica} ou \textit{Maple} échouent également à en trouver une. Il est donc nécessaire d'explorer une autre approche afin de contourner cette difficulté.
 \paragraph{Intégration}\phantom{}\\
-L'intégrande de (\ref{problematic_integral}) présente des difficultés en raison de la présence du terme puissance $P:={(\alpha x)}^{-\beta}$ multiplié par le terme $E:=e^{\alpha x}$, ainsi que le terme $G:=\Gamma(\beta, \alpha x)$ (lui-même une intégrale). L'objectif est donc de reformuler cette expression afin de simplifier ou d'éliminer certains termes problématiques. C'est précisément ce qui sera abordé dans la suite de cette section. En effet, en combinant les deux expressions suivantes (voir\cite{NIST:DLMF}): 
+L'intégrande de (\ref{problematic_integral}) présente des difficultés en raison de la présence du terme puissance $P:={(\alpha x)}^{-\beta}$ multiplié par le terme $E:=e^{\alpha x}$, ainsi que le terme $G:=\Gamma(\beta, \alpha x)$ (lui-même une intégrale). L'objectif est donc de reformuler cette expression afin de simplifier ou d'éliminer certains termes problématiques. C'est précisément ce qui sera abordé dans la suite de cette section. En effet, en combinant les deux expressions suivantes~\cite{NIST:DLMF}: 
 \begin{align*}
     \left\{
     \begin{aligned}
@@ -126,7 +126,7 @@ L'intégrande de (\ref{problematic_integral}) présente des difficultés en rais
     \end{aligned}
     \right.
 \end{align*}
-avec $\gamma(\cdot,\cdot)$ une autre forme de la fonction gamma incomplète (voir annexe \ref{special_functions}). 
+avec $\gamma(\cdot,\cdot)$ une autre forme de la fonction gamma incomplète (voir annexe~\ref{special_functions}). 
 
 Il est possible d'écrire:
 \[
@@ -155,8 +155,8 @@ avec $I$ et $J$ deux intégrales à résoudre:
     \begin{equation}\label{exponential_integral}
         \int x^{-\beta}e^{\alpha x}dx = -x^{1-\beta}E_\beta(-\alpha x)
     \end{equation}
-    où $E_n(x)$ est la fonction intégrale exponentielle généralisée (voir annexe \ref{special_functions}).
-    La relation suivante (voir\cite{abramowitz1964}):
+    où $E_n(x)$ est la fonction intégrale exponentielle généralisée (voir annexe~\ref{special_functions}).
+    La relation suivante~\cite{abramowitz1964}:
     \[
     E_n(x)=x^{n-1}\Gamma(1-n,x)
     \]
@@ -181,7 +181,7 @@ avec $I$ et $J$ deux intégrales à résoudre:
         &= \frac{x}{\Gamma(1+\beta)}\,_2F_2\left(\begin{bmatrix}1\\1\end{bmatrix},\begin{bmatrix}2\\1+\beta\end{bmatrix},\alpha x\right)
     \end{aligned}
     \]
-    où $_p F_q(\cdot,\cdot,\cdot)$ est la fonction hypergéométrique généralisée (voir annexe \ref{special_functions}).
+    où $_p F_q(\cdot,\cdot,\cdot)$ est la fonction hypergéométrique généralisée (voir annexe~\ref{special_functions}).
     
 \end{itemize}
 La forme finale de l'expression de la fonction temps moyen est donc:
@@ -209,17 +209,17 @@ avec $\alpha$, $\beta$ et $\theta$ définis en (\ref{notation}).
 \subsection{Fonction Aire Moyenne}
 
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
-Il est connu que l'\acs{EDO} de second ordre régissant la fonction (\ref{area}) est (voir\cite{abundo2013}): 
+Il est connu que l'\acs{EDO} de second ordre régissant la fonction (\ref{area}) est (voir~\cite{abundo2013}): 
 \[\frac{1}{2}\sigma^2xA''(x)+a(b-x)A'(x)=-x\]
 En reprenant les notations introduites en (\ref{notation}), l'équation devient: 
 \[xA''(x)+(\beta-\alpha x)A'(x)=\theta x\]
 Il convient de noter que cette équation ressemble beaucoup à celle dérivée en (\ref{simplified_ode_mean}). La résolution se fera donc de manière semblable.
 \paragraph{Réduction d'ordre}\phantom{}\\
-En procédant de façon identique à la résolution de l'équation du temps moyen (\ref{order_reduction},\ref{sol_first_order_mean},\ref{intergration_sol_first_order}), il est possible d'écrire: 
+En procédant de façon identique à la résolution de l'équation du temps moyen (\ref{order_reduction},~\ref{sol_first_order_mean},~\ref{intergration_sol_first_order}), il est possible d'écrire: 
 \[xu'(x)+(\beta-\alpha x)u(x)=\theta x\]
 et donc: 
 \[u(x)=C_1x^{-\beta} e^{\alpha x} -\theta\alpha^{-\beta-1}x^{-\beta} e^{\alpha x}\Gamma(\beta+1, \alpha x)\]
-En combinant l'expression dérivée précédemment (\ref{incomplete_gamma_simplification}) et l'identité suivante (voir\cite{NIST:DLMF}): 
+En combinant l'expression dérivée précédemment (\ref{incomplete_gamma_simplification}) et l'identité suivante~\cite{NIST:DLMF}: 
 \[\Gamma(s+1, x)=s\Gamma(s, x)+x^s e^{-x}\]
 il est possible de réécrire la solution sous la forme: 
 \[
@@ -316,7 +316,7 @@ avec $F(0)=F(c)=0$ et $r(x)\neq0, b(x)\neq0, q(x)>0$.
 
 \subsubsection{Problème linéarisable}
 
-Il faut donc procéder à la résolution de l'équation (\ref{control_equation}). Whittle (voir\cite{whittle1982}) a montré que la transformation: 
+Il faut donc procéder à la résolution de l'équation (\ref{control_equation}). Whittle~\cite{whittle1982} a montré que la transformation: 
 \[F(x)=-K\log(\varphi(x))\]
 avec $\varphi(0)=\varphi(c)=1$ permet de linéariser l'équation en posant:
 \[
@@ -337,7 +337,7 @@ l'équation (\ref{linearised_equation}) est identique à celle de la \acl{FGM} $
 Cela permet de résoudre une multitude de problèmes en supposant différentes formes pour $r(x)$, $b(x)$ et $q(x)$ tout en satisfaisant la condition (\ref{condition}). 
 Deux exemples de problèmes sont donnés dans les sous-parties suivantes.
 
-\paragraph{Problème 1}\label{p1}\phantom{}\\
+\paragraph{Problème 1 \textemdash~P1}\label{p1}\phantom{}\\
 \noindent Soit le problème suivant: 
 \begin{itemize}
     \item $r(x) = \rho$: coût immédiat constant, indépendant de l'état $x$ et du contrôle.
@@ -373,7 +373,7 @@ Par ailleurs, le contrôle optimal est
     u^*(x)=-\frac{\beta}{\kappa}F'(x)
 \end{equation}
 
-\paragraph{Problème 2}\label{p2}\phantom{}\\
+\paragraph{Problème 2 \textemdash~P2}\label{p2}\phantom{}\\
 \noindent Soit le problème suivant: 
 \begin{itemize}
     \item $r(x) = \rho x$: coût immédiat linéaire en $x$, indépendant du contrôle.
@@ -388,7 +388,7 @@ L'équation obtenue est identique à celle du premier problème (\ref{eq_exemple
 \[
 \frac{1}{2}\sigma^2 x\varphi''(x) + a(b - x)\varphi'(x) - \frac{\rho\beta^2}{\kappa \sigma^2}\varphi(x) = 0
 \]
-L'expression de $\varphi(x)$ est identique à celle trouvée précédemment. Il en découle donc l'expression de la solution $F(x)$: 
+L'expression de $\varphi(x)$ est donc la même. Il en découle alors l'expression de la solution $F(x)$: 
 \begin{equation}\label{sol_control_2}
     F(x)=-\frac{x\kappa \sigma^2}{\beta^2}\left[C_1\Phi\left(\frac{\rho\beta^2}{a\kappa \sigma^2},\frac{2ab}{\sigma^2},\frac{2ax}{\sigma^2}\right) + C_2\Psi\left(\frac{\rho\beta^2}{a\kappa \sigma^2},\frac{2ab}{\sigma^2},\frac{2ax}{\sigma^2}\right)\right]
 \end{equation}
@@ -398,7 +398,7 @@ Par ailleurs, le contrôle optimal est
     u^*(x)=-\frac{\beta}{\kappa\sqrt{x}}F'(x)
 \end{equation}
 
-\subsubsection{Problème non linéarisable}\label{p3}
+\subsubsection{Problème non linéarisable \textemdash~P3}\label{p3}
 Soit le problème suivant:
 \begin{itemize}
     \item $r(x) = x^2$: coût immédiat quadratique en $x$, indépendant du contrôle.
@@ -431,22 +431,22 @@ avec
 \begin{itemize}
     \item $X(0)=x$;
     \item $W(t)$ un \acs{MBS};
-    \item $J(t)$ un processus de sauts pur 
+    \item $J(t)$ un processus de sauts pur:
     \[
     J(t)=\sum_{i=1}^{N(t)}Y_i
     \]
-    où
+    où:
     \begin{itemize}
         \item $N(t)$ est un processus de poisson de paramètre $\lambda$;
         \item $Y_i$ des variables indépendantes et distribuées suivant une certaine loi.
     \end{itemize}
 \end{itemize}
 
-\subsection{Fonction Temps moyen -- Sauts uniformes}\label{subsection_mean_jumps}
+\subsection{Fonction Temps moyen \textemdash~Sauts uniformes}\label{subsection_mean_jumps}
 Dans cette sous-section, la variante du \ac{CIR} avec sauts considérée est celle avec des sauts négatifs modélisés par des variables uniformément distribuées $Y_i\sim U[-x,0]$.
 
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
-En reprenant ce qui avait été fait en (\ref{subsection_fgm_eq}) pour dériver l'\acs{EDO} régissant la \acl{FGM} de $\tau(x)$ (voir, par exemple,\cite{cox2017} ou\cite{lefebvre2007}), il est possible d'écrire:
+En reprenant ce qui avait été fait en (\ref{subsection_fgm_eq}) pour dériver l'\acs{EDO} régissant la \acl{FGM} de $\tau(x)$ (voir, par exemple,~\cite{cox2017} ou~\cite{lefebvre2007}), il est possible d'écrire:
 \[
 \frac{1}{2}\sigma^2 xM''(x;\alpha)+a(b-x)M'(x;\alpha)+\lambda\left\{\frac{1}{x}\int_{-x}^0M(x+y;\alpha)dy-M(x;\alpha)\right\}-\alpha M(x;\alpha)=0
 \]
@@ -459,9 +459,9 @@ Ensuite, en procédant comme dans (\ref{subsection_mean_eq}), il découle l'équ
 avec $m(0)=m(c)=0$.
 
 Soit le changement de variable suivant:
-\[
-\int_{-x}^0m(x+y)dy=\int_0^x m(z)dz
-\]
+\begin{equation}\label{variable_change_mean}
+    \int_{-x}^0m(x+y)dy=\int_0^x m(z)dz
+\end{equation}
 La formule de Leibniz permet d'écrire:
 \[
 \frac{d}{dx}\left(\int_0^x m(z)dz\right)=m(x)
@@ -472,13 +472,13 @@ Donc, en dérivant les deux côtés de l'équation (\ref{mean_ide}) et en élimi
 \end{equation}
 
 \paragraph{Résolution}\phantom{}\\
-Soit les valeurs suivantes des paramètres: $\sigma=\sqrt{2}$, $\lambda=1$ et $c=1$. \textit{Maple} donne la solution suivante:
+Soit les valeurs suivantes des paramètres: $\sigma=\sqrt{2}$, $\lambda=1$ et $c=1$. \textit{Maple} donne comme solution:
 \begin{equation}\label{sol_mean_with_jumps}
     m(x)=C_1I_0(2\sqrt{x})+C_2K_0(2\sqrt{x})+2\ln(2\sqrt{x})+C_3
 \end{equation}
-avec $C_1$, $C_2$, $C_3$ des constantes à déterminer et $I_0(\cdot)$, $K_0(\cdot)$ les fonctions de Bessel modifiées (voir annexe~\ref{special_functions}).
+avec $C_1$, $C_2$, $C_3$ des constantes à déterminer et $I_0(\cdot)$, $K_0(\cdot)$ les fonctions de Bessel modifiées de première et seconde espèce respectivement (voir annexe~\ref{special_functions}).
 
-Les constantes $C_1$, $C_2$ et $C_3$ sont déterminées en imposant les conditions aux limites $m(0)=m(1)=0$ et $m(0.5)=r$. Ensuite, la valeur de $r$ permettant de satisfaire l'équation originale (\ref{mean_ide}) est trouvée: $r\simeq0.3281$.
+Les constantes $C_1$, $C_2$ et $C_3$ sont déterminées en imposant les conditions aux limites $m(0)=m(1)=0$ ainsi qu'une condition supplémentaire $m(0.5)=r$. Ensuite, la valeur de $r$ permettant de satisfaire l'équation originale (\ref{mean_ide}) est trouvée: $r\simeq0.3281$.
 
 \paragraph{Étude du cas sans sauts}\phantom{}\\
 Afin de comparer l'effet de la présence des sauts, il est intéressant de résoudre le même problème en retirant ces derniers. Soit $m_0(x)$ le temps moyen de sortie du processus sans sauts. En considérant les mêmes valeurs des paramètres, l'équation à résoudre devient:
@@ -490,17 +490,17 @@ La solution qui satisfait $m_0(0)=m_0(1)=0$ est:
     m_0(x)=-x\ln(x)
 \end{equation}
 
-\subsection{Fonction Probabilité de sortie en zéro -- Sauts uniformes}\label{subsection_probability_jumps}
+\subsection{Fonction Probabilité de sortie en zéro \textemdash~Sauts uniformes}\label{subsection_probability_jumps}
 Dans cette sous-section, la variante du \ac{CIR} avec sauts considérée est identique à la précédente (sauts négatifs modélisés par des variables uniformément distribuées $Y_i\sim U[-x,0]$).
 
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
-En procédant comme ce qui précède, il est possible d'écrire:
-\begin{equation}
+Il est possible de montrer que la fonction probabilité de sortie en zéro satisfait l'\acs{EDO}:
+\begin{equation}\label{probability_ide}
     \frac{1}{2}\sigma^2xp''(x)+a(b-x)p'(x)+\lambda\left\{\frac{1}{x}\int_{-x}^0p(x+y)dy-p(x)\right\}=0
 \end{equation}
-sous les conditions $p(0)=1$ et $p(1)=0$.
+sous les conditions $p(0)=1$ et $p(c)=0$.
 
-Ensuite, en effectuant le même changement de variable, en dérivant les deux membres de l'équation et en éliminant le retour à la moyenne ($a=0$), il découle:
+Ensuite, en effectuant le même changement de variable que pour la fonction temps moyen (\ref{variable_change_mean}), en dérivant les deux membres de l'équation et en éliminant le retour à la moyenne ($a=0$), il découle:
 \begin{equation}\label{probability_3rd_order}
     \frac{1}{2}\sigma^2xp'''(x)+\sigma^2p''(x)-\lambda p'(x)=0
 \end{equation}
@@ -509,8 +509,7 @@ En reprenant les mêmes valeurs des paramètres ($\sigma=\sqrt{2}$, $\lambda=1$ 
 \begin{equation}\label{sol_probability_with_jumps}
     p(x)=\frac{I_0(2)-I_0(2\sqrt{x})}{I_0(2)-1}
 \end{equation}
-avec $I_0(\cdot)$ la fonction de Bessel modifiée de première espèce (voir annexe~\ref{special_functions}).
-L'expression obtenue (\ref{sol_probability_with_jumps}) est valide si $r\simeq0.5567$.
+avec $I_0(\cdot)$ la fonction de Bessel modifiée de première espèce (voir annexe~\ref{special_functions}) et $r\simeq0.5567$.
 \paragraph{Étude du cas sans sauts}\phantom{}\\
 Dans la même logique, le même problème en absence des sauts est résolu pour $p_0(x)=\mathds{P}[X(\tau(x))=0]$. L'équation (\ref{probability_3rd_order}) devient:
 \[
@@ -521,11 +520,11 @@ La solution qui satisfait $p(0)=1$ et $p(1)=0$ est:
     p_0(x)=1-x
 \end{equation}
 
-\subsection{Fonction Dépassement Moyen -- Sauts exponentiels}
+\subsection{Fonction Dépassement Moyen \textemdash~Sauts exponentiels}
 Dans cette sous-section, la variante du \ac{CIR} avec sauts considérée est celle avec des sauts positifs modélisés par des variables aléatoires exponentielles $Y_i\sim \text{Exp}(\nu)$.
 
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
-Soit $f(x)=(x-c)\mathds{1}_{x\geq c}$ la fonction mesurant un dépassement. En appliquant la formule de Dynkin (voir\cite{dynkin1965}), il est possible d'écrire:
+Soit $f(x)=(x-c)\mathds{1}_{x\geq c}$ la fonction mesurant un dépassement. En appliquant la formule de Dynkin (voir~\cite{dynkin1965}), il est possible d'écrire:
 \begin{equation}\label{initial_dynkin}
     \mathds{E}[f(X(\tau(x)))]=f(x)+\mathds{E}\left[\int_0^{\tau(x)}\mathcal{L}f(X(s))ds\right]
 \end{equation}
@@ -540,7 +539,7 @@ Ensuite, le terme de droite peut être simplifié:
 \begin{equation}\label{dynkin_right_simplification_1}
     X(0)=x\in(0,c)\implies f(x)=0
 \end{equation}
-Par ailleurs, en développant le générateur infinitésimal (voir annexe \ref{infinitesimal_generator}) appliqué à la fonction $f(x)$, il découle que:
+Par ailleurs, en développant le générateur infinitésimal (voir annexe~\ref{infinitesimal_generator}) appliqué à la fonction $f(x)$, il découle que:
 \begin{equation}\label{dynkin_right_simplification_2}
     \begin{aligned}
         \mathcal{L}f(x)&=\frac{1}{2}\sigma^2xf''(x)+a(b-x)f'(x)+\lambda\int_0^{+\infty}\left[f(x+y)-f(x)\right]\nu e^{-\nu y}dy \\
@@ -554,9 +553,9 @@ En prenant en compte (\ref{dynkin_left_simplification},\ref{dynkin_right_simplif
 \end{equation}
 Soit la fonction $g(x)$ définie par:
 \begin{equation}\label{g_defintion}
-    g(x)=\mathds{E}\left[\int_0^{\tau(x)}e^{\nu X(s)}ds\right]
+    g(x):=\mathds{E}\left[\int_0^{\tau(x)}e^{\nu X(s)}ds\right]
 \end{equation}
-Comme les coefficients de dérive et de diffusion du processus \acs{CIR} vérifient les conditions d'unicité trajectorielle (existence et unicité forte de la solution de l'équation \ref{cir_eq}), le travail présenté dans\cite{abundo2013} peut être utilisé pour établir l'\acs{EID} du second ordre associée:
+Comme les coefficients de dérive et de diffusion du processus \acs{CIR} vérifient les conditions d'unicité trajectorielle (existence et unicité forte de la solution de l'équation~\ref{cir_eq}), le travail présenté dans~\cite{abundo2013} peut être utilisé pour établir l'\acs{EID} du second ordre associée:
 \begin{equation}\label{initial_overshoot_ide}
     \frac{1}{2}\sigma^2xg''(x)+a(b-x)g'(x)+\lambda\int_0^{+\infty}\left[g(x+y)-g(x)\right]\nu e^{-\nu y}dy=-e^{\nu x}
 \end{equation}
@@ -614,7 +613,7 @@ Ensuite, en échangeant la série et l'intégrale, le $n$-ème moment de $Y_i$ a
 \]
 Par ailleurs, en supposant que les sauts sont petits ($\nu$ est grand), il est possible d'approximer la somme obtenue de la façon suivante:
 \[
-\lambda\sum_{n=0}^{+\infty}\frac{1}{\nu^n}\frac{d^n}{dx^n}g(x)\approx\frac{1}{\nu}g'(x)+\frac{1}{\nu^2}g''(x)
+\sum_{n=0}^{+\infty}\frac{1}{\nu^n}\frac{d^n}{dx^n}g(x)\approx\frac{1}{\nu}g'(x)+\frac{1}{\nu^2}g''(x)
 \]
 L'équation (\ref{initial_overshoot_ide}) devient:
 \begin{equation}\label{final_overshoot_ode}
@@ -622,7 +621,7 @@ L'équation (\ref{initial_overshoot_ide}) devient:
 \end{equation}
 Cette \acs{EDO} de second ordre est non homogène avec des coefficients polynomiaux. La solution explicite, si elle existe, est difficile à obtenir. Dans la suite, un cas particulier du problème est considéré.
 
-En fixant le paramètre $a$ à 0, cela revient à éliminer le mécanisme de \textit{retour à la moyenne} présenté en (\ref{cir_eq}). Dans ces conditions, l'\acs{EDO} (\ref{final_overshoot_ode}) devient:
+En fixant éliminant le retour à la moyenne ($a=0$), l'\acs{EDO} (\ref{final_overshoot_ode}) devient:
 \begin{equation}\label{particular_overshoot_ode}
     \left(\frac{1}{2}\sigma^2x+\frac{\lambda}{\nu^2}\right)g''(x)+\frac{\lambda}{\nu}g'(x) =-e^{\nu x}
 \end{equation}
@@ -632,7 +631,7 @@ En fixant le paramètre $a$ à 0, cela revient à éliminer le mécanisme de \te
     g(x)=\frac{1}{{\nu\sigma^2(2\lambda-\nu\sigma^2)}}\Bigg[\sigma^2\left(-C_1 \left(2 \lambda +\nu ^2 \sigma ^2 x\right)^{1-\frac{2 \lambda }{\nu  \sigma ^2}}+C_2 \nu  \left(2 \lambda -\nu  \sigma ^2\right)-2 \nu  e^{\nu  x}\right) \\-2 e^{-\frac{2 \lambda }{\nu  \sigma ^2}} \left(2 \lambda +\nu ^2 \sigma ^2 x\right) E_{1-\frac{2 \lambda }{\nu  \sigma ^2}}\left(-\frac{2 \lambda }{\nu  \sigma ^2}-x \nu \right)\Bigg]
 \end{aligned}
 \]
-avec $E_n(x)$ la fonction intégrale exponentielle (voir annexe \ref{special_functions}). \\
+avec $E_n(x)$ la fonction intégrale exponentielle (voir annexe~\ref{special_functions}). \\
 La forme finale de l'expression de la fonction Dépassement Moyen est obtenue:
 \begin{equation}\label{sol_overshoot}
     \begin{aligned}

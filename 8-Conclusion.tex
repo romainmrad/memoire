@@ -9,17 +9,17 @@ L'analyse des résultats a permis de valider les expressions obtenues à l'aide 
 
 Enfin, l'étude des problèmes de commande optimale associés au processus \acs{CIR} a permis de déterminer les fonctions valeur et les stratégies optimales dans trois configurations de coût différentes. Les solutions proposées satisfont les conditions de régularité et de positivité attendues, confirmant ainsi la solidité des approches analytiques adoptées.
 
-Les résultats relatifs à la fonction génératrice des moments, à l'aire moyenne, au temps moyen de sortie (avec et sans sauts), à la probabilité de sortie en zéro (avec et sans sauts), ainsi qu'au problème de contrôle non linéarisable, exposés dans ce mémoire, ont fait l'objet d'un article de recherche publié dans la revue internationale \textit{WSEAS Transactions on Mathematics} (voir\cite{lefebvre2025}).
+Les résultats relatifs à la fonction génératrice des moments, à l'aire moyenne, au temps moyen de sortie (avec et sans sauts), à la probabilité de sortie en zéro (avec et sans sauts), ainsi qu'au problème de contrôle non linéarisable, exposés dans ce mémoire, ont fait l'objet d'un article de recherche publié dans la revue internationale \textit{WSEAS Transactions on Mathematics}~\cite{lefebvre2025}.
 
 \section{Limitations}
 
 Les résultats présentés dans ce mémoire reposent sur des hypothèses spécifiques concernant les paramètres du processus CIR et la structure des coûts dans les problèmes de commande optimale. En particulier, les paramètres \(a\), \(b\) et \(\sigma\) du processus \acs{CIR} sont supposés constants dans le cadre de cette étude. Cette hypothèse permet de simplifier les équations différentielles associées, mais elle peut s'avérer restrictive lorsque ces paramètres varient en fonction du temps ou de l'état du processus. 
 
-De plus, bien que les solutions analytiques proposées soient valides dans ces contextes particuliers, comme le \acs{CIR} sans retour à la moyenne, elles peuvent perdre en pertinence dans des configurations plus complexes ou lorsque les hypothèses sur les fonctions de coût sont modifiées. En effet, si ces dernières sont non linéaires ou aléatoires, l'équation \acs{HJB} ne permet plus une linéarisation facile (comme dans\cite{whittle1982}).
+De plus, bien que les solutions analytiques proposées soient valides dans ces contextes particuliers, comme le \acs{CIR} sans retour à la moyenne, elles peuvent perdre en pertinence dans des configurations plus complexes ou lorsque les hypothèses sur les fonctions de coût sont modifiées. En effet, si ces dernières sont non linéaires ou aléatoires, l'équation \acs{HJB} ne permet plus une linéarisation facile (comme dans~\cite{whittle1982}).
 
 \section{Perspectives et améliorations futures}
 
-Afin de surmonter les limitations identifiées, plusieurs pistes de recherche peuvent être explorées. Une première perspective consisterait à étendre l'étude au processus de Chen (voir\cite{chen1996}):
+Afin de surmonter les limitations identifiées, plusieurs pistes de recherche peuvent être explorées. Une première perspective consisterait à étendre l'étude au processus de Chen~\cite{chen1996}:
 \[
 \begin{aligned}
     dX(t) &= \kappa[\theta(t)-X(t)]dt+\sqrt{\sigma(t)X(t)}dW_1(t) \\

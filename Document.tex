@@ -240,11 +240,11 @@ a été dûment accepté\ifthenelse{\equal{\monDiplome}{M}}{}{e} par le jury d'e
 % %%
 % %% Liste des tableaux
 % %% List of tables
-% \ifthenelse{\equal{\Langue}{english}}{
-% 	\renewcommand\listtablename{LIST OF TABLES}
-% }{
-% 	\renewcommand\listtablename{LISTE DES TABLEAUX}
-% }\listoftables
+\ifthenelse{\equal{\Langue}{english}}{
+	\renewcommand\listtablename{LIST OF TABLES}
+}{
+	\renewcommand\listtablename{LISTE DES TABLEAUX}
+}\listoftables
 %%
 %% Liste des figures
 %% List of figures

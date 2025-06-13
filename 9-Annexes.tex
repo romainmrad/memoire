@@ -17,8 +17,7 @@
 
 
 \Annexe{Fonctions Spéciales}\label{special_functions}
-
-Cette annexe contient une définition de toutes les fonctions spéciales utilisées dans ce mémoire. Pour plus d'information, voir\cite{NIST:DLMF}.
+Cette annexe contient une définition de toutes les fonctions spéciales utilisées dans ce mémoire. Pour plus d'information, voir~\cite{NIST:DLMF}.
 \section*{Fonctions Gamma}
 \begin{itemize}
     \item La fonction Gamma est définie par:
@@ -87,7 +86,7 @@ Le générateur infinitésimal \( \mathcal{L} \) associé à un processus \( \{X
 \[
     \mathcal{L}f(x) = \lim_{t \to 0} \frac{\mathds{E}_x[f(X(t))] - f(x)}{t}
 \]
-Cet opérateur permet d'établir des équations différentielles décrivant l'évolution d'une statistique du processus étudié. Pour plus d'informations, voir\cite{bakry2014}.
+Cet opérateur permet d'établir des équations différentielles décrivant l'évolution d'une statistique du processus étudié. Pour plus d'informations, voir~\cite{bakry2014}.
 
 \section*{Diffusion pure}
 
@@ -144,3 +143,23 @@ Si les conditions d'unicité trajectorielle associées à la diffusion sont sati
 \int_{\mathds{R}}\min(1, y^2)\, \nu(dy) < \infty
 \]
 $X(t)$ est alors l'unique solution forte, càdlàg, non-explosive et adaptée de l'équation (\ref{jump_diffusion_sde}).
+
+\Annexe{Simulations en Commande Optimale}\label{control_simulations}
+
+Les longueurs moyennes des trajectoires avec et sans contrôle simulées pour chaque problème sont présentées dans le tableau ci-dessous.
+\begin{table}[htb]
+        \centering
+        \caption{Longueurs moyennes des trajectoires simulées}\label{tab:simulation_lengths}
+        \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{||c|c|c||}
+        \hline
+        Problème &
+        Longueur moyenne CIR non contrôlé &
+        Longueur moyenne CIR contrôlé \\
+        \hline\hline
+        P1 & 6904.4004 & 2595.1005 \\
+        P2 & 7539.4178 & 2802.1509 \\
+        P3 & 7004.5290 & 6576.0133 \\
+        \hline
+        \end{tabular}
+\end{table}\FloatBarrier Ces dernières sont mesurées en discrétisant la trajectoire avec des pas temporels de longueur $10^{-4}$.
