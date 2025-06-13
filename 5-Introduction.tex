@@ -211,7 +211,7 @@ Le problème consiste à déterminer une stratégie optimale \( u^*(x) \) minimi
 \begin{equation}\label{value_function}
     F(x) := \inf_{\underset{0 \leq t \leq \tau(x)}{u[X_u(t)]}} \mathds{E}[J(x)]
 \end{equation}
-La figure ci-dessous illustre l'effet d'une stratégie de contrôle sur la dynamique du processus. Dans cet exemple, la commande utilisée est de la forme \( u(x) = u_0(c - x) \), ce qui génère une force dirigée vers la frontière supérieure \( c \) et accélère ainsi la sortie du processus par le haut.
+La figure ci-dessous illustre l'effet d'une stratégie de contrôle sur la dynamique du processus. Dans cet exemple, la commande utilisée est constante et positive ($u(x)\equiv5$), ce qui génère une force dirigée vers la frontière supérieure \( c \) et accélère ainsi la sortie du processus par le haut.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/intro/control.pdf}
