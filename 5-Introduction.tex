@@ -25,9 +25,9 @@ Ce mémoire s'intéresse à l'analyse conjointe des temps de franchissement et d
 \section{Définitions et concepts de base}  % environ 2-3 pages
 
 Avant d'approfondir le sujet, il est essentiel de poser clairement les fondements théoriques sur lesquels repose cette étude.\\
-L'élément central à introduire en premier lieu est le \textit{mouvement brownien standard}, pierre angulaire des processus de diffusion.
+L'élément central à introduire en premier lieu est le \textit{mouvement Brownien standard}, pierre angulaire des processus de diffusion.
 \paragraph{Définition: Le \acl{MBS}}\mbox{}\\ 
-Un processus stochastique $\{W(t),\;t\geq0\}$ est un mouvement brownien standard s'il vérifie:
+Un processus stochastique $\{W(t),\;t\geq0\}$ est un mouvement Brownien standard s'il vérifie:
 \begin{itemize}
     \item $W(0) = 0$;
     \item les trajectoires $t \mapsto W(t)$ sont continues presque sûrement;
@@ -41,15 +41,15 @@ Un processus stochastique $\{W(t),\;t\geq0\}$ est un mouvement brownien standard
 \end{figure}
 \FloatBarrier Le \acs{MBS} constitue la base de la construction des processus de diffusion employés dans de nombreux domaines tels que la finance, la physique ou la biologie. Ces processus sont modélisés par des \acf{EDS}, qui consistent à enrichir le mouvement brownien en y ajoutant un terme de dérive et un terme de diffusion. Il en résulte une classe de processus dits \textit{d'Itô}.
 \paragraph{Définition: Processus d'Itô}\mbox{}\\
-Un processus $\{X(t),\;t \geq 0\}$ est dit d'Itô (voir~\cite{ito1944}) s'il satisfait une équation différentielle stochastique de la forme:
+$\{X(t),\;t \geq 0\}$ est un processus d'Itô~\cite{ito1944} s'il satisfait une équation différentielle stochastique de la forme:
 \begin{equation}
     dX(t) = \mu(t, X(t))\,dt + \sigma(t, X(t))\,dW(t)
 \end{equation}\label{ito_eq}
 où:
 \begin{itemize}
     \item $\mu(t, X(t))$ et $\sigma(t, X(t))$ sont des fonctions mesurables et adaptées à la filtration brownienne standard $\mathcal{F}_t=\sigma\{W(s),\;s\leq t\}$;
-    \item $\mathbb{P}\left( \int_0^T |\mu(s, X(s))|\,ds < +\infty \right) = 1$;
-    \item $\mathbb{P}\left( \int_0^T \sigma^2(s, X(s))\,ds < +\infty \right) = 1$.
+    \item $\mathds{P}\left( \int_0^T |\mu(s, X(s))|\,ds < +\infty \right) = 1$;
+    \item $\mathds{P}\left( \int_0^T \sigma^2(s, X(s))\,ds < +\infty \right) = 1$.
 \end{itemize}
 Dans cette formulation, $\mu(t, X(t))$ est appelé le \textit{terme de dérive} et $\sigma(t, X(t))$ le \textit{terme de diffusion}.
 \begin{figure}[htb]
@@ -57,7 +57,7 @@ Dans cette formulation, $\mu(t, X(t))$ est appelé le \textit{terme de dérive} 
     \includegraphics[width=0.9\linewidth]{img/intro/path_drift.pdf}
     \caption{Une trajectoire d'un processus d'Itô avec $\mu(t, X(t)) \equiv \mu = 2$}\label{fig:TrajIto}
 \end{figure}
-\FloatBarrier La figure~\ref{fig:TrajIto} illustre l'effet de la dérive constante: la trajectoire du processus s'organise autour de la courbe moyenne \( y = 2x \), tout en étant perturbée par la composante aléatoire de la diffusion.
+\FloatBarrier La figure~\ref{fig:TrajIto} illustre l'effet d'un dérive: la trajectoire du processus s'organise autour de la courbe moyenne \( y = 2x \), tout en étant perturbée par la composante aléatoire de la diffusion.
 
 De plus, il est important de noter que les termes de dérive et de diffusion peuvent eux-mêmes dépendre de l'état du processus ou du temps, ce qui permet de capturer des dynamiques complexes, comme une volatilité ou une dérive variable. Cette flexibilité permet notamment de modéliser des phénomènes réalistes dans les systèmes financiers ou physiques.
 
@@ -80,7 +80,7 @@ J(t) = \sum_{i=1}^{N(t)} Y_i
 Ce processus correspond à une somme aléatoire de sauts, où:
 \begin{itemize}
     \item $N(t)$ représente le nombre de sauts survenus jusqu'au temps $t$;
-    \item $Y_i$ est l'amplitude du $i$-ème saut, supposée i.i.d. et indépendante de $N(t)$;
+    \item $Y_i$ est l'amplitude du $i$-ème saut;
     \item Les instants des sauts sont donnés par les temps d'arrivée du processus de Poisson;
     \item Entre deux sauts, le processus reste constant.
 \end{itemize}
@@ -97,7 +97,7 @@ La figure ci-dessous visualise différentes réalisation d'un processus de sauts
 %%
 \section{Éléments de la problématique}  % environ 3 pages
 
-Comme évoqué précédemment, cette étude s'intéresse à deux types de problématiques appliquées au processus \acl{CIR}. Il convient donc d'en donner une définition formelle.
+Comme évoqué précédemment, cette étude s'intéresse à des problèmes appliquées au processus \acl{CIR}. Il convient donc d'en donner une définition formelle.
 \paragraph{Définition: Le processus \acl{CIR}}\mbox{}\\
 Le processus \ac{CIR}~\cite{cox1985} est un processus d'Itô défini par l'équation différentielle stochastique suivante:
 \begin{equation}
@@ -112,13 +112,13 @@ où:
 \end{itemize}
 Ce processus est particulièrement adapté à la modélisation des taux d'intérêt en raison de plusieurs propriétés clés:
 \begin{itemize}
-    \item Le terme de dérive $\mu(t, X(t)) \equiv \mu(X(t))= a[b - X(t)]$ induit un mécanisme de retour vers la moyenne $b$, avec une vitesse déterminée par $a$.
-    \item Le terme de diffusion $\sigma(t, X(t))\equiv \sigma(X(t)) = \sigma \sqrt{X(t)}$ garantit la non-négativité du processus, car la racine carrée empêche des évolutions négatives.
-    \item Enfin, le comportement à proximité de zéro est gouverné par la \textit{condition de Feller}, selon laquelle:
+    \item Le terme de dérive $\mu(t, X(t)) \equiv \mu(X(t))= a[b - X(t)]$ induit un mécanisme de retour vers la moyenne $b$, avec une vitesse déterminée par $a$;
+    \item Le terme de diffusion $\sigma(t, X(t))\equiv \sigma(X(t)) = \sigma \sqrt{X(t)}$ garantit la non-négativité du processus grâce à la racine carrée;
+    \item Le comportement à proximité de zéro est gouverné par la \textit{condition de Feller}, selon laquelle:
     \[
     \mathds{P} \left[ \exists\, t < \infty \text{ tel que } X(t) = 0 \right] = 1 \quad \text{si et seulement si} \quad \sigma^2 \geq 2ab
     \]
-    Cela signifie que le processus peut atteindre zéro en un temps fini lorsque cette condition est satisfaite, mais il reste strictement positif sinon.
+    Cela signifie que le processus peut atteindre zéro en un temps fini si $\sigma^2\geq2ab$.
 \end{itemize}
 \begin{figure}[htb]
     \centering
@@ -135,7 +135,7 @@ Autrement dit, $\tau(x)$ correspond au premier instant où le processus atteint 
 
 L'étude de ce temps d'arrêt est particulièrement pertinente dans le cadre du processus \acs{CIR}, pour plusieurs raisons:
 \begin{itemize}
-    \item \textbf{Modélisation du passage aux taux négatifs:} lors de la crise économique japonaise de 2016, des taux d'intérêt négatifs ont été instaurés pour stimuler l'activité. Or, le processus \acs{CIR}, à valeurs strictement positives, ne permet pas de modéliser ce phénomène. Introduire une barrière à zéro permet de considérer le franchissement de ce seuil, au-delà duquel le modèle cesse d'être valide et les taux deviennent négatifs.
+    \item \textbf{Modélisation du passage aux taux négatifs:} lors de la crise économique japonaise de 2016, des taux d'intérêt négatifs ont été instaurés pour stimuler l'activité. Or, le processus \acs{CIR}, à valeurs strictement positives, ne permet pas de modéliser ce phénomène. Introduire une barrière à zéro permet de considérer le franchissement de ce seuil, au-delà duquel les taux deviennent négatifs.
     \item \textbf{Surveillance des taux élevés:} en gestion des risques, il est crucial de modéliser l'éventualité d'une hausse brutale ou excessive des taux d'intérêt. L'introduction d'un seuil supérieur $c$ permet de caractériser ces situations critiques et de quantifier leur probabilité d'occurrence via le temps de franchissement.
 \end{itemize}
 \begin{figure}[htb]
@@ -153,7 +153,7 @@ La fonction génératrice des moments du temps de premier passage $\tau(x)$ est 
 Cette fonction permet de résumer l'information probabiliste sur la variable $\tau(x)$, en particulier sa distribution. De plus, elle encode l'ensemble des moments de $\tau(x)$, lorsque ceux-ci existent, via dérivation en $\alpha$. 
 
 La deuxième fonction d'intérêt est celle du \textit{temps moyen de premier passage}, qui correspond à l'espérance de la variable aléatoire $\tau(x)$.
-\paragraph{Définition: Temps moyen de premier passage}\mbox{}\\
+\paragraph{Définition: Temps Moyen de Premier Passage}\mbox{}\\
 Le temps moyen de premier passage est défini par:
 \begin{equation}\label{mean}
     m(x):= \mathds{E}[\tau(x)]
@@ -161,7 +161,7 @@ Le temps moyen de premier passage est défini par:
 Il représente le temps moyen que met le processus \acs{CIR}, partant d'un niveau initial $x \in (0,c)$, pour atteindre l'une des deux bornes de l'intervalle $(0,c)$.
 
 La troisième fonction étudiée est celle de l'\textit{aire moyenne sous la trajectoire} jusqu'au temps de sortie.
-\paragraph{Définition: Aire moyenne}\mbox{}\\
+\paragraph{Définition: Aire Moyenne}\mbox{}\\
 La fonction d'aire moyenne est définie par:
 \begin{equation}\label{area}
     A(x):= \mathds{E} \left[ \int_0^{\tau(x)} X(t)\,dt \right]
@@ -169,7 +169,7 @@ La fonction d'aire moyenne est définie par:
 Elle mesure l'accumulation moyenne de la valeur du processus jusqu'au temps de franchissement.
 
 La quatrième fonction étudiée est celle de la probabilité toucher la frontière inférieure.
-\paragraph{Définition: Probabilité de sortie en zéro}\mbox{}\\
+\paragraph{Définition: Probabilité de Sortie en Zéro}\mbox{}\\
 La fonction de probabilité de sortie est définie par:
 \begin{equation}\label{zero_exit_probability}
     p(x):=\mathds{P}[X(\tau(x))=0]
@@ -231,10 +231,10 @@ La figure ci-dessous illustre l'effet d'une stratégie de contrôle sur la dynam
 Après avoir exposé les fondements théoriques de l'étude, nous pouvons désormais énoncer précisément les objectifs poursuivis dans ce mémoire. Ceux-ci se répartissent en deux volets: l'analyse des temps de premier passage pour le processus \acs{CIR} en diffusion pure, puis l'étude de son extension avec sauts.
 \paragraph{Objectifs pour le processus de diffusion}
 \begin{itemize}
-    \item Obtenir une expression explicite de la fonction génératrice des moments du temps de premier passage à deux frontières, définie par \( M(x;\alpha) = \mathds{E}[e^{-\alpha \tau(x)}] \), en fonction des paramètres du modèle;
+    \item Obtenir une expression explicite de la fonction génératrice des moments du temps de premier passage à deux frontières \( M(x;\alpha) = \mathds{E}[e^{-\alpha \tau(x)}] \);
     \item Expliciter une formule analytique pour le temps moyen de premier passage, \( m(x) = \mathds{E}[\tau(x)] \), pour une entrée initiale \( x \in (0,c) \);
     \item Déduire l'aire moyenne sous la trajectoire $A(x)$ jusqu'au franchissement de l'intervalle \( (0,c) \);
-    \item Résoudre un problème de commande optimale associé au processus, en déterminant la fonction valeur \( F(x) = \underset{u}{\inf}\mathds{E}[J(x)] \), ainsi que la politique de contrôle optimal $u^*(x)$.
+    \item Résoudre différentes formes d'un problème de commande optimale associé au processus, en déterminant la fonction valeur \( F(x) = \underset{u}{\inf}\,\mathds{E}[J(x)] \), ainsi que la politique de contrôle optimal $u^*(x)$.
 \end{itemize}
 \paragraph{Objectifs pour le processus de diffusion avec sauts}
 \begin{itemize}

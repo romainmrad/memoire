@@ -1,6 +1,6 @@
 \Chapter{REVUE DE LITTÉRATURE}\label{sec:RevLitt}
 
-Ce chapitre propose une synthèse des travaux existants sur les \acs{TPP} appliqués au processus \acs{CIR} et ses extensions (voir~\cite{dinardo2021,dinardo2024,kepplinger2017,giorno2021,giorno2023,martin2011,masoliver2012}) ainsi que les problèmes de dépassement pour différents processus de diffusion (voir~\cite{kou2003,yin2014,kluppelberg2004}), en mettant l'accent sur les méthodes analytiques, numériques et statistiques. L'objectif est de situer le présent mémoire dans l'état de l'art et de justifier les approches retenues par la suite.
+Ce chapitre propose une synthèse des travaux existants sur les \acs{TPP} appliqués au processus \acs{CIR} et ses extensions (voir~\cite{dinardo2021,dinardo2024,kepplinger2017,giorno2021,giorno2023,martin2011,masoliver2012}) ainsi que les problèmes de dépassement pour différents processus de diffusion (voir~\cite{kou2003,yin2014,kluppelberg2004}), en mettant l'accent sur les méthodes analytiques. L'objectif est donc de situer le présent mémoire dans l'état de l'art.
 
 \paragraph{Approche par cumulants et fonctions de Kummer}
 
@@ -8,15 +8,15 @@ Dans~\cite{dinardo2021}, l'auteur développe une approche analytique du \acs{TPP
 
 \paragraph{Développement orthogonal basé sur la densité Gamma}
 
-Dans~\cite{dinardo2024}, cette approche est affinée par un développement tronqué de la densité du \acs{TPP} obtenue en~\cite{dinardo2021}. Cette méthode est accompagnée d'une analyse de convergence et d'un algorithme d'acceptation-rejet pour la simulation du \acs{TPP}.
+Dans~\cite{dinardo2024}, l'approche est affinée par un développement tronqué de la densité du \acs{TPP} obtenue en~\cite{dinardo2021}. Cette méthode est accompagnée d'une analyse de convergence et d'un algorithme d'acceptation-rejet pour la simulation du \acs{TPP}.
 
 \paragraph{Méthodes analytiques et intégrales de Volterra}
 
-L'article~\cite{kepplinger2017} traite le \acs{TPP} pour des processus de diffusion généraux en formulant une équation intégrale de Volterra du premier type. Pour le processus \acs{CIR}, l'auteur utilise un changement de mesure transformant le problème en celui du processus de Feller. Les moments sont ensuite dérivés à l'aide de la transformée de Laplace et des fonctions de Kummer.
+L'article~\cite{kepplinger2017} traite le \acs{TPP} pour des processus de diffusion généraux en formulant une équation intégrale de Volterra du premier type. Pour le processus \acs{CIR}, l'auteur utilise un changement de mesure transformant le problème en celui d'un processus de Feller. Les moments sont ensuite dérivés à l'aide de la transformée de Laplace et des fonctions de Kummer.
 
 \paragraph{Formules analytiques pour le processus de Feller}
 
-Dans~\cite{giorno2021}, les auteurs généralisent les résultats précédents à différents régimes de dérive du processus de Feller, en exprimant la densité du \acs{TPP} à travers la fonction de Kummer du second type \( \Psi \) ou la fonction de Bessel modifiée \( K_\nu \), selon la valeur du paramètre \( a \) (positif, nul ou négatif). Des expressions explicites pour la densité et l'espérance du \acs{TPP} sont fournies.
+Dans~\cite{giorno2021}, les auteurs généralisent les résultats précédents à différents régimes de dérive du processus de Feller, en exprimant la densité du \acs{TPP} à travers la fonction de Tricomi ou la fonction de Bessel modifiée selon différentes valeurs des paramètres. Des expressions explicites pour la densité et l'espérance du \acs{TPP} sont fournies.
 
 \paragraph{Comparaison avec les processus de Wiener et d'Ornstein-Uhlenbeck}
 
@@ -24,11 +24,7 @@ Dans~\cite{giorno2023}, une comparaison est effectuée entre les comportements d
 
 \paragraph{Lien avec les processus de type Bessel}
 
-L'article~\cite{martin2011} s'intéresse à un processus de type Bessel gouverné par l'équation:
-\[
-dX_t = \left(\frac{nD}{X_t}\right) dt + \sqrt{2D}\, dW_t,
-\]
-présentant des similarités structurelles avec le processus \acs{CIR}. Selon le paramètre \( n \), le comportement au voisinage de zéro varie (absorbant, réfléchissant, ou entrée). Les auteurs proposent une résolution du problème de passage à l'aide de la théorie de Sturm-Liouville et des fonctions de Bessel, et obtiennent des densités de \acs{TPP} analytiques. Une validation par simulation de type Euler-Maruyama complète l'étude.
+L'article~\cite{martin2011} s'intéresse à un processus de type Bessel présentant des similarités structurelles avec le processus \acs{CIR}. Selon l'ordre du processus, le comportement au voisinage de zéro varie (absorbant, réfléchissant, ou entrée). Les auteurs proposent une résolution du problème de passage à l'aide de la théorie de Sturm-Liouville et des fonctions de Bessel, et obtiennent des densités de \acs{TPP} analytiques. Une validation par simulation de type Euler-Maruyama complète l'étude.
 
 \paragraph{Temps de premier passage avec sauts}
 

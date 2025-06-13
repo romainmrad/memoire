@@ -166,11 +166,7 @@ avec $I$ et $J$ deux intégrales à résoudre:
     \end{equation}
     En combinant (\ref{exponential_integral}) et (\ref{exponential_integral_simplification}), l'expression analytique de la solution de $I$ est obtenue:
     \[
-    \begin{aligned}
-        I=\int x^{-\beta}e^{\alpha x}dx&=-x^{1-\beta}E_\beta(-\alpha x)\\
-        &= -x^{1-\beta}{(-\alpha x)}^{\beta-1}\Gamma(1-\beta,-\alpha x)\\
-        &=-{(-\alpha)}^{\beta-1}\Gamma(1-\beta,-\alpha x)
-    \end{aligned}
+        I=-{(-\alpha)}^{\beta-1}\Gamma(1-\beta,-\alpha x)
     \]
     \item \textbf{Résolution de $J$}: \\
     La série à l'intérieur de l'intégrale converge uniformément grâce au terme factoriel au dénominateur. L'intégration terme-à-terme est donc possible: 
@@ -237,7 +233,7 @@ Pour obtenir la forme explicite de $A(x)$, il suffit d'intégrer $u(x)$ et d'ajo
 Les deux intégrales résolues précédemment $I$ et $J$ réapparaissent. En injectant leurs solutions, la forme finale de l'expression de la fonction Aire Moyenne est obtenue: 
 \begin{equation}\label{sol_area}
     \begin{aligned}
-            A(x) = {(-\alpha)}^{\beta-1}\Gamma(1-\beta,-\alpha x)[\theta\alpha^{-\beta-1}\Gamma(\beta+1)-C_1]+ \\ \frac{x\theta}{\alpha}\left[{}_2F_2\left(\begin{bmatrix}1\\1\end{bmatrix},\begin{bmatrix}2\\1+\beta\end{bmatrix},\alpha x\right)-\alpha^{-\beta}\right] +C_2 
+            A(x) = {(-\alpha)}^{\beta-1}\Gamma(1-\beta,-\alpha x)[\theta\alpha^{-\beta-1}\Gamma(\beta+1)-C_1]\\+\frac{x\theta}{\alpha}\left[{}_2F_2\left(\begin{bmatrix}1\\1\end{bmatrix},\begin{bmatrix}2\\1+\beta\end{bmatrix},\alpha x\right)-\alpha^{-\beta}\right] +C_2 
     \end{aligned}
 \end{equation}
 
@@ -247,14 +243,14 @@ Les conditions aux limites $A(0)=A(c)=0$ nous permettent de déterminer les deux
 \begin{align*}
 \left\{\begin{aligned}
     {(-\alpha)}^{\beta-1}\Gamma(1-\beta)(\theta\alpha^{-\beta-1}\Gamma(\beta+1)-C_1)+C_2 &= 0 \\
-    {(-\alpha)}^{\beta-1}\Gamma(1-\beta,-\alpha c)[\theta\alpha^{-\beta-1}\Gamma(\beta+1)-C_1]+\\ \frac{c\theta}{\alpha}\left[{}_2F_2\left(\begin{bmatrix}1\\1\end{bmatrix},\begin{bmatrix}2\\1+\beta\end{bmatrix},\alpha c\right)-\alpha^{-\beta}\right] +C_2 &=0
+    {(-\alpha)}^{\beta-1}\Gamma(1-\beta,-\alpha c)[\theta\alpha^{-\beta-1}\Gamma(\beta+1)-C_1]\\+ \frac{c\theta}{\alpha}\left[{}_2F_2\left(\begin{bmatrix}1\\1\end{bmatrix},\begin{bmatrix}2\\1+\beta\end{bmatrix},\alpha c\right)-\alpha^{-\beta}\right] +C_2 &=0
 \end{aligned}\right.
 \end{align*}
 Les constantes $C_1$ et $C_2$ s'écrivent donc: 
 \begin{equation}\label{area_constants}
     \begin{aligned}
-        C_1 =& \frac{1}{\gamma (1-\beta ,-\alpha c)}\Bigg[\theta  {(-\alpha)}^{-\beta } \alpha ^{-\beta -1} \bigg(c \alpha ^{\beta +1} \,{}_2F_2\left(\begin{bmatrix}1\\1\end{bmatrix},\begin{bmatrix}2\\1+\beta\end{bmatrix},\alpha c\right)\\&\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad+
-        {(-\alpha)}^{\beta } \Gamma(\beta +1)\gamma (1-\beta ,-c \alpha )-\alpha  c\bigg)\Bigg] \\
+        C_1 =& \frac{1}{\gamma (1-\beta ,-\alpha c)}\Bigg[\theta  {(-\alpha)}^{-\beta } \alpha ^{-\beta -1} \Bigg\{c \alpha ^{\beta +1} \,{}_2F_2\left(\begin{bmatrix}1\\1\end{bmatrix},\begin{bmatrix}2\\1+\beta\end{bmatrix},\alpha c\right)\\&\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad+
+        {(-\alpha)}^{\beta } \Gamma(\beta +1)\gamma (1-\beta ,-c \alpha )-\alpha  c\Bigg\}\Bigg] \\
         C_2 =& -\frac{c \theta  \alpha ^{-\beta -1} \Gamma (1-\beta ) }{\gamma(1-\beta ,-c \alpha )}\left[\alpha ^{\beta } \,{}_2F_2\left(\begin{bmatrix}1\\1\end{bmatrix},\begin{bmatrix}2\\1+\beta\end{bmatrix},\alpha c\right)-1\right]
     \end{aligned}
 \end{equation}
@@ -594,6 +590,7 @@ Les conditions $g(0)=g(c)=0$ deviennent $\phi(0)=\phi(c)=0$. Enfin
     &=-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}\phi(x)
 \end{aligned}
 \]
+Cependant, une expression explicite pour $\phi(x)$, si elle existe, est très difficile à obtenir. Cela rend donc la résolution du problème général assez compliqué. 
 
 \paragraph{Résolution approximative pour $a=0$}\phantom{}\\
 En remplaçant $g(x+y)$ dans (\ref{initial_overshoot_ide}) par un développement de Taylor, il est possible de réécrire l'intégrale comme suit:

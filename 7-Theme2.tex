@@ -98,7 +98,7 @@ L'expression obtenue pour la fonction Aire Moyenne est ainsi validée.
 
 \subsection{Commande Optimale Stochastique}
 
-Enfin, il est nécessaire de valider les expressions obtenues dans le cadre des deux problèmes de commande optimale. Pour cela, il convient de tracer la fonction valeur $F(x)$ ainsi que le contrôle optimal $u^*(x)$ pour différentes valeurs des paramètres étudiés. Lors de l'analyse d'un paramètre donné, les autres paramètres sont fixés à $1$ afin d'isoler son influence.
+Enfin, il est nécessaire de valider les expressions obtenues dans le cadre des trois problèmes de commande optimale étudiés. Pour cela, il convient de tracer la fonction valeur $F(x)$ ainsi que le contrôle optimal $u^*(x)$, et s'il est possible, pour plusieurs valeurs des différents paramètres des coûts. Afin d'isoler l'influence d'un paramètre lors de l'analyse, les autres seront fixés à $1$.
 
 \subsubsection{Problème linéarisable 1 \textemdash~P1}\phantom{}\\
 Le problème (\ref{p1}) est considéré. D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p1}). D'un autre côté, la fonction valeur $F(x)$ est définie par (\ref{sol_control_1},\ref{control_constants}) et le contrôle optimal est défini par (\ref{optimal_control_1}). Les différentes valeurs des paramètres suivants sont évaluées:
@@ -151,7 +151,7 @@ Le problème (\ref{p1}) est considéré. D'un côté, les fonctions $r(x)$, $b(x
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/validation/P1/p1_control_simulation.pdf}
-    \caption{P1 \textemdash~Simulation de deux trajectoires du \acs{CIR} avec et sans contrôle}
+    \caption{P1 \textemdash~Visualisation de l'effet de la commande optimale}
 \end{figure}
 \FloatBarrier\subsubsection{Problème linéarisable 2 \textemdash~P2}\phantom{}\\
 Les résultats du problème (\ref{p2}) sont analysés. D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p2}). D'un autre côté, la fonction valeur $F(x)$ est définie par (\ref{sol_control_2},\ref{control_constants}) et le contrôle optimal est défini par (\ref{optimal_control_2}). Les mêmes valeurs des différents paramètres $\rho$, $\beta$ et $\kappa$ sont évaluées.
@@ -198,7 +198,7 @@ Les résultats du problème (\ref{p2}) sont analysés. D'un côté, les fonction
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/validation/P2/p2_control_simulation.pdf}
-    \caption{P2 \textemdash~Simulation de deux trajectoires du \acs{CIR} avec et sans contrôle}
+    \caption{P2 \textemdash~Visualisation de l'effet de la commande optimale}
 \end{figure}
 \subsubsection{Problème non linéarisable \textemdash~P3}\phantom{}\\
 Le problème (\ref{p3}) est porté à l'étude. L'expression de la fonction valeur (\ref{sol_control_3}) ainsi que la commande optimale (\ref{optimal_control_3}) sont tracés.
@@ -219,7 +219,7 @@ Le problème (\ref{p3}) est porté à l'étude. L'expression de la fonction vale
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/validation/P3/p3_control_simulation.pdf}
-    \caption{P3 \textemdash~Simulation de deux trajectoires du \acs{CIR} avec et sans contrôle}\label{fig:Simulation3}
+    \caption{P3 \textemdash~Visualisation de l'effet de la commande optimale}\label{fig:Simulation3}
 \end{figure}
 \paragraph{Analyse}\phantom{}\\
 Il est important de souligner que, dans les trois problèmes étudiés et pour les différentes valeurs des paramètres considérés:
@@ -230,7 +230,7 @@ Il est important de souligner que, dans les trois problèmes étudiés et pour l
     \item Une augmentation du coût immédiat $\rho$, induisant une hausse du coût encouru, entraîne un renforcement du contrôle optimal ($|u^*(x)|$ augmente), traduisant ainsi une volonté accrue de quitter l'intervalle aussi rapidement que possible;
     \item Une hausse du coût du contrôle $\beta$ incite à intensifier le contrôle optimal afin de quitter l'intervalle plus rapidement. Cette stratégie réduit la durée d'exposition au coût instantané, ce qui compense partiellement le surcoût du contrôle et diminue le coût total encouru $F(x)$;
     \item Une augmentation du poids pénalisant le contrôle $\kappa$, induisant une hausse du coût encouru, entraîne une relaxation du contrôle optimal. En effet, plus le poids du contrôle est élevé, moins il est intéressant d'appliquer un contrôle fort;
-    \item Les simulations mettent en évidence l'effet du contrôle optimal, qui accélère significativement la sortie du processus par rapport au cas non contrôlé. Pour valider cette observation, 1000 trajectoires sont simulées pour chaque problème, et la durée moyenne jusqu'à la sortie est comparée. Un facteur d'accélération est ensuite estimé en rapportant la longueur moyenne des trajectoires non contrôlées à celle des trajectoires contrôlées (voir annexe~\ref{control_simulations}):
+    \item Les simulations mettent en évidence l'effet du contrôle optimal, qui accélère significativement la sortie du processus par rapport au cas non contrôlé. Pour valider cette observation, 1000 trajectoires sont simulées pour chaque problème, et la durée moyenne jusqu'à la sortie est comparée. Un facteur d'accélération est ensuite estimé:
     \begin{table}[htb]
         \centering
         \caption{Comparaison des accélérations moyennes du temps de sortie}\label{tab:acceleration_results}
@@ -242,14 +242,14 @@ Il est important de souligner que, dans les trois problèmes étudiés et pour l
         P2 & 2.690582 \\
         P3 & 1.065163 \\\hline
         \end{tabular}
-    \end{table}\FloatBarrier
-    \item La suppression du retour à la moyenne entraîne une réduction de l'intensité du contrôle (voir~\ref{fig:Simulation3}). En l'absence de force de rappel, le processus est naturellement plus enclin à atteindre une des deux frontières, ce qui permet d'intervenir avec une commande de faible amplitude.
+    \end{table}\FloatBarrier Voir annexe~\ref{control_simulations} pour plus de détails; 
+    \item La suppression du retour à la moyenne entraîne une réduction de l'intensité du contrôle (voir~\ref{fig:ControlVisualisation3, fig:Simulation3}). En l'absence de force de rappel, le processus est naturellement plus enclin à atteindre une des deux frontières, ce qui permet d'intervenir avec une commande de faible amplitude.
 \end{itemize}
 Ainsi, les expressions obtenues pour la fonction valeur $F(x)$ et le contrôle optimal $u^*(x)$ sont validées.
 
 \section{Diffusion avec sauts}
 
-Cette section est consacrée à la présentation des résultats portant sur le \acs{CIR} avec sauts défini en (\ref{jump_cir_sde}).
+Cette section est consacrée à la présentation des résultats portants sur le \acs{CIR} avec sauts défini en (\ref{jump_cir_sde}).
 \subsection{Fonction Temps moyen \textemdash~Sauts uniformes}
 Les paramètres utilisés sont ceux introduits lors de l'étude du temps moyen de sortie, à la sous-partie (\ref{subsection_mean_jumps}). Les fonctions \( m(x) \) (avec sauts) et \( m_0(x) \) (sans sauts), données respectivement par (\ref{sol_mean_with_jumps}) et (\ref{sol_mean_with_0_jumps}), sont tracées.
 \paragraph{Visualisation}\phantom{}
@@ -288,7 +288,7 @@ Les paramètres considérés sont ceux définis dans l'étude de la probabilité
         \includegraphics[width=\linewidth]{img/validation/Jumps/probability_big_jumps.pdf}
         \caption{Fréquence des sauts $\lambda=10$}
     \end{subfigure}
-    \caption{Visualisation des probabilité de sortir en zéro $p(x)$ et $p_0(x)$}\label{fig:JumpsProbabilityVisualisation}
+    \caption{Visualisation des probabilités de sortir en zéro $p(x)$ et $p_0(x)$}\label{fig:JumpsProbabilityVisualisation}
 \end{figure}
 \FloatBarrier\paragraph{Analyse}\mbox{}\\
 Les observations suivantes peuvent être formulées:
@@ -301,7 +301,7 @@ Les observations suivantes peuvent être formulées:
 \subsection{Fonction Dépassement Moyen \textemdash~Sauts exponentiels}
 La variante du \acs{CIR} à sauts exponentiels est considérée.
 \paragraph{Visualisation}\phantom{}\\
-Toujours dans la même optique, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée.
+Toujours dans la même optique, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée pour différentes valeurs de la fréquence des sauts $\lambda$ ainsi que le paramètre de longueur des sauts $\nu$.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{0.49\linewidth}
@@ -321,7 +321,7 @@ Les différents points suivants sont relevés:
 \begin{itemize}
     \item Les conditions aux limites $D(0)=D(c)=0$ sont respectées;
     \item La fonction représente un \textit{dépassement moyen}, elle doit donc être positive pour toute valeur $x$ dans $[0,c]$;
-    \item Une augmentation de la fréquence des sauts induit une augmentation du dépassement moyen. En effet, il devient plus probable que le processus effectue un saut juste avant d'atteindre la frontière, ce qui augmente les chances de la franchir avec un certain excès.
-    \item Une réduction de la taille des sauts induit une diminution du dépassement moyen. En effet, même si un saut survient à proximité de la frontière, sa faible amplitude limite la distance franchie au-delà de celle-ci.
+    \item Une augmentation de la fréquence des sauts $\lambda$ induit une augmentation du dépassement moyen. En effet, il devient plus probable que le processus effectue un saut juste avant d'atteindre la frontière, ce qui augmente les chances de la franchir avec un certain excès.
+    \item Une réduction de la taille des sauts (traduite par une augmentation de $\nu$) induit une diminution du dépassement moyen. En effet, même si un saut survient à proximité de la frontière, sa faible amplitude limite la distance franchie au-delà de celle-ci.
 \end{itemize}
 
