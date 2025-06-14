@@ -543,7 +543,7 @@ Par ailleurs, en développant le générateur infinitésimal (voir annexe~\ref{i
         &=\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
     \end{aligned}
 \end{equation}
-En prenant en compte (\ref{dynkin_left_simplification},\ref{dynkin_right_simplification_1},\ref{dynkin_right_simplification_2}), l'équation (\ref{initial_dynkin}) devient:
+En prenant en compte (\ref{dynkin_left_simplification},~\ref{dynkin_right_simplification_1},~\ref{dynkin_right_simplification_2}), l'équation (\ref{initial_dynkin}) devient:
 \begin{equation}\label{simplified_dynkin}
     D(x)=\frac{\lambda}{\nu e^{\nu c}}\mathds{E}\left[\int_0^{\tau(x)}e^{\nu X(s)}ds\right]
 \end{equation}
@@ -571,7 +571,7 @@ La formule de Leibniz donne:
 \begin{equation}\label{phi_derivation}
         \Phi'(x)=-g(x)e^{-\nu x}\implies g(x)=-e^{\nu x}\Phi'(x)
 \end{equation}
-En injectant (\ref{phi_simplification},\ref{phi_derivation}) dans (\ref{overshoot_ide}), l'équation devient:
+En injectant (\ref{phi_simplification},~\ref{phi_derivation}) dans (\ref{overshoot_ide}), l'équation devient:
 \begin{equation}\label{Phi_equation}
     \begin{aligned}
         \frac{1}{2}\sigma^2x\Phi'''(x)+\Phi''(x)\left[\nu\sigma^2x+a(b-x)\right]\\+\Phi'(x)\left[\frac{1}{2}\sigma^2\nu^2x+a\nu(b-x)-\lambda\right]-\lambda\nu \Phi(x)=1
@@ -616,9 +616,9 @@ L'équation (\ref{initial_overshoot_ide}) devient:
 \begin{equation}\label{final_overshoot_ode}
     \left(\frac{1}{2}\sigma^2x+\frac{\lambda}{\nu^2}\right)g''(x)+\left[a(b-x)+\frac{\lambda}{\nu}\right]g'(x) =-e^{\nu x}
 \end{equation}
-Cette \acs{EDO} de second ordre est non homogène avec des coefficients polynomiaux. La solution explicite, si elle existe, est difficile à obtenir. Dans la suite, un cas particulier du problème est considéré.
+Cette \acs{EDO} de second ordre est non homogène avec des coefficients polynomiaux et un terme exponentiel. La solution explicite, si elle existe, est difficile à obtenir. Dans la suite, un cas particulier du problème est considéré.
 
-En fixant éliminant le retour à la moyenne ($a=0$), l'\acs{EDO} (\ref{final_overshoot_ode}) devient:
+En éliminant le retour à la moyenne ($a=0$), l'\acs{EDO} (\ref{final_overshoot_ode}) devient:
 \begin{equation}\label{particular_overshoot_ode}
     \left(\frac{1}{2}\sigma^2x+\frac{\lambda}{\nu^2}\right)g''(x)+\frac{\lambda}{\nu}g'(x) =-e^{\nu x}
 \end{equation}

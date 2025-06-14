@@ -57,7 +57,7 @@ Dans cette formulation, $\mu(t, X(t))$ est appelé le \textit{terme de dérive} 
     \includegraphics[width=0.9\linewidth]{img/intro/path_drift.pdf}
     \caption{Une trajectoire d'un processus d'Itô avec $\mu(t, X(t)) \equiv \mu = 2$}\label{fig:TrajIto}
 \end{figure}
-\FloatBarrier La figure~\ref{fig:TrajIto} illustre l'effet d'un dérive: la trajectoire du processus s'organise autour de la courbe moyenne \( y = 2x \), tout en étant perturbée par la composante aléatoire de la diffusion.
+\FloatBarrier La figure~\ref{fig:TrajIto} illustre l'effet d'une dérive: la trajectoire du processus s'organise autour de la courbe moyenne \( y = 2x \), tout en étant perturbée par la composante aléatoire de la diffusion.
 
 De plus, il est important de noter que les termes de dérive et de diffusion peuvent eux-mêmes dépendre de l'état du processus ou du temps, ce qui permet de capturer des dynamiques complexes, comme une volatilité ou une dérive variable. Cette flexibilité permet notamment de modéliser des phénomènes réalistes dans les systèmes financiers ou physiques.
 
@@ -112,13 +112,13 @@ où:
 \end{itemize}
 Ce processus est particulièrement adapté à la modélisation des taux d'intérêt en raison de plusieurs propriétés clés:
 \begin{itemize}
-    \item Le terme de dérive $\mu(t, X(t)) \equiv \mu(X(t))= a[b - X(t)]$ induit un mécanisme de retour vers la moyenne $b$, avec une vitesse déterminée par $a$;
-    \item Le terme de diffusion $\sigma(t, X(t))\equiv \sigma(X(t)) = \sigma \sqrt{X(t)}$ garantit la non-négativité du processus grâce à la racine carrée;
+    \item Le terme de dérive $\mu(t, X(t)) \equiv \mu(X(t))= a[b - X(t)]$ induit un mécanisme de retour vers la moyenne $b$, avec une vitesse déterminée par $a$. Dans le contexte de modélisation des taux, cela reflète l'idée que ces derniers tendent à revenir vers un niveau de long terme après des déviations temporaires;
+    \item Le terme de diffusion $\sigma(t, X(t))\equiv \sigma(X(t)) = \sigma \sqrt{X(t)}$ garantit la non-négativité du processus grâce à la racine carrée. Ceci est essentiel comme un taux négatif serait irréaliste dans de nombreux contextes économiques, en particulier pour les modèles de taux à court terme comme le CIR;
     \item Le comportement à proximité de zéro est gouverné par la \textit{condition de Feller}, selon laquelle:
     \[
     \mathds{P} \left[ \exists\, t < \infty \text{ tel que } X(t) = 0 \right] = 1 \quad \text{si et seulement si} \quad \sigma^2 \geq 2ab
     \]
-    Cela signifie que le processus peut atteindre zéro en un temps fini si $\sigma^2\geq2ab$.
+    Cela signifie que le processus peut atteindre zéro en un temps fini si $\sigma^2\geq2ab$. En d'autres termes, si la diffusion domine la dérive, le processus peut toucher le zéro.
 \end{itemize}
 \begin{figure}[htb]
     \centering
