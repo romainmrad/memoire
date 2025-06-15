@@ -116,9 +116,9 @@ Ce processus est particulièrement adapté à la modélisation des taux d'intér
     \item Le terme de diffusion $\sigma(t, X(t))\equiv \sigma(X(t)) = \sigma \sqrt{X(t)}$ garantit la non-négativité du processus grâce à la racine carrée. Ceci est essentiel comme un taux négatif serait irréaliste dans de nombreux contextes économiques, en particulier pour les modèles de taux à court terme comme le CIR;
     \item Le comportement à proximité de zéro est gouverné par la \textit{condition de Feller}, selon laquelle:
     \[
-    \mathds{P} \left[ \exists\, t < \infty \text{ tel que } X(t) = 0 \right] = 1 \quad \text{si et seulement si} \quad \sigma^2 \geq 2ab
+    \mathds{P} \Big[ \exists\;t < \infty:X(t) = 0 \Big] = 1 \quad \text{si et seulement si} \quad \sigma^2 \geq 2ab
     \]
-    Cela signifie que le processus peut atteindre zéro en un temps fini si $\sigma^2\geq2ab$. En d'autres termes, si la diffusion domine la dérive, le processus peut toucher le zéro.
+    Cela signifie que le processus peut atteindre zéro en un temps fini si la diffusion domine la dérive.
 \end{itemize}
 \begin{figure}[htb]
     \centering
@@ -166,7 +166,7 @@ La fonction d'aire moyenne est définie par:
 \begin{equation}\label{area}
     A(x):= \mathds{E} \left[ \int_0^{\tau(x)} X(t)\,dt \right]
 \end{equation}
-Elle mesure l'accumulation moyenne de la valeur du processus jusqu'au temps de franchissement.
+En finance, l'aire moyenne peut représenter l'accumulation moyenne d'un taux d'intérêt à court terme jusqu'à un événement de sortie. Elle intervient également dans la tarification d'options asiatiques avec barrière, où le \textit{payoff} dépend de l'intégrale temporelle du sous-jacent avant la sortie d'un intervalle donné.
 
 La quatrième fonction étudiée est celle de la probabilité toucher la frontière inférieure.
 \paragraph{Définition: Probabilité de Sortie en Zéro}\mbox{}\\
@@ -174,13 +174,13 @@ La fonction de probabilité de sortie est définie par:
 \begin{equation}\label{zero_exit_probability}
     p(x):=\mathds{P}[X(\tau(x))=0]
 \end{equation}
-Elle caractérise la probabilité que le processus, partant d'une position initiale $x$, sorte de l'intervalle $(0,c)$ par le bas.
+Elle caractérise la probabilité que le processus, partant d'une position initiale $x$, sorte de l'intervalle $(0,c)$ par le bas. Cette quantité peut être utilisée pour quantifier un risque de ruine, de défaut, ou encore d'apparition de taux négatifs (si le contexte économique le permet).
 
 La cinquième fonction étudiée est celle du \textit{dépassement moyen}, en ajoutant des sauts au \acs{CIR}.
 \paragraph{Définition: Dépassement Moyen}\mbox{}\\
 La fonction dépassement moyen est définie par: 
 \begin{equation}\label{overshoot}
-    D(x)=\mathds{E}\left[(X(\tau(x))-c)\mathds1_{X(\tau(x))\geq c}\right]
+    D(x)=\mathds{E}\left[(X(\tau(x))-c)_+\right]
 \end{equation}
 Elle quantifie le dépassement moyen au-dessus de la frontière \( c \), à partir d'une condition initiale \( X(0) = x \in (0, c) \). Il est essentiel de souligner que cette fonction ne présente un intérêt que dans le cas où le processus comporte des sauts. En effet, dans le cadre purement continu, la trajectoire atteint la frontière exactement, sans possibilité de la franchir.
 \begin{figure}[htb]
@@ -188,7 +188,9 @@ Elle quantifie le dépassement moyen au-dessus de la frontière \( c \), à part
     \includegraphics[width=0.9\linewidth]{img/intro/overshoot.pdf}
     \caption{Simulations de 30 trajectoires du \acs{CIR} avec sauts dépassants la frontière $c$}\label{fig:OvershootViz}
 \end{figure}
-\FloatBarrier En complément de l'étude des temps de premier passage, ce mémoire s'intéresse également à un problème de \textit{commande optimale stochastique} appliqué au processus \acs{CIR}.\\
+\FloatBarrier Ce type de quantité apparaît notamment dans la valorisation de produits financiers path-dependent, tels que les options lookback ou les produits structurés à barrière, où le dépassement moyen modélise l'espérance de gain associée au franchissement d'un niveau critique par le sous-jacent. 
+
+En complément de l'étude des temps de premier passage, ce mémoire s'intéresse également à un problème de \textit{commande optimale stochastique} appliqué au processus \acs{CIR}.\\
 \paragraph{Définition: Problème de commande optimale \textemdash~Homing Problem}\label{definition_optimal_control}\mbox{}\\
 Le \textit{Homing problem} consiste à piloter un processus stochastique dynamiquement jusqu'à ce qu'il atteigne un ensemble d'arrêt donné, tout en optimisant un objectif. La configuration étudiée dans ce mémoire correspond à un processus \acs{CIR} contrôlé \( \{X_u(t),\, t \geq 0\} \) évoluant dans l'intervalle \( (0, c) \), avec un arrêt déclenché dès que la trajectoire atteint l'une des deux frontières. Ce processus est défini par:
 \begin{equation}\label{controlled_process}

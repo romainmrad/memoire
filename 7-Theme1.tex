@@ -266,7 +266,7 @@ D'une part, pour $\delta t$ petit, il est possible d'écrire:
 \begin{equation}\label{cost_function_simplification}
     \int_0^{\delta t}\left(\frac{1}{2}q\left[X_u(s)\right]u^2\left[X_u(s)\right]+r\left[X_u(s)\right]\right)ds=\left(\frac{1}{2}q(x){u(x)}^2+r(x)\right)\delta t+o(\delta t)
 \end{equation}
-D'autre part, un développement de Taylor combiné avec la formule d'Itô (appliquée au processus contrôlé de dynamique (\ref{controlled_process})) permet d'écrire (en supposant que $F\in C^2$):
+D'autre part, un développement de Taylor combiné avec la formule d'Itô~\cite{ito1944} (appliquée au processus contrôlé de dynamique (\ref{controlled_process})) permet d'écrire (en supposant que $F\in C^2$):
 \begin{equation}\label{taylor_ito}
     \begin{aligned}
         \mathds{E}[F(X_u(\delta t))]&=F(x)+\mathds{E}[dF(X_u(\delta t))]+o(\delta t)\\
@@ -520,7 +520,7 @@ La solution qui satisfait $p(0)=1$ et $p(1)=0$ est:
 Dans cette sous-section, la variante du \ac{CIR} avec sauts considérée est celle avec des sauts positifs modélisés par des variables aléatoires exponentielles $Y_i\sim \text{Exp}(\nu)$.
 
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
-Soit $f(x)=(x-c)\mathds{1}_{x\geq c}$ la fonction mesurant un dépassement. En appliquant la formule de Dynkin (voir~\cite{dynkin1965}), il est possible d'écrire:
+Soit $f(x)=(x-c)_+$ la fonction mesurant un dépassement. En appliquant la formule de Dynkin (voir~\cite{dynkin1965}), il est possible d'écrire:
 \begin{equation}\label{initial_dynkin}
     \mathds{E}[f(X(\tau(x)))]=f(x)+\mathds{E}\left[\int_0^{\tau(x)}\mathcal{L}f(X(s))ds\right]
 \end{equation}

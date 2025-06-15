@@ -258,11 +258,11 @@ Il est important de souligner que, dans les trois problèmes étudiés et pour l
     \item Les simulations mettent en évidence l'effet du contrôle optimal, qui accélère la sortie du processus par rapport au cas non contrôlé. Pour valider cette observation, 1000 trajectoires sont simulées pour chaque problème, et la durée moyenne jusqu'à la sortie est comparée. Un facteur d'accélération est ensuite estimé:
     \begin{table}[htb]
         \centering
-        \caption{Comparaison des accélérations moyennes du temps de sortie}\label{tab:acceleration_results}
+        \caption{Accélérations moyennes du temps de sortie}\label{tab:acceleration_results}
         \renewcommand{\arraystretch}{1.1}
         \begin{tabular}{||c|c||}
         \hline
-        Problème de Commande & Accélération Moyenne \\\hline\hline
+        Problème & Accélération Moyenne \\\hline\hline
         P1 & 2.660552 \\
         P2 & 2.690582 \\
         P3 & 1.065163 \\\hline
@@ -271,19 +271,18 @@ Il est important de souligner que, dans les trois problèmes étudiés et pour l
     \item La suppression du retour à la moyenne entraîne une réduction de l'intensité du contrôle (voir~\ref{fig:ControlVisualisation3},~\ref{fig:Simulation3}). En l'absence de force de rappel, le processus est naturellement plus enclin à atteindre une des deux frontières, ce qui permet d'intervenir avec une commande de faible amplitude.
 \end{itemize}
 Ainsi, les expressions obtenues pour la fonction valeur $F(x)$ et le contrôle optimal $u^*(x)$ sont validées.
-\paragraph{Caractérisation des Politiques Optimales}\phantom{}\\
-En effectuant plusieurs simulations, il est possible de déduire les différentes stratégies optimales dans le cadre de chaque problème étudié:
+\paragraph{Politiques Optimales}\phantom{}\\
+En effectuant plusieurs simulations et en analysant les représentations des différentes commandes $u^*(x)$ obtenues (\ref{fig:ControlVisualisation1},~\ref{fig:ControlVisualisation2},~\ref{fig:ControlVisualisation3}), il est possible de caractériser les différentes stratégies optimales dans le cadre de chaque problème étudié:
 \begin{itemize}
     \item \textbf{Stratégie P1 \textemdash~Modulation Adaptative}\\
     La stratégie optimale consiste à moduler l'intensité du contrôle selon la position. L'optimiseur suit la dynamique naturelle du processus: il accompagne les tendances favorables avec un contrôle modéré, puis intervient davantage à l'approche d'une frontière. Lors d'un retournement de tendance, il retarde volontairement sa réponse, espérant une reprise favorable dans la direction initiale. Ce comportement vise à limiter les coûts de contrôle (\( b(x) = x \), \( q(x) = x \)) tout en assurant la sortie. Globalement, la stratégie cherche un compromis entre passivité opportuniste et action ciblée selon la position et la tendance du processus.
 
-    \item \textbf{Stratégie P2 \textemdash~Attente et Frappe}\\
+    \item \textbf{Stratégie P2 \textemdash~Attente et Attaque}\\
     La stratégie commence par une phase d'observation sans intervention, les trajectoires contrôlée et non contrôlée se superposant au départ. Lorsqu'une tendance claire apparaît, le contrôle devient rapidement agressif pour provoquer la sortie. Contrairement au cas P1, l'optimiseur n'attend pas en cas d'inversion de tendance mais intensifie son contrôle. Les sorties s'effectuent souvent par le bas, ce qui est cohérent avec les coûts faibles dans cette zone (\( r(x) = x \), \( b(x) = \sqrt{x} \), \( q(x) = x \)). Il s'agit d'une stratégie opportuniste suivie d'une action déterminée.
 
     \item \textbf{Stratégie P3 \textemdash~Évasion Passive}\\
     Le contrôle est minimal et les trajectoires restent proches du non contrôlé. L'évasion se produit juste avant celle du processus non contrôlé, ce qui traduit une stratégie très passive. Le contrôle n'est appliqué que lorsqu'il devient strictement nécessaire, sans forcer la dynamique. Cette approche s'explique par les coûts élevés liés aux grandes valeurs de \( x \) (\( r(x) = x^2 \), \( b(x) = x \)), et l'absence d'incitation à intervenir fortement (\( q(x) \equiv 1 \)). L'optimiseur attend que la dynamique seule suffise à atteindre la frontière.
 \end{itemize}
-Les stratégies mises en évidence par les simulations confirment et illustrent le comportement des contrôles optimaux théoriques \( u^*(x) \) obtenus analytiquement pour chaque problème, tels que représentés dans les figures~\ref{fig:ControlVisualisation1},~\ref{fig:ControlVisualisation2} et~\ref{fig:ControlVisualisation3}.
 \section{Diffusion avec sauts}
 Cette section est consacrée à la présentation des résultats portants sur le \acs{CIR} avec sauts défini en (\ref{jump_cir_sde}).
 \subsection{Fonction Temps moyen \textemdash~Sauts uniformes}
