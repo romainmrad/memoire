@@ -527,7 +527,7 @@ Soit $f(x)=(x-c)_+$ la fonction mesurant un dépassement. En appliquant la formu
 D'abord, en développant le terme de gauche, l'expression de la fonction $D(x)$ définie en (\ref{overshoot}) est retrouvée:
 \begin{equation}\label{dynkin_left_simplification}
     \begin{aligned}
-        \mathds{E}[f(X(\tau(x)))]&=\mathds{E}\left[(X(\tau(x))-c)\mathds{1}_{X(\tau(x))\geq c}\right]\\
+        \mathds{E}[f(X(\tau(x)))]&=\mathds{E}\left[(X(\tau(x))-c)_+\right]\\
         &=D(x)
     \end{aligned}
 \end{equation}
@@ -551,7 +551,7 @@ Soit la fonction $g(x)$ définie par:
 \begin{equation}\label{g_defintion}
     g(x):=\mathds{E}\left[\int_0^{\tau(x)}e^{\nu X(s)}ds\right]
 \end{equation}
-Comme les coefficients de dérive et de diffusion du processus \acs{CIR} vérifient les conditions d'unicité trajectorielle (existence et unicité forte de la solution de l'équation~\ref{cir_eq}), le travail présenté dans~\cite{abundo2013} peut être utilisé pour établir l'\acs{EID} du second ordre associée:
+Comme les coefficients de dérive et de diffusion du processus \acs{CIR} vérifient les conditions d'unicité trajectorielle (voir annexe~\ref{trajecotry_uniqueness}) et les sauts exponentiels ont des moments finis, le travail présenté dans~\cite{abundo2013} peut être utilisé pour établir l'\acs{EID} du second ordre associée:
 \begin{equation}\label{initial_overshoot_ide}
     \frac{1}{2}\sigma^2xg''(x)+a(b-x)g'(x)+\lambda\int_0^{+\infty}\left[g(x+y)-g(x)\right]\nu e^{-\nu y}dy=-e^{\nu x}
 \end{equation}

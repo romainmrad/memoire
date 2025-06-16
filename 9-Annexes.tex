@@ -147,6 +147,9 @@ $X(t)$ est alors l'unique solution forte, càdlàg, non-explosive et adaptée de
 
 \Annexe{Simulations en Commande Optimale}\label{control_simulations}
 
+Les données suivantes découlent de l'analyse de 1000 simulations différentes du \acs{CIR}. 
+
+\section*{Accélération}
 Les longueurs moyennes des trajectoires avec et sans contrôle simulées pour chaque problème sont présentées dans le tableau ci-dessous.
 \begin{table}[htb]
         \centering
@@ -167,3 +170,21 @@ Les longueurs moyennes des trajectoires avec et sans contrôle simulées pour ch
 \[
 \text{Accélération}=\frac{\text{Longueur moyenne CIR non contrôlé}}{\text{Longueur moyenne CIR contrôlé}}
 \]
+
+\section*{Statistiques de sortie}
+La fréquence de sortie par chaque frontière peut être estimée pour chaque configuration étudiée:
+\begin{table}[htb]
+    \centering
+    \caption{Fréquence de sortie des trajectoires simulées}\label{tab:simulation_exit_frequency}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{||c|c|c||}
+        \hline
+        Contrôle & Fréquence de Sortie en 0 & Fréquence de sortie en $c=1$ \\
+        \hline\hline
+        Sans contrôle & 44.4\,\% & 55.6\,\% \\
+        P1 & 33\,\% & 67\,\% \\
+        P2 & 66.7\,\% & 33,3\,\% \\
+        P3 & 45.2\,\% & 54.8\,\% \\
+        \hline
+    \end{tabular}
+\end{table}
