@@ -115,7 +115,7 @@ Par ailleurs, le contrôle optimal est
 \end{equation}
 
 \subsection{P1 \textemdash~Visualisation}
-La fonction valeur $F(x)$ (\ref{sol_control_1},~\ref{control_constants}) et le contrôle optimal (\ref{optimal_control_1}) sont tracés. D'abord, tous les paramètres de coûts sont: $\rho=\beta=\kappa=1$.
+La fonction valeur $F(x)$ (\ref{sol_control_1},~\ref{control_constants}) et le contrôle optimal (\ref{optimal_control_1}) sont tracés. D'abord, tous les paramètres des coûts sont: $\rho=\beta=\kappa=1$.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{0.45\linewidth}
@@ -187,7 +187,7 @@ La fonction valeur $F(x)$ (\ref{sol_control_1},~\ref{control_constants}) et le c
     \item $b(x) = \beta \sqrt{x}$: coût du contrôle proportionnel à $\sqrt{x}$.
     \item $q(x) = \kappa x$: poids pénalisant l'intensité du contrôle, linéaire avec $x$.
 \end{itemize}
-Cela donne: 
+De la même manière que ce qui précède, l'équation est linéarisable en posant: 
 \[
 K=\frac{x\kappa \sigma^2}{\beta^2}
 \]
@@ -197,7 +197,7 @@ L'équation obtenue est identique à celle du premier problème (\ref{eq_exemple
 \]
 L'expression de $\varphi(x)$ est donc la même. Il en découle alors l'expression de la solution $F(x)$: 
 \begin{equation}\label{sol_control_2}
-    F(x)=-\frac{x\kappa \sigma^2}{\beta^2}\left[C_1\Phi\left(\frac{\rho\beta^2}{a\kappa \sigma^2},\frac{2ab}{\sigma^2},\frac{2ax}{\sigma^2}\right) + C_2\Psi\left(\frac{\rho\beta^2}{a\kappa \sigma^2},\frac{2ab}{\sigma^2},\frac{2ax}{\sigma^2}\right)\right]
+    F(x)=-\frac{x\kappa \sigma^2}{\beta^2}\log\left[C_1\Phi\left(\frac{\rho\beta^2}{a\kappa \sigma^2},\frac{2ab}{\sigma^2},\frac{2ax}{\sigma^2}\right) + C_2\Psi\left(\frac{\rho\beta^2}{a\kappa \sigma^2},\frac{2ab}{\sigma^2},\frac{2ax}{\sigma^2}\right)\right]
 \end{equation}
 
 Par ailleurs, le contrôle optimal est
@@ -205,7 +205,7 @@ Par ailleurs, le contrôle optimal est
     u^*(x)=-\frac{\beta}{\kappa\sqrt{x}}F'(x)
 \end{equation}
 \subsection{P2 \textemdash~Visualisation}
-Les résultats du problème (\ref{p2}) sont analysés. D'un côté, les fonctions $r(x)$, $b(x)$ et $q(x)$ sont définies en (\ref{p2}). D'un autre côté, la fonction valeur $F(x)$ est définie par (\ref{sol_control_2},~\ref{control_constants}) et le contrôle optimal est défini par (\ref{optimal_control_2}). Dans un premier temps, les coûts sont fixés: $\rho=\beta=\kappa=1$. La fonction valeur $F(x)$ (\ref{sol_control_2},~\ref{control_constants}) et le contrôle optimal (\ref{optimal_control_2}) sont donc tracés.
+La fonction valeur $F(x)$ (\ref{sol_control_1},~\ref{control_constants}) et le contrôle optimal (\ref{optimal_control_1}) sont tracés. Dans un premier temps, tous les paramètres des coûts sont: $\rho=\beta=\kappa=1$.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{0.45\linewidth}
