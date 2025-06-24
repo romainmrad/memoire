@@ -14,10 +14,12 @@ D'autre part, un développement de Taylor combiné avec la formule d'Itô~\cite{
 \begin{equation}\label{taylor_ito}
     \begin{aligned}
         \mathds{E}[F(X_u(\delta t))]&=F(x)+\mathds{E}[dF(X_u(\delta t))]+o(\delta t)\\
-        &=F(x)+\mathds{E}\left[F'(X_u(\delta t))dX_u(t)+\frac{1}{2}F''(X_u(\delta t))d\langle X_u\rangle_{\delta t} \right]+o(\delta t)\\
+        &=F(x)+\mathds{E}\left[F'(X_u(\delta t))dX_u(t)+\frac{1}{2}F''(X_u(\delta t))d{\langle X_u\rangle}_{\delta t} \right]+o(\delta t)\\
         &=F(x)+\left[a(b-x)+b(x)u(x)\right]F'(x)\delta t+\frac{1}{2}\sigma^2xF''(x)\delta t+o(\delta t)
     \end{aligned}
 \end{equation}
+où \({\langle X_u\rangle}_t\) dénote la variation quadratique du processus \(X_u(t)\).
+
 En injectant (\ref{cost_function_simplification}) et (\ref{taylor_ito}) dans (\ref{Bellman_optimality}), il découle:
 \begin{equation}\label{initial_minimisation problem}
     \begin{aligned}
