@@ -73,7 +73,7 @@ Un processus $\{N(t),\;t\geq0\}$ est un processus de Poisson de taux $\lambda$ s
 \end{itemize}
 En utilisant un processus de Poisson, il est donc possible de définir un processus de sauts pur.
 \paragraph{Définition: Processus de sauts purs}\mbox{}\\
-Soit $\{N(t),\;t \geq 0\}$ un processus de Poisson de taux $\lambda > 0$ indépendant d'une suite de variables aléatoires indépendantes et identiquement distribuées $\{Y_i\}_{i \in \mathbb{N}^*}$. On définit le processus de sauts purs $\{J(t),\;t \geq 0\}$ par:
+Soit $\{N(t),\;t \geq 0\}$ un processus de Poisson de taux $\lambda > 0$ indépendant d'une suite de variables aléatoires indépendantes et identiquement distribuées $\{Y_i\}_{i \in \mathds{N}^*}$. On définit le processus de sauts purs $\{J(t),\;t \geq 0\}$ par:
 \[
 J(t) = \sum_{i=1}^{N(t)} Y_i
 \]
@@ -118,7 +118,7 @@ Ce processus est particulièrement adapté à la modélisation des taux d'intér
     \[
     \mathds{P} \Big[ \exists\;t < \infty:X(t) = 0 \Big] = 1 \quad \text{si et seulement si} \quad \sigma^2 \geq 2ab
     \]
-    Cela signifie que le processus peut atteindre zéro en un temps fini si la diffusion domine la dérive.
+    Cela signifie que le processus peut atteindre zéro en un temps fini si la \textit{diffusion} domine la \textit{dérive}.
 \end{itemize}
 \begin{figure}[htb]
     \centering
@@ -135,7 +135,7 @@ Autrement dit, $\tau(x)$ correspond au premier instant où le processus atteint 
 
 L'étude de ce temps d'arrêt est particulièrement pertinente dans le cadre du processus \acs{CIR}, pour plusieurs raisons:
 \begin{itemize}
-    \item \textbf{Modélisation du passage aux taux négatifs:} lors de la crise économique japonaise de 2016, des taux d'intérêt négatifs ont été instaurés pour stimuler l'activité. Or, le processus \acs{CIR}, à valeurs strictement positives, ne permet pas de modéliser ce phénomène. Introduire une barrière à zéro permet de considérer le franchissement de ce seuil, au-delà duquel les taux deviennent négatifs.
+    \item \textbf{Modélisation du passage aux taux négatifs:} lors de la crise économique japonaise de 2016, des taux d'intérêt négatifs ont été instaurés pour stimuler l'activité. Or, le processus \acs{CIR}, à valeurs strictement positives, ne permet pas de modéliser ce phénomène. Introduire une barrière à zéro permet de considérer le franchissement de ce seuil, au-delà duquel les taux deviennent négatifs;
     \item \textbf{Surveillance des taux élevés:} en gestion des risques, il est crucial de modéliser l'éventualité d'une hausse brutale ou excessive des taux d'intérêt. L'introduction d'un seuil supérieur $c$ permet de caractériser ces situations critiques et de quantifier leur probabilité d'occurrence via le temps de franchissement.
 \end{itemize}
 \begin{figure}[htb]
@@ -168,7 +168,7 @@ La fonction d'aire moyenne est définie par:
 \end{equation}
 En finance, l'aire moyenne peut représenter l'accumulation moyenne d'un taux d'intérêt à court terme jusqu'à un événement de sortie. Elle intervient également dans la tarification d'options asiatiques avec barrière, où le \textit{payoff} dépend de l'intégrale temporelle du sous-jacent avant la sortie d'un intervalle donné.
 
-La quatrième fonction étudiée est celle de la probabilité toucher la frontière inférieure.
+La quatrième fonction étudiée est celle de la \textit{probabilité toucher la frontière inférieure}.
 \paragraph{Définition: Probabilité de Sortie en Zéro}\mbox{}\\
 La fonction de probabilité de sortie est définie par:
 \begin{equation}\label{zero_exit_probability}
@@ -190,7 +190,7 @@ Elle quantifie le dépassement moyen au-dessus de la frontière \( c \), à part
 \end{figure}
 \FloatBarrier Ce type de quantité apparaît notamment dans la valorisation de produits financiers path-dependent, tels que les options lookback ou les produits structurés à barrière, où le dépassement moyen modélise l'espérance de gain associée au franchissement d'un niveau critique par le sous-jacent. 
 
-En complément de l'étude des temps de premier passage, ce mémoire s'intéresse également à un problème de \textit{commande optimale stochastique} appliqué au processus \acs{CIR}.\\
+En complément de l'étude des temps de premier passage, ce mémoire s'intéresse également à un problème de \textit{commande optimale stochastique} appliqué au processus \acs{CIR}.
 \paragraph{Définition: Problème de commande optimale \textemdash~Homing Problem}\label{definition_optimal_control}\mbox{}\\
 Le \textit{Homing problem} consiste à piloter un processus stochastique dynamiquement jusqu'à ce qu'il atteigne un ensemble d'arrêt donné, tout en optimisant un objectif. La configuration étudiée dans ce mémoire correspond à un processus \acs{CIR} contrôlé \( \{X_u(t),\, t \geq 0\} \) évoluant dans l'intervalle \( (0, c) \), avec un arrêt déclenché dès que la trajectoire atteint l'une des deux frontières. Ce processus est défini par:
 \begin{equation}\label{controlled_process}

@@ -18,7 +18,7 @@ avec
     \end{itemize}
 \end{itemize}
 
-\section{Fonction Temps moyen \textemdash~Sauts uniformes}\label{subsection_mean_jumps}
+\section{Fonction Temps moyen \textemdash~Sauts uniformes descendants}\label{subsection_mean_jumps}
 \subsection{Résolution du problème}
 Dans cette section, la variante du \ac{CIR} avec sauts considérée est celle avec des sauts négatifs modélisés par des variables uniformément distribuées $Y_i\sim U[-x,0]$.
 
@@ -86,18 +86,18 @@ Les fonctions \( m(x) \) (avec sauts) et \( m_0(x) \) (sans sauts), données res
 \FloatBarrier\paragraph{Analyse}\phantom{}\\
 Il convient de souligner les observations suivantes:
 \begin{itemize}
-    \item Les conditions aux limites \( m(0) = m(c) = m_0(0) = m_0(c) = 0 \) sont bien vérifiées.
-    \item Le temps moyen de sortie en présence de sauts ($m(x)$ en bleu) est inférieur à celui observé sans sauts ($m_0(x)$ en orange), ce qui illustre l'accélération du processus induite par ces derniers.
+    \item Les conditions aux limites \( m(0) = m(c) = m_0(0) = m_0(c) = 0 \) sont bien vérifiées;
+    \item Le temps moyen de sortie en présence de sauts ($m(x)$ en bleu) est inférieur à celui observé sans sauts ($m_0(x)$ en orange), ce qui illustre l'accélération du processus induite par ces derniers;
     \item Une augmentation de la fréquence des sauts $\lambda$ induit une diminution du temps moyen de sortie. Ce comportement est attendu comme les sauts augmente la probabilité que le \acs{CIR} quitte l'intervalle rapidement.
 \end{itemize}
 La fonction obtenue pour le temps moyen de sortie avec sauts est donc validée.
 
-\section{Fonction Probabilité de sortie en zéro \textemdash~Sauts uniformes}\label{subsection_probability_jumps}
+\section{Fonction Probabilité de sortie en zéro \textemdash~Sauts uniformes descendants}\label{subsection_probability_jumps}
 \subsection{Résolution du problème}
 Dans cette section, la variante du \ac{CIR} avec sauts considérée est identique à la précédente (sauts négatifs modélisés par des variables uniformément distribuées $Y_i\sim U[-x,0]$).
 
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
-Il est possible de montrer que la fonction probabilité de sortie en zéro satisfait l'\acs{EDO}:
+Il est possible de montrer (voir~\cite{lefebvre2007}) que la fonction probabilité de sortie en zéro satisfait l'\acs{EDO}:
 \begin{equation}\label{probability_ide}
     \frac{1}{2}\sigma^2xp''(x)+a(b-x)p'(x)+\lambda\left\{\frac{1}{x}\int_{-x}^0p(x+y)dy-p(x)\right\}=0
 \end{equation}
@@ -141,13 +141,13 @@ Les fonctions \( p(x) \) (avec sauts) et \( p_0(x) \) (sans sauts), correspondan
 \FloatBarrier\paragraph{Analyse}\mbox{}\\
 Les observations suivantes peuvent être formulées:
 \begin{itemize}
-    \item Les conditions aux limites sont correctement satisfaites, à savoir \( p(0) = p_0(0) = 1 \) et \( p(c) = p_0(c) = 0 \).
+    \item Les conditions aux limites sont correctement satisfaites, à savoir \( p(0) = p_0(0) = 1 \) et \( p(c) = p_0(c) = 0 \);
     \item Les sauts étant négatifs, ils favorisent une sortie par la borne inférieure. La probabilité de franchissement par zéro est donc plus élevée dans le cas avec sauts ($p(x)$ en bleu);
-    \item Une augmentation de la fréquence des sauts $\lambda$ entraîne une augmentation considérable de la probabilité de sortir par zéro. En effet, les sauts étant négatifs, leur multiplication tend à entraîner le processus vers la borne inférieure.
+    \item Une augmentation de la fréquence des sauts $\lambda$ entraîne une augmentation considérable de la probabilité de sortir par zéro. En effet, la multiplication des sauts tend à entraîner le processus vers la borne inférieure.
 \end{itemize}
 Ces résultats permettent donc de valider l'expression obtenue pour la probabilité de sortie en zéro.
 
-\section{Fonction Dépassement Moyen \textemdash~Sauts exponentiels}
+\section{Fonction Dépassement Moyen \textemdash~Sauts exponentiels ascendants}
 \subsection{Résolution du problème}
 Dans cette section, la variante du \ac{CIR} avec sauts considérée est celle avec des sauts positifs modélisés par des variables aléatoires exponentielles $Y_i\sim \text{Exp}(\nu)$.
 
@@ -261,7 +261,7 @@ En éliminant le retour à la moyenne ($a=0$), l'\acs{EDO} (\ref{final_overshoot
 \end{aligned}
 \]
 avec $E_n(x)$ la fonction intégrale exponentielle (voir annexe~\ref{special_functions}). \\
-La forme finale de l'expression de la fonction Dépassement Moyen est obtenue:
+Alors, la forme finale de l'expression de la fonction Dépassement Moyen est obtenue:
 \begin{equation}\label{sol_overshoot}
     \begin{aligned}
             D(x)=\frac{\lambda}{{\nu^2\sigma^2e^{\nu c}(2\lambda-\nu\sigma^2)}}\Bigg[\sigma^2\left(-C_1 \left(2 \lambda +\nu ^2 \sigma ^2 x\right)^{1-\frac{2 \lambda }{\nu  \sigma ^2}}+C_2 \nu  \left(2 \lambda -\nu  \sigma ^2\right)-2 \nu  e^{\nu  x}\right) \\-2 e^{-\frac{2 \lambda }{\nu  \sigma ^2}} \left(2 \lambda +\nu ^2 \sigma ^2 x\right) E_{1-\frac{2 \lambda }{\nu  \sigma ^2}}\left(-\frac{2 \lambda }{\nu  \sigma ^2}-x \nu \right)\Bigg]
@@ -273,7 +273,7 @@ Les conditions aux limites $g(0)=g(c)=0$ (et donc $D(0)=D(c)=0$) permettent de d
 
 \subsection{Validation de l'expression obtenue}
 \paragraph{Visualisation}\phantom{}\\
-Toujours dans la même optique de validation, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée pour différentes valeurs de la fréquence des sauts $\lambda$ ainsi que le paramètre de longueur des sauts $\nu$.
+Toujours dans la même optique de validation, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée pour différentes valeurs de la fréquence des sauts $\lambda\in\{2,3,6\}$ ainsi que le paramètre de longueur des sauts $\nu\in\{5,10,15\}$.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{0.45\linewidth}
@@ -293,7 +293,7 @@ Les différents points suivants sont relevés:
 \begin{itemize}
     \item Les conditions aux limites $D(0)=D(c)=0$ sont respectées;
     \item La fonction représente un \textit{dépassement moyen}, elle doit donc être positive pour toute valeur $x$ dans $[0,c]$;
-    \item Une augmentation de la fréquence des sauts $\lambda$ induit une augmentation du dépassement moyen. En effet, il devient plus probable que le processus effectue un saut juste avant d'atteindre la frontière, ce qui augmente les chances de la franchir avec un certain excès.
+    \item Une augmentation de la fréquence des sauts $\lambda$ induit une augmentation du dépassement moyen. En effet, il devient plus probable que le processus effectue un saut juste avant d'atteindre la frontière, ce qui augmente les chances de la franchir avec un certain excès;
     \item Une réduction de la taille des sauts (traduite par une augmentation de $\nu$) induit une diminution du dépassement moyen. En effet, même si un saut survient à proximité de la frontière, sa faible amplitude limite la distance franchie au-delà de celle-ci.
 \end{itemize}
 La fonction Dépassement Moyen $D(x)$ est donc validée.
