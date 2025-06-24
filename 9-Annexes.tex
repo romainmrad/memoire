@@ -121,10 +121,15 @@ Soit un processus \( \{X(t),\, t \geq 0\} \) défini par une certaine \ac{EDS}:
 \end{equation}
 Si les conditions suivantes sont satisfaites:
 \begin{itemize}
-    \item \textbf{Dérive et Diffusion Lipschitz} \\
+    \item \textbf{Dérive Lipschitz} \\
     Il existe une constante \( K > 0 \) telle que, pour tout \( x,y \in \mathds{R} \),
     \[
-    |\mu(x)-\mu(y)|^2+|\sigma(x)-\sigma(y)|^2\leq K|x-y|^2
+    |\mu(x)-\mu(y)|\leq K|x-y|
+    \]
+    \item \textbf{Diffusion Hölder} \\
+    Il existe des constantes \( K > 0 \) et \(\alpha\in[\frac{1}{2},1)\) telles que, pour tout \( x,y \in \mathds{R} \),
+    \[
+    |\sigma(x)-\sigma(y)|\leq K{|x-y|}^\alpha
     \]
     \item \textbf{Croissance au plus linéaire} \\
     Il existe une constante \( K > 0 \) telle que, pour tout \( x \in \mathds{R} \),
