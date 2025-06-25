@@ -141,7 +141,7 @@ Soit un processus \( \{X(t),\, t \geq 0\} \) défini par une certaine \ac{EDS}:
 \begin{equation}\label{jump_diffusion_sde}
     dX(t) = \mu(t, X(t))\,dt + \sigma(t, X(t))\,dW(t) + \int_0^t\int_{\mathds{R}} yN(ds,dy)
 \end{equation}
-Si les conditions d'unicité trajectorielle associées à la diffusion sont satisfaites (dérive et diffusion Lipschitz, croissance au plus linéaire), et si la mesure \( \nu \), modélisant la loi des tailles des sauts, vérifie la \textbf{Condition de Lévy minimale}:
+Si les conditions d'unicité trajectorielle associées à la diffusion sont satisfaites (dérive Lipschitz, diffusion Hölder, croissance au plus linéaire), et si la mesure \( \nu \), modélisant la loi des tailles des sauts, vérifie la \textbf{Condition de Lévy minimale}:
 \[
 \int_{\mathds{R}}\min(1, y^2)\, \nu(dy) < \infty
 \]
@@ -164,8 +164,8 @@ Les longueurs moyennes des trajectoires avec et sans contrôle simulées pour ch
         Longueur moyenne CIR contrôlé \\
         \hline\hline
         P1 & 6904.4004 & 2595.1005 \\
-        P2 & 7539.4178 & 2802.1509 \\
-        P3 & 7004.5290 & 6576.0133 \\
+        %P2 & 7539.4178 & 2802.1509 \\
+        P2 & 7004.5290 & 6576.0133 \\
         \hline
         \end{tabular}
 \end{table}\FloatBarrier Ces dernières sont mesurées en discrétisant la trajectoire avec des pas temporels de longueur $10^{-4}$. Il est donc possible d'estimer un facteur d'accélération moyenne pour le temps de sortie comme suit: 
@@ -181,12 +181,12 @@ La fréquence de sortie par chaque frontière peut être estimée pour chaque co
     \renewcommand{\arraystretch}{1.4}
     \begin{tabular}{||c|c|c||}
         \hline
-        Contrôle & Fréquence de Sortie en 0 & Fréquence de Sortie en $c=1$ \\
+        Configuration & Fréquence de Sortie en 0 & Fréquence de Sortie en $c=1$ \\
         \hline\hline
         Sans contrôle & 44.4\,\% & 55.6\,\% \\
         P1 & 33\,\% & 67\,\% \\
-        P2 & 66.7\,\% & 33,3\,\% \\
-        P3 & 45.2\,\% & 54.8\,\% \\
+        %P2 & 66.7\,\% & 33,3\,\% \\
+        P2 & 45.2\,\% & 54.8\,\% \\
         \hline
     \end{tabular}
 \end{table}
