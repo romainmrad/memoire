@@ -116,17 +116,27 @@ Ce processus est particulièrement adapté à la modélisation des taux d'intér
     \item Le terme de diffusion $\sigma(t, X(t))\equiv \sigma(X(t)) = \sigma \sqrt{X(t)}$ garantit la non-négativité du processus grâce à la racine carrée. Ceci est essentiel comme un taux négatif serait irréaliste dans de nombreux contextes économiques, en particulier pour les modèles de taux à court terme comme le CIR;
     \item Le comportement à proximité de zéro est gouverné par la \textit{condition de Feller}, selon laquelle:
     \[
-    \mathds{P} \Big[ \exists\;t < \infty:X(t) = 0 \Big] = 1 \quad \text{si et seulement si} \quad \sigma^2 \geq 2ab
+    \mathds{P} \Big[ \exists\;t < \infty:X(t) = 0 \Big] = 1 \quad \text{si et seulement si} \quad \sigma^2 > 2ab
     \]
     Cela signifie que le processus peut atteindre zéro en un temps fini si la \textit{diffusion} domine la \textit{dérive}.
 \end{itemize}
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/intro/path_cir_combined.pdf}
-    \caption{Une trajectoire du processus \acs{CIR} avec $a=1$, $b=0.5$, $\sigma=1$}\label{fig:TrajCIR}
+    \caption{Une trajectoire du processus \acs{CIR} avec $a=1.1$, $b=0.7$, $\sigma=\sqrt{2}$}\label{fig:TrajCIR}
 \end{figure}
-\FloatBarrier La figure ci-dessus visualise une réalisation du \acs{CIR} accompagnée d'une représentation discrétisée du retour à la moyenne associé.
-
+\FloatBarrier La figure ci-dessus présente une trajectoire simulée du processus \acs{CIR}, accompagnée d'une représentation discrétisée de la force de rappel vers la moyenne (flèches vertes). Il est intéressant de noter les points suivants:
+\begin{itemize}
+    \item  Plus le processus s'éloigne de la moyenne $b$, plus l'intensité de cette force augmente;
+    \item Lorsque le processus se trouve à proximité de zéro, les fluctuations aléatoires sont atténuées, tandis qu'elles deviennent plus marquées lorsque la position augmente. Ce comportement s'explique par la présence du terme \(\sqrt{X(t)}\) dans le coefficient de diffusion, permettant ainsi de moduler l'amplitude stochastique en fonction de la position;
+    \item La trajectoire passe par 0 plusieurs fois comme la \textit{condition de Feller} est satisfaite:
+    \[
+    \left\{\begin{aligned}
+        \sigma^2&=2\\
+        2ab&=1.54
+    \end{aligned}\right.\implies\sigma^2 > 2ab
+    \]
+\end{itemize}
 Le prochain élément de problématique à introduire dans le cadre de cette étude est celui du \textit{temps de premier passage}.
 \paragraph{Définition: Temps de premier passage}\mbox{}\\
 Soit $\{X(t),\, t \geq 0\}$ un processus \acs{CIR}. Le \textit{temps de premier passage à deux frontières} est défini, pour un seuil $c > 0$, par:
@@ -146,7 +156,7 @@ L'étude de ce temps d'arrêt est particulièrement pertinente dans le cadre du 
     \caption{Simulations de 30 trajectoires du \acs{CIR} avec deux frontières absorbantes}\label{fig:FPTCIR}
 \end{figure}
 \FloatBarrier L'étude portera principalement sur le processus \acs{CIR}, noté $X(t)$, ainsi que sur la variable aléatoire associée au temps de premier passage $\tau(x)$.\\
-Nous introduisons à présent les fonctions analytiques qui feront l'objet de l'analyse. La première est la \textit{fonction génératrice des moments}, outil central pour caractériser la distribution du temps d'arrêt.
+Nous introduisons à présent les fonctions analytiques qui feront l'objet de l'analyse. La première est la \textit{fonction génératrice des moments}, outil central pour caractériser la distribution du temps d'arrêt.\pagebreak
 \paragraph{Définition: \ac{FGM}}\mbox{}\\
 La fonction génératrice des moments du temps de premier passage $\tau(x)$ est définie, pour tout $\alpha > 0$, par:
 \begin{equation}\label{fgm}
@@ -215,13 +225,12 @@ Le problème consiste à déterminer une stratégie optimale \( u^*(x) \) minimi
 \begin{equation}\label{value_function}
     F(x) := \inf_{\underset{0 \leq t \leq \tau(x)}{u[X_u(t)]}} \mathds{E}[J(x)]
 \end{equation}
-La figure ci-dessous illustre l'effet d'une stratégie de contrôle sur la dynamique du processus. Dans cet exemple, la commande utilisée est constante et positive ($u(x)\equiv5$), ce qui génère une force dirigée vers la frontière supérieure \( c \) et accélère ainsi la sortie du processus par le haut.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/intro/control.pdf}
     \caption{Simulations de deux trajectoires du CIR avec et sans contrôle}\label{fig:ControlViz}
 \end{figure}
-\FloatBarrier
+\FloatBarrier La figure ci-dessus illustre l'effet d'une stratégie de contrôle sur la dynamique du processus. Dans cet exemple, la commande est constante et positive ($u(x)\equiv5$), et le même tirage aléatoire est utilisé pour les deux trajectoires. Il est intéressant de souligner que le processus contrôlé sort de l'intervalle beaucoup plus rapidement que celui sans contrôle. De plus, cette sortie s'effectue par la borne supérieure \(c = 1\), alors que le processus non contrôlé atteint la borne inférieure 0. Cela met en évidence l'influence marquée d'un contrôle, même simple et non optimal, sur le comportement du processus \acs{CIR}.
 
 
 
@@ -232,13 +241,12 @@ La figure ci-dessous illustre l'effet d'une stratégie de contrôle sur la dynam
 %%
 \section{Objectifs de recherche}  % 0.5 page
 
-Après avoir exposé les fondements théoriques de l'étude, nous pouvons désormais énoncer précisément les objectifs poursuivis dans ce mémoire. Ceux-ci se répartissent en deux volets: l'analyse des temps de premier passage pour le processus \acs{CIR} en diffusion pure, puis l'étude de son extension avec sauts.
+Après avoir posé les bases théoriques de l'étude, nous pouvons à présent formuler avec précision les objectifs de ce mémoire. Ceux-ci s'articulent autour de trois axes: l'analyse des temps de premier passage pour le processus \acs{CIR} en l'absence de sauts, l'étude de ce même problème lorsque des sauts sont introduits, et enfin l'exploration de la commande optimale associée.
 \paragraph{Objectifs pour le processus de diffusion}
 \begin{itemize}
     \item Obtenir une expression explicite de la fonction génératrice des moments du temps de premier passage à deux frontières \( M(x;\alpha) = \mathds{E}[e^{-\alpha \tau(x)}] \);
     \item Expliciter une formule analytique pour le temps moyen de premier passage, \( m(x) = \mathds{E}[\tau(x)] \), pour une entrée initiale \( x \in (0,c) \);
     \item Déduire l'aire moyenne sous la trajectoire $A(x)$ jusqu'au franchissement de l'intervalle \( (0,c) \);
-    \item Résoudre différentes formes d'un problème de commande optimale associé au processus, en déterminant la fonction valeur \( F(x) = \underset{u}{\inf}\,\mathds{E}[J(x)] \), ainsi que la politique de contrôle optimal $u^*(x)$.
 \end{itemize}
 \paragraph{Objectifs pour le processus de diffusion avec sauts}
 \begin{itemize}
@@ -254,7 +262,10 @@ Après avoir exposé les fondements théoriques de l'étude, nous pouvons désor
     \)
     afin d'évaluer l'intensité des excursions au-delà de la borne supérieure, dans le cas de sauts exponentiels ascendants.
 \end{itemize}
-
+\paragraph{Objectif pour la commande optimale}
+\begin{itemize}
+    \item Résoudre différentes formes d'un \textit{Homing problem} associé au processus diffusif, en déterminant la fonction valeur \( F(x) = \underset{u}{\inf}\,\mathds{E}[J(x)] \), ainsi que la politique de contrôle optimal $u^*(x)$.
+\end{itemize}
 
 %%
 %% PLAN DU MEMOIRE / THESIS OUTLINE
