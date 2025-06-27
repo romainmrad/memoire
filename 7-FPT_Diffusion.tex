@@ -5,17 +5,11 @@ Cette partie du mémoire est consacrée à la résolution analytique des problè
 \section{Fonction Génératrice des Moments}\label{section_fgm_eq}
 \subsection{Résolution du problème}
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
-Soit un processus d'Itô défini par l'\ac{EDS} (\ref{ito_eq}).
-Il est connu que la \acl{FGM} d'un temps de premier passage $\tau(x)$ satisfait l'équation du passé de Kolmogorov (voir~\cite{cox2017} ou~\cite{lefebvre2007}): 
-\[
-\frac{1}{2}\sigma{(t,x)}^2M''(x;\alpha)+\mu(t,x)M'(x;\alpha)-\alpha M(x;\alpha)=0
-\]
-avec $M(0;\alpha)=M(c;\alpha)=1$. 
-
-En reprenant les termes de dérive et de diffusion du \acs{CIR} (\ref{cir_eq}), l'\ac{EDO} linéaire de second ordre à résoudre devient: 
+Il est connu que la \acl{FGM} du temps de premier passage $\tau(x)$ satisfait l'équation du passé de Kolmogorov (voir~\cite{cox2017} ou~\cite{lefebvre2007}):
 \begin{equation}\label{ode_fgm}
     \frac{1}{2}\sigma^2xM''(x;\alpha)+a(b-x)M'(x;\alpha)-\alpha M(x;\alpha)=0
 \end{equation}
+avec $M(0;\alpha)=M(c;\alpha)=1$. 
 
 \paragraph{Résolution}\phantom{}\\
 D'abord, en multipliant les deux côtés par $2/\sigma^2$ l'équation ci-dessus (\ref{ode_fgm}) est mise sous forme canonique: 
@@ -83,15 +77,10 @@ Il est important de souligner les points suivants:
     \item Par ailleurs, et pour la même raison, lorsque $\alpha$ augmente, la fonction diminue.
 \end{itemize}
 L'expression obtenue pour la \acl{FGM} est ainsi validée. 
-\pagebreak
 \section{Fonction Temps Moyen}\label{section_mean_eq}
 \subsection{Résolution du problème}
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
-En combinant le développement en série entière de l'exponentielle: 
-\[
-e^x=\sum_{k=0}^\infty\frac{x^k}{k!}
-\]
-et la définition de la \acl{FGM} (\ref{fgm}), il est possible d'écrire (en supposant que les moments de $\tau(x)$ existent et sont finis): 
+En combinant le développement en série entière de l'exponentielle et la définition de la \acl{FGM} (\ref{fgm}), il est possible d'écrire (en supposant que les moments de $\tau(x)$ existent et sont finis): 
 \begin{equation}\label{taylor_fgm}
     \begin{aligned}
         M(x;\alpha)=\mathds{E}\left[e^{-\alpha \tau(x)}\right]&=\mathds{E}\left[\sum_{k=0}^\infty\frac{{(-\alpha\tau(x))}^k}{k!}\right] \\
