@@ -58,10 +58,19 @@ Le symbole de Pochhammer (ou factoriel ascendant) est défini par:
     Il est intéressant de noter que la fonction hypergéométrique confluente de première espèce $\Phi(\cdot,\cdot,\cdot)$ n'est autre que le cas particulier $_1F_1(\cdot,\cdot,\cdot)$.
 \end{itemize}
 
-\section*{Fonction intégrale exponentielle généralisée}
-\[
-E_n(x):=\int_1^{+\infty}\frac{e^{xt}}{t^n}dt
-\]
+\section*{Fonctions intégrale exponentielle}
+\begin{itemize}
+    \item La fonction intégrale exponentielle est définie par:
+    \[
+    \text{Ei}(x):=-\int^{\infty}_{-x}\frac{e^{-t}}{t}dt
+    \]
+    \item La fonction intégrale exponentielle généralisée est définie par:
+    \[
+    E_n(x):=\int_1^{+\infty}\frac{e^{xt}}{t^n}dt
+    \]
+    Il est intéressant de noter que, pour $x>0$:
+    \[\text{Ei}(x)=-E_1(-x)\]
+\end{itemize}
 
 \section*{Fonctions de Bessel}
 \begin{itemize}

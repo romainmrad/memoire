@@ -10,7 +10,7 @@ avec
     \item $J(t)$ un processus de sauts pur comme défini en (\ref{jump_def}).
 \end{itemize}
 
-\section{Fonction Temps moyen \textemdash~Sauts uniformes descendants}\label{subsection_mean_jumps}
+\section{Fonction Temps moyen \textemdash~Sauts Uniformes Descendants}\label{subsection_mean_jumps}
 \subsection{Résolution du problème}
 Dans cette section, la variante du \ac{CIR} avec sauts considérée est celle avec des sauts négatifs modélisés par des variables uniformément distribuées sur $[-x,0]$. La mesure d'intensité des sauts est donc:
 \[
@@ -87,7 +87,7 @@ Il convient de souligner les observations suivantes:
 \end{itemize}
 La fonction obtenue pour le temps moyen de sortie avec sauts est donc validée.
 
-\section{Fonction Probabilité de sortie en zéro \textemdash~Sauts uniformes descendants}\label{subsection_probability_jumps}
+\section{Fonction Probabilité de sortie en zéro \textemdash~Sauts Uniformes Descendants}\label{subsection_probability_jumps}
 \subsection{Résolution du problème}
 Dans cette section, la variante du \ac{CIR} avec sauts considérée est identique à la précédente (sauts négatifs modélisés par des variables uniformément distribuées sur $[-x,0]$).
 
@@ -142,7 +142,7 @@ Les observations suivantes peuvent être formulées:
 \end{itemize}
 Ces résultats permettent donc de valider l'expression obtenue pour la probabilité de sortie en zéro.
 
-\section{Fonction Dépassement Moyen \textemdash~Sauts exponentiels ascendants}
+\section{Fonction Dépassement Moyen \textemdash~Sauts Exponentiels Ascendants}
 \subsection{Formulation générale du problème}
 D'abord, un processus de diffusion à sauts quelconque \(\{X(t),\,t\geq0\}\) vérifiant les conditions d'unicité trajectorielle (\ref{trajecotry_uniqueness}) est considéré:
 \[
@@ -177,7 +177,7 @@ Alors, pour tout processus \(X(t)\), il découle (voir~\cite{abundo2013}):
 \end{equation}
 avec $D(0)=D(c)=0$ et $\mathcal{L}$ le générateur infinitésimal associé.
 
-\subsection{Cas Particulier \textemdash~Sauts exponentiels ascendants}
+\subsection{Sauts exponentiels ascendants}
 Dans le cas où les sauts sont exponentiels, leur mesure d'intensité est:
 \[
 \gamma(dy):=\lambda\nu e^{-\nu y}\mathds{1}_{y\geq0}dy
@@ -226,7 +226,7 @@ En injectant (\ref{eq:d_derivees}) dans (\ref{ODE_Phi_D}) et en éliminant les t
         \frac{1}{2}\sigma^2(x)\Phi'''(x)+\Phi''(x)\left[\nu\sigma^2(x)+\mu(x)\right]\\+\Phi'(x)\left[\frac{1}{2}\nu^2\sigma^2(x)+\nu\mu(x)-\lambda\right]-\lambda\nu\Phi(x)=\frac{\lambda}{\nu e^{\nu c}}
     \end{aligned}
 \end{equation}
-Comme $D(x)$ ne dépend que de $\Phi'(x)$ (\ref{Leibniz_rule}), il est possible de dériver l'équation ci-dessus (\ref{general_ode_Phi}) en posant $\phi(x)=\Phi'(x)$ pour obtenir l'\acs{EDO} homogène suivante:
+Comme $D(x)$ ne dépend que de $\Phi'(x)$ (\ref{Leibniz_rule}), il est intéressant de dériver l'équation ci-dessus (\ref{general_ode_Phi}) en posant $\phi(x)=\Phi'(x)$ pour obtenir l'\acs{EDO} homogène suivante:
 \begin{equation}\label{general_ode_phi}
     \begin{aligned}
         \sigma(x)^2 \phi'''(x)+2 \phi''(x) \left[\mu(x)+\sigma(x) \left(\sigma'(x)+\nu  \sigma(x)\right)\right]\\+\phi'(x) \left[-2 \lambda +2 \mu'(x)+2 \nu\mu(x)+\nu  \sigma(x) \left(4 \sigma'(x)+\nu  \sigma(x)\right)\right]\\+2 \nu  \phi(x) \left[-\lambda +\mu'(x)+\nu  \sigma(x) \sigma'(x)\right]=0
@@ -251,13 +251,19 @@ avec $u(x)$ une fonction à déterminer. En effectuant un changement de variable
 \end{equation}
 avec $D(0)=D(c)=0$.
 
-Cette équation permet donc de résoudre le problème pour tout processus. Dans la suite, le \acs{CIR} est considéré.
+Cette équation permet donc de résoudre le problème pour tout processus \(\{X(t),\,t\geq0\}\). Dans la suite, le \acs{CIR} avec sauts exponentiels est considéré.
 \subsection{Application au CIR}
 En reprenant les termes de dérive et de diffusion du \acs{CIR} (\ref{cir_eq}), l'équation (\ref{eq:general_ode_D}) devient:
 \[
 \sigma ^2 x D'''(x)+D''(x) \left[2 a (b-x)+\sigma ^2-\nu  \sigma ^2x\right]-2 D'(x) [a \nu  (b-x)+a+\lambda ]=0
 \]
 Cependant, une expression explicite pour $D(x)$, si elle existe, est très difficile à obtenir. Cela rend donc la résolution du problème général assez compliqué. 
+\paragraph{Résolution exacte pour $a=0$}\phantom{}\\
+En considérant le cas du \acs{CIR} à sauts sans retour à la moyenne ($a=0$) et en posant \(\sigma=c=\lambda=\nu=1\), \textit{Maple}  donne l'expression suivante:
+\begin{equation}\label{overshoot_exact_sol}
+    D(x)=2xe^{x}\left[\text{Ei}(x)-\text{Ei}(1)\right]
+\end{equation}
+avec $\text{Ei}(x)$ la fonction intégrale exponentielle (voir annexe~\ref{special_functions}).
 \paragraph{Résolution approximative pour $a=0$}\phantom{}\\
 En remplaçant $D(x+y)$ dans (\ref{initial_overshoot_ide}) par un développement de Taylor, il est possible de réécrire l'intégrale comme suit:
 \[
@@ -294,24 +300,30 @@ En éliminant le retour à la moyenne ($a=0$), l'\acs{EDO} (\ref{final_overshoot
             D(x)=\frac{\lambda}{{\nu^2\sigma^2e^{\nu c}(2\lambda-\nu\sigma^2)}}\Bigg[\sigma^2\left(-C_1 \left(2 \lambda +\nu ^2 \sigma ^2 x\right)^{1-\frac{2 \lambda }{\nu  \sigma ^2}}+C_2 \nu  \left(2 \lambda -\nu  \sigma ^2\right)-2 \nu  e^{\nu  x}\right) \\-2 e^{-\frac{2 \lambda }{\nu  \sigma ^2}} \left(2 \lambda +\nu ^2 \sigma ^2 x\right) E_{1-\frac{2 \lambda }{\nu  \sigma ^2}}\left(-\frac{2 \lambda }{\nu  \sigma ^2}-x \nu \right)\Bigg]
     \end{aligned}
 \end{equation}
-avec $E_n(x)$ la fonction intégrale exponentielle (voir annexe~\ref{special_functions}).
+avec $E_n(x)$ la fonction intégrale exponentielle généralisée (voir annexe~\ref{special_functions}).
 
 \paragraph{Détermination des constantes}\phantom{}\\
 Les conditions aux limites $D(0)=D(c)=0$ permettent de déterminer les deux constantes $C_1$ et $C_2$. Étant donné la longueur des expressions obtenues, celles-ci ne seront pas détaillées dans le présent document.
 
 \subsection{Validation de l'expression obtenue}
 \paragraph{Visualisation}\phantom{}\\
-Afin de valider le résultat, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée pour différentes valeurs de la fréquence des sauts $\lambda\in\{2,3,6\}$ ainsi que le paramètre de longueur des sauts $\nu\in\{5,10,15\}$.
+Afin de valider les résultat, les différentes fonctions sont tracées. D'abord, l'expression obtenue lors de la résolution exacte (\ref{overshoot_exact_sol}) est visualisée.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/validation/Ovs/exact.pdf}
+    \caption{Visualisation de la fonction Dépassement Moyen $D(x)$}\label{fig:OvershootExactSol}
+\end{figure}
+\FloatBarrier Ensuite, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée pour différentes valeurs de la fréquence des sauts $\lambda\in\{1,2,4\}$ ainsi que le paramètre de longueur des sauts $\nu\in\{10,15,20\}$.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{0.45\linewidth}
         \includegraphics[width=\linewidth]{img/validation/Ovs/overshoot_lambda.pdf}
-        \caption{Sensibilité de la fréquence des sauts $\lambda,\;\forall\;\lambda\in\{2,3,6\}$}\label{fig:Overshoot_lambda_visualisation}
+        \caption{Sensibilité de la fréquence des sauts $\lambda,\;\forall\;\lambda\in\{1,2,4\}$ \textendash~$\nu=10$}\label{fig:Overshoot_lambda_visualisation}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.45\linewidth}
         \includegraphics[width=\linewidth]{img/validation/Ovs/overshoot_nu.pdf}
-        \caption{Sensibilité de la taille des sauts $\nu,\;\forall\;\nu\in\{5,10,15\}$}\label{fig:Overshoot_nu_visualisation}
+        \caption{Sensibilité de la taille des sauts $\nu,\;\forall\;\nu\in\{10,15,20\}$  \textendash~$\lambda=1$}\label{fig:Overshoot_nu_visualisation}
     \end{subfigure}
     \hfill
     \caption{Visualisation de la fonction Dépassement Moyen $D(x)$}\label{fig:OvershootVisualisation}

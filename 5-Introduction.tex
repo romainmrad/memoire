@@ -72,14 +72,13 @@ Un processus $\{N(t),\;t\geq0\}$ est un processus de Poisson de taux $\lambda$ s
     \item Le temps d'arrivé du $n$-ème événement $T_n$ suis une loi exponentielle: $T_n\sim\text{Exp}(\lambda)$.
 \end{itemize}
 En utilisant un processus de Poisson, il est donc possible de définir un processus de sauts pur.
-\paragraph{Définition: Processus de sauts purs}\mbox{}\\
-Soit $\{N(t),\;t \geq 0\}$ un processus de Poisson de taux $\lambda > 0$ indépendant d'une suite de variables aléatoires indépendantes et identiquement distribuées $\{Y_i\}_{i \in \mathds{N}^*}$. On définit le processus de sauts purs $\{J(t),\;t \geq 0\}$ par:
+\paragraph{Définition: Processus de Sauts}\mbox{}\\
+Soit \( N(ds,dy) \) une mesure de Poisson sur \( (0, \infty) \times \mathds{R} \), représentant les sauts aléatoires, avec une mesure d'intensité donnée par \(\gamma(dy)ds\). On définit le processus de sauts \(\{J(t),\,t \geq 0\}\) par:
 \begin{equation}\label{jump_def}
     J(t) = \int_0^t \int_{\mathds{R}}y\,N(ds,dy)
 \end{equation}
-Ce processus correspond à une somme aléatoire de sauts, où \( N(ds,dy) \) est une mesure de Poisson sur \( (0, \infty) \times \mathds{R} \), représentant les sauts aléatoires, avec une mesure d'intensité donnée par \(\gamma(dy)\,ds\).
 
-La figure ci-dessous visualise différentes réalisation d'un processus de sauts pur gouverné par un processus de Poisson de paramètre $\lambda=2$. La taille des sauts correspond à des réalisations d'une variable aléatoire exponentielle de paramètre $\nu=1.5$. La mesure d'intensité des sauts est donc donnée par:
+La figure ci-dessous visualise différentes réalisation d'un processus de sauts gouverné par un processus de Poisson de paramètre $\lambda=2$. La taille des sauts correspond à des réalisations d'une variable aléatoire exponentielle de paramètre $\nu=1.5$. La mesure d'intensité des sauts est donc donnée par:
 \[
 \gamma(dy)=\lambda\nu e^{-\nu y}\mathds{1}_{y\geq0}dy
 \]
