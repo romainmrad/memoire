@@ -74,17 +74,15 @@ Un processus $\{N(t),\;t\geq0\}$ est un processus de Poisson de taux $\lambda$ s
 En utilisant un processus de Poisson, il est donc possible de définir un processus de sauts pur.
 \paragraph{Définition: Processus de sauts purs}\mbox{}\\
 Soit $\{N(t),\;t \geq 0\}$ un processus de Poisson de taux $\lambda > 0$ indépendant d'une suite de variables aléatoires indépendantes et identiquement distribuées $\{Y_i\}_{i \in \mathds{N}^*}$. On définit le processus de sauts purs $\{J(t),\;t \geq 0\}$ par:
+\begin{equation}\label{jump_def}
+    J(t) = \int_0^t \int_{\mathds{R}}y\,N(ds,dy)
+\end{equation}
+Ce processus correspond à une somme aléatoire de sauts, où \( N(ds,dy) \) est une mesure de Poisson sur \( (0, \infty) \times \mathds{R} \), représentant les sauts aléatoires, avec une mesure d'intensité donnée par \(\gamma(dy)\,ds\).
+
+La figure ci-dessous visualise différentes réalisation d'un processus de sauts pur gouverné par un processus de Poisson de paramètre $\lambda=2$. La taille des sauts correspond à des réalisations d'une variable aléatoire exponentielle de paramètre $\nu=1.5$. La mesure d'intensité des sauts est donc donnée par:
 \[
-J(t) = \sum_{i=1}^{N(t)} Y_i
+\gamma(dy)=\lambda\nu e^{-\nu y}\mathds{1}_{y\geq0}dy
 \]
-Ce processus correspond à une somme aléatoire de sauts, où:
-\begin{itemize}
-    \item $N(t)$ représente le nombre de sauts survenus jusqu'au temps $t$;
-    \item $Y_i$ est l'amplitude du $i$-ème saut;
-    \item Les instants des sauts sont donnés par les temps d'arrivée du processus de Poisson;
-    \item Entre deux sauts, le processus reste constant.
-\end{itemize}
-La figure ci-dessous visualise différentes réalisation d'un processus de sauts pur gouverné par un processus de Poisson de paramètre $\lambda=2$. La taille des sauts correspond à des réalisations d'une variable aléatoire exponentielle de paramètre $\nu=1.5$.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/intro/path_jump.pdf}
@@ -192,7 +190,7 @@ La cinquième fonction étudiée est celle du \textit{dépassement moyen}, en aj
 \paragraph{Définition: Dépassement Moyen}\mbox{}\\
 La fonction dépassement moyen est définie par: 
 \begin{equation}\label{overshoot}
-    D(x)=\mathds{E}\left[(X(\tau(x))-c)_+\right]
+    D(x):=\mathds{E}\left[{(X(\tau(x))-c)}_+\right]
 \end{equation}
 Elle quantifie le dépassement moyen au-dessus de la frontière \( c \), à partir d'une condition initiale \( X(0) = x \in (0, c) \). Il est essentiel de souligner que cette fonction ne présente un intérêt que dans le cas où le processus comporte des sauts. En effet, dans le cadre purement continu, la trajectoire atteint la frontière exactement, sans possibilité de la franchir.
 \begin{figure}[htb]

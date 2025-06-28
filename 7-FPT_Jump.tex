@@ -7,20 +7,15 @@ avec
 \begin{itemize}
     \item $X(0)=x$;
     \item $W(t)$ un \acs{MBS};
-    \item $J(t)$ un processus de sauts pur:
-    \[
-    J(t)=\sum_{i=1}^{N(t)}Y_i
-    \]
-    où:
-    \begin{itemize}
-        \item $N(t)$ est un processus de poisson de paramètre $\lambda$;
-        \item $Y_i$ des variables indépendantes et distribuées suivant une certaine loi.
-    \end{itemize}
+    \item $J(t)$ un processus de sauts pur comme défini en (\ref{jump_def}).
 \end{itemize}
 
 \section{Fonction Temps moyen \textemdash~Sauts uniformes descendants}\label{subsection_mean_jumps}
 \subsection{Résolution du problème}
-Dans cette section, la variante du \ac{CIR} avec sauts considérée est celle avec des sauts négatifs modélisés par des variables uniformément distribuées $Y_i\sim U[-x,0]$.
+Dans cette section, la variante du \ac{CIR} avec sauts considérée est celle avec des sauts négatifs modélisés par des variables uniformément distribuées sur $[-x,0]$. La mesure d'intensité des sauts est donc:
+\[
+\gamma(dy)=\lambda\frac{1}{x}\mathds{1}_{y\in[-x,0]}dy
+\]
 
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
 En reprenant ce qui avait été fait en (\ref{section_fgm_eq}) pour dériver l'\acs{EDO} régissant la \acl{FGM} de $\tau(x)$, il est possible d'écrire:
@@ -94,7 +89,7 @@ La fonction obtenue pour le temps moyen de sortie avec sauts est donc validée.
 
 \section{Fonction Probabilité de sortie en zéro \textemdash~Sauts uniformes descendants}\label{subsection_probability_jumps}
 \subsection{Résolution du problème}
-Dans cette section, la variante du \ac{CIR} avec sauts considérée est identique à la précédente (sauts négatifs modélisés par des variables uniformément distribuées $Y_i\sim U[-x,0]$).
+Dans cette section, la variante du \ac{CIR} avec sauts considérée est identique à la précédente (sauts négatifs modélisés par des variables uniformément distribuées sur $[-x,0]$).
 
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
 Il est possible de montrer (voir~\cite{lefebvre2007}) que la fonction probabilité de sortie en zéro satisfait l'\acs{EDO}:
@@ -148,132 +143,165 @@ Les observations suivantes peuvent être formulées:
 Ces résultats permettent donc de valider l'expression obtenue pour la probabilité de sortie en zéro.
 
 \section{Fonction Dépassement Moyen \textemdash~Sauts exponentiels ascendants}
-\subsection{Résolution du problème}
-Dans cette section, la variante du \ac{CIR} avec sauts considérée est celle avec des sauts positifs modélisés par des variables aléatoires exponentielles $Y_i\sim \text{Exp}(\nu)$.
+\subsection{Formulation générale du problème}
+D'abord, un processus de diffusion à sauts quelconque \(\{X(t),\,t\geq0\}\) vérifiant les conditions d'unicité trajectorielle (\ref{trajecotry_uniqueness}) est considéré:
+\[
+X(t)=X(0)+\int_0^t \mu(X(s))ds+\int_0^t\sigma(X(s))dW(s)+J(t)
+\]
+avec une mesure d'intensité des sauts quelconque $\gamma(dy)$.
 
-\paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
-Soit $f(x)=(x-c)_+$ la fonction mesurant un dépassement. En appliquant la formule de Dynkin (voir~\cite{dynkin1965}), il est possible d'écrire:
+Soit $f(x)={(x-c)}_+$ la fonction mesurant un dépassement. En appliquant la formule de Dynkin (voir~\cite{dynkin1965}), il est possible d'écrire:
 \begin{equation}\label{initial_dynkin}
     \mathds{E}[f(X(\tau(x)))]=f(x)+\mathds{E}\left[\int_0^{\tau(x)}\mathcal{L}f(X(s))ds\right]
 \end{equation}
-D'abord, en développant le terme de gauche, l'expression de la fonction $D(x)$ définie en (\ref{overshoot}) est retrouvée:
-\begin{equation}\label{dynkin_left_simplification}
-    \begin{aligned}
-        \mathds{E}[f(X(\tau(x)))]&=\mathds{E}\left[(X(\tau(x))-c)_+\right]\\
-        &=D(x)
-    \end{aligned}
-\end{equation}
-Ensuite, le terme de droite peut être simplifié: 
-\begin{equation}\label{dynkin_right_simplification_1}
-    X(0)=x\in(0,c)\implies f(x)=0
-\end{equation}
-Par ailleurs, en développant le générateur infinitésimal (voir annexe~\ref{infinitesimal_generator}) appliqué à la fonction $f(x)$, il découle que:
-\begin{equation}\label{dynkin_right_simplification_2}
-    \begin{aligned}
-        \mathcal{L}f(x)&=\frac{1}{2}\sigma^2xf''(x)+a(b-x)f'(x)+\lambda\int_0^{+\infty}\left[f(x+y)-f(x)\right]\nu e^{-\nu y}dy \\
-        &=\lambda\int_{c-x}^{+\infty}(x+y-c)\nu e^{-\nu y}dy \\
-        &=\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
-    \end{aligned}
-\end{equation}
-En prenant en compte (\ref{dynkin_left_simplification},~\ref{dynkin_right_simplification_1},~\ref{dynkin_right_simplification_2}), l'équation (\ref{initial_dynkin}) devient:
-\begin{equation}\label{simplified_dynkin}
-    D(x)=\frac{\lambda}{\nu e^{\nu c}}\mathds{E}\left[\int_0^{\tau(x)}e^{\nu X(s)}ds\right]
-\end{equation}
-Soit la fonction $g(x)$ définie par:
-\begin{equation}\label{g_defintion}
-    g(x):=\mathds{E}\left[\int_0^{\tau(x)}e^{\nu X(s)}ds\right]
-\end{equation}
-Comme les coefficients de dérive et de diffusion du processus \acs{CIR} vérifient les conditions d'unicité trajectorielle (voir annexe~\ref{trajecotry_uniqueness}) et les sauts exponentiels ont des moments finis, le travail présenté dans~\cite{abundo2013} peut être utilisé pour établir l'\acs{EID} du second ordre associée:
-\begin{equation}\label{initial_overshoot_ide}
-    \frac{1}{2}\sigma^2xg''(x)+a(b-x)g'(x)+\lambda\int_0^{+\infty}\left[g(x+y)-g(x)\right]\nu e^{-\nu y}dy=-e^{\nu x}
-\end{equation}
-En séparant l'intégrale, il découle:
-\begin{equation}\label{overshoot_ide}
-        \frac{1}{2}\sigma^2xg''(x)+a(b-x)g'(x)+\lambda\int_0^{+\infty}g(x+y)\nu e^{-\nu y}dy-\lambda g(x)=-e^{\nu x}
-\end{equation}
-Le changement de variable $z=x+y$ permet d'écrire:
+Pour $x\in(0,c)$:
+\begin{itemize}
+    \item $f(x)={(x-c)}_+=0$
+    \item $f'(x)=\mathds{1}_{x\geq c}=0\implies f''(x)=0$
+\end{itemize}
+Donc, le générateur infinitésimal devient:
 \[
-\int_0^{+\infty}g(x+y)\nu e^{-\nu y}dy=\nu e^{\nu x}\int_x^{+\infty}g(z)e^{-\nu z}dz
+\begin{aligned}
+    \mathcal{L}f(x) &= \frac{1}{2}\sigma^2(x)f''(x)+\mu(x)f'(x)+\int_{\mathds{R}}[f(x+y)-f(x)]\gamma(dy)\\
+    &=\int_{\mathds{R}}(x+y-c)_+\,\gamma(dy) \\
+    &=\int_{c-x}^{+\infty}(x+y-c)\gamma(dy)
+\end{aligned}
+\]
+Le dépassement moyen est donc:
+\[
+D(x)=\mathds{E}\left[{(X(\tau(x))-c)}_+\right]=\mathds{E}\left[\int_0^{\tau(x)}\left(\int_{c-x}^{+\infty}(X(s)+y-c)\gamma(dy)\right)ds\right]
+\]
+Alors, pour tout processus \(X(t)\), il découle (voir~\cite{abundo2013}):
+\begin{equation}\label{general_overshoot_ide}
+    \mathcal{L}D(x)=-\int_{c-x}^{+\infty}(x+y-c)\gamma(dy)
+\end{equation}
+avec $D(0)=D(c)=0$ et $\mathcal{L}$ le générateur infinitésimal associé.
+
+\subsection{Cas Particulier \textemdash~Sauts exponentiels ascendants}
+Dans le cas où les sauts sont exponentiels, leur mesure d'intensité est:
+\[
+\gamma(dy):=\lambda\nu e^{-\nu y}\mathds{1}_{y\geq0}dy
+\]
+Donc:
+\[
+\int_{c-x}^{+\infty}(x+y-c)\gamma(dy)=\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
+\]
+L'équation (\ref{general_overshoot_ide}) devient:
+\begin{equation}\label{initial_overshoot_ide}
+    \frac{1}{2}\sigma^2(x)D''(x)+\mu(x)D'(x)+\lambda\int_0^\infty[D(x+y)-D(x)]\nu e^{-\nu y}dy=-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
+\end{equation}
+D'abord, l'intégrale peut être simplifiée: 
+\begin{equation}\label{simplified_overshoot_ide}
+    \frac{1}{2}\sigma^2(x)D''(x)+\mu(x)D'(x)+\lambda\int_0^\infty D(x+y)\nu e^{-\nu y}dy-\lambda D(x)=-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
+\end{equation}
+Le changement de variable $z=x+y$ donne:
+\[
+\begin{aligned}
+    \int_0^\infty D(x+y)\nu e^{-\nu y}dy&=\int_x^\infty D(z)\nu e^{-\nu(z-x)}dz\\
+    &=\nu e^{\nu x}\int_x^\infty D(z)e^{-\nu z}dz
+\end{aligned}
 \]
 Soit:
-\begin{equation}\label{phi_simplification}
-    \Phi(x):=\int_x^{+\infty}g(z)e^{-\nu z}dz
-\end{equation}
-La formule de Leibniz donne:
-\begin{equation}\label{phi_derivation}
-        \Phi'(x)=-g(x)e^{-\nu x}\implies g(x)=-e^{\nu x}\Phi'(x)
-\end{equation}
-En injectant (\ref{phi_simplification},~\ref{phi_derivation}) dans (\ref{overshoot_ide}), l'équation devient:
-\begin{equation}\label{Phi_equation}
-    \begin{aligned}
-        \frac{1}{2}\sigma^2x\Phi'''(x)+\Phi''(x)\left[\nu\sigma^2x+a(b-x)\right]\\+\Phi'(x)\left[\frac{1}{2}\sigma^2\nu^2x+a\nu(b-x)-\lambda\right]-\lambda\nu \Phi(x)=1
-    \end{aligned}
-\end{equation}
-Le fonction recherchée $g(x)$ ne dépend que de $\Phi'(x)$. En posant $\phi(x)=\Phi'(x)$ et en dérivant l'équation (\ref{Phi_equation}), il découle l'\acs{EDO} homogène linéaire d'ordre 3:
-\begin{equation}\label{phi_equation}
-    \begin{aligned}
-        x \phi'''(x)+\phi''(x) \left[\left(\frac{2(\nu\sigma^2-a)}{\sigma^2}\right)x+\left(\frac{2ab+\sigma^2}{\sigma^2}\right)\right]\\+\phi'(x) \left[\left(\frac{\sigma^2\nu^2-2a\nu}{\sigma^2}\right)x+\left(\frac{2(\nu\sigma^2-a-\lambda+ab\nu)}{\sigma^2}\right)\right]\\+\phi(x) \left[\frac{\nu^2  \sigma ^2-2\nu(a+\lambda )}{\sigma^2}\right]=0
-    \end{aligned}
-\end{equation}
-Les conditions $g(0)=g(c)=0$ deviennent $\phi(0)=\phi(c)=0$. Enfin
 \[
-\begin{aligned}
-    D(x) &= \frac{\lambda}{\nu e^{\nu c}}g(x)\\
-    &=-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}\phi(x)
-\end{aligned}
+\Phi(x):=\int_x^\infty D(z)e^{-\nu z}dz
 \]
-Cependant, une expression explicite pour $\phi(x)$, si elle existe, est très difficile à obtenir. Cela rend donc la résolution du problème général assez compliqué. 
+L'équation (\ref{simplified_overshoot_ide}) devient:
+\begin{equation}\label{ODE_Phi_D}
+    \frac{1}{2}\sigma^2(x)D''(x)+\mu(x)D'(x)+\lambda\nu e^{\nu x}\Phi(x)-\lambda D(x)=-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
+\end{equation}
+D'une part, la dérivée de $\Phi(x)$ est (règle de Leibniz):
+\begin{equation}\label{Leibniz_rule}
+    \Phi'(x)=-D(x)e^{-\nu x}\implies D(x)=-e^{\nu x }\Phi'(x)
+\end{equation}
+D'autre part, les dérivées de $D(x)$ s'écrivent: 
+\begin{equation}\label{eq:d_derivees}
+    \begin{aligned}
+        D'(x) &= -\nu e^{\nu x}\Phi'(x)-e^{\nu x}\Phi''(x) \\
+        D''(x)&= -\nu^2e^{\nu x}\Phi'(x)-2\nu e^{\nu x}\Phi''(x)-e^{\nu x}\Phi'''(x)
+    \end{aligned}
+\end{equation}
+En injectant (\ref{eq:d_derivees}) dans (\ref{ODE_Phi_D}) et en éliminant les termes $-e^{\nu x}$, il découle l'\acs{EDO} d'ordre 3 suivante: 
+\begin{equation}\label{general_ode_Phi}
+    \begin{aligned}
+        \frac{1}{2}\sigma^2(x)\Phi'''(x)+\Phi''(x)\left[\nu\sigma^2(x)+\mu(x)\right]\\+\Phi'(x)\left[\frac{1}{2}\nu^2\sigma^2(x)+\nu\mu(x)-\lambda\right]-\lambda\nu\Phi(x)=\frac{\lambda}{\nu e^{\nu c}}
+    \end{aligned}
+\end{equation}
+Comme $D(x)$ ne dépend que de $\Phi'(x)$ (\ref{Leibniz_rule}), il est possible de dériver l'équation ci-dessus (\ref{general_ode_Phi}) en posant $\phi(x)=\Phi'(x)$ pour obtenir l'\acs{EDO} homogène suivante:
+\begin{equation}\label{general_ode_phi}
+    \begin{aligned}
+        \sigma(x)^2 \phi'''(x)+2 \phi''(x) \left[\mu(x)+\sigma(x) \left(\sigma'(x)+\nu  \sigma(x)\right)\right]\\+\phi'(x) \left[-2 \lambda +2 \mu'(x)+2 \nu\mu(x)+\nu  \sigma(x) \left(4 \sigma'(x)+\nu  \sigma(x)\right)\right]\\+2 \nu  \phi(x) \left[-\lambda +\mu'(x)+\nu  \sigma(x) \sigma'(x)\right]=0
+    \end{aligned}
+\end{equation}
+avec $D(x)=-e^{\nu x}\Phi'(x)=-e^{\nu x}\phi(x)$ et $\phi(0)=\phi(c)=0$.
 
-\paragraph{Résolution approximative pour $a=0$}\phantom{}\\
-En remplaçant $g(x+y)$ dans (\ref{initial_overshoot_ide}) par un développement de Taylor, il est possible de réécrire l'intégrale comme suit:
+Ensuite, il est possible de montrer que $\phi_1(x)=e^{-\nu x}$ est une solution particulière de (\ref{general_ode_phi}). La solution générale s'écrit donc: 
 \[
 \begin{aligned}
-    \lambda\int_0^{+\infty}\left[g(x+y)-g(x)\right]\nu e^{-\nu y}dy&=\lambda\int_0^{+\infty}\left[\sum_{n=0}^{+\infty}\frac{y^n}{n!}\frac{d^n}{dx^n}g(x)-g(x)\right]\nu e^{-\nu y}dy\\
-    &=\lambda\int_0^{+\infty}\left[\sum_{n=1}^{+\infty}\frac{y^n}{n!}\frac{d^n}{dx^n}g(x)\right]\nu e^{-\nu y}dy
+    D(x)&=-e^{\nu x}\phi(x)\\
+    &=-e^{\nu x}\phi_1(x)u(x)\\
+    &=-e^{\nu x}e^{-\nu x}u(x)\\
+    &=-u(x)
 \end{aligned}
 \]
-Ensuite, en échangeant la série et l'intégrale, le $n$-ème moment de $Y_i$ apparaît, permettant ainsi de simplifier l'expression:
+avec $u(x)$ une fonction à déterminer. En effectuant un changement de variable avec la solution particulière et en échangeant $u$ par $-D$, l'\acs{EDO} homogène d'ordre 3 suivante est obtenue, régissant le dépassement moyen au-dessus de la frontière $c$ pour un processus de diffusion à sauts quelconque: 
+\begin{equation}\label{eq:general_ode_D}
+    \begin{aligned}
+        \sigma(x)^2 D'''(x)+D''(x) \left[2 \mu(x)+\sigma(x)(2\sigma'(x)-\nu  \sigma(x))\right]\\-2D'(x)[\lambda-\mu'(x)+\nu\mu(x)]=0
+    \end{aligned}
+\end{equation}
+avec $D(0)=D(c)=0$.
+
+Cette équation permet donc de résoudre le problème pour tout processus. Dans la suite, le \acs{CIR} est considéré.
+\subsection{Application au CIR}
+En reprenant les termes de dérive et de diffusion du \acs{CIR} (\ref{cir_eq}), l'équation (\ref{eq:general_ode_D}) devient:
+\[
+\sigma ^2 x D'''(x)+D''(x) \left[2 a (b-x)+\sigma ^2-\nu  \sigma ^2x\right]-2 D'(x) [a \nu  (b-x)+a+\lambda ]=0
+\]
+Cependant, une expression explicite pour $D(x)$, si elle existe, est très difficile à obtenir. Cela rend donc la résolution du problème général assez compliqué. 
+\paragraph{Résolution approximative pour $a=0$}\phantom{}\\
+En remplaçant $D(x+y)$ dans (\ref{initial_overshoot_ide}) par un développement de Taylor, il est possible de réécrire l'intégrale comme suit:
 \[
 \begin{aligned}
-    \lambda\int_0^{+\infty}\left[\sum_{n=1}^{+\infty}\frac{y^n}{n!}\frac{d^n}{dx^n}g(x)\right]\nu e^{-\nu y}dy&=\lambda\sum_{n=0}^{+\infty}\left[\frac{1}{n!}\frac{d^n}{dx^n}g(x)\int_0^{+\infty}y^n\nu e^{-\nu y}dy\right]\\
-    &=\lambda\sum_{n=0}^{+\infty}\frac{1}{n!}\frac{d^n}{dx^n}g(x)\mathds{E}\left[Y_i^n\right]\\
-    &=\lambda\sum_{n=0}^{+\infty}\frac{1}{\nu^n}\frac{d^n}{dx^n}g(x)
+    \lambda\int_0^{+\infty}\left[D(x+y)-D(x)\right]\nu e^{-\nu y}dy&=\lambda\int_0^{+\infty}\left[\sum_{n=0}^{+\infty}\frac{y^n}{n!}\frac{d^n}{dx^n}D(x)-D(x)\right]\nu e^{-\nu y}dy\\
+    &=\lambda\int_0^{+\infty}\left[\sum_{n=1}^{+\infty}\frac{y^n}{n!}\frac{d^n}{dx^n}D(x)\right]\nu e^{-\nu y}dy
+\end{aligned}
+\]
+Ensuite, en échangeant la série et l'intégrale, le $n$-ème moment des sauts exponentiels apparaît, permettant ainsi de simplifier l'expression:
+\[
+\begin{aligned}
+    \lambda\int_0^{+\infty}\left[\sum_{n=1}^{+\infty}\frac{y^n}{n!}\frac{d^n}{dx^n}D(x)\right]\nu e^{-\nu y}dy&=\lambda\sum_{n=0}^{+\infty}\left[\frac{1}{n!}\frac{d^n}{dx^n}D(x)\int_0^{+\infty}y^n\nu e^{-\nu y}dy\right]\\
+    &=\lambda\sum_{n=0}^{+\infty}\frac{1}{n!}\frac{d^n}{dx^n}D(x)\mathds{E}\left[Y_i^n\right]\\
+    &=\lambda\sum_{n=0}^{+\infty}\frac{1}{\nu^n}\frac{d^n}{dx^n}D(x)
 \end{aligned}
 \]
 Par ailleurs, en supposant que les sauts sont petits ($\nu$ est grand), il est possible d'approximer la somme obtenue de la façon suivante:
 \[
-\sum_{n=0}^{+\infty}\frac{1}{\nu^n}\frac{d^n}{dx^n}g(x)\approx\frac{1}{\nu}g'(x)+\frac{1}{\nu^2}g''(x)
+\sum_{n=0}^{+\infty}\frac{1}{\nu^n}\frac{d^n}{dx^n}D(x)\approx\frac{1}{\nu}D'(x)+\frac{1}{\nu^2}D''(x)
 \]
 L'équation (\ref{initial_overshoot_ide}) devient:
 \begin{equation}\label{final_overshoot_ode}
-    \left(\frac{1}{2}\sigma^2x+\frac{\lambda}{\nu^2}\right)g''(x)+\left[a(b-x)+\frac{\lambda}{\nu}\right]g'(x) =-e^{\nu x}
+    \left(\frac{1}{2}\sigma^2x+\frac{\lambda}{\nu^2}\right)D''(x)+\left[a(b-x)+\frac{\lambda}{\nu}\right]D'(x) =-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
 \end{equation}
 Cette \acs{EDO} de second ordre est non homogène avec des coefficients polynomiaux et un terme exponentiel. La solution explicite, si elle existe, est difficile à obtenir. Dans la suite, un cas particulier du problème est considéré.
 
 En éliminant le retour à la moyenne ($a=0$), l'\acs{EDO} (\ref{final_overshoot_ode}) devient:
 \begin{equation}\label{particular_overshoot_ode}
-    \left(\frac{1}{2}\sigma^2x+\frac{\lambda}{\nu^2}\right)g''(x)+\frac{\lambda}{\nu}g'(x) =-e^{\nu x}
+    \left(\frac{1}{2}\sigma^2x+\frac{\lambda}{\nu^2}\right)D''(x)+\frac{\lambda}{\nu}D'(x) =-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
 \end{equation}
 \textit{Wolfram Mathematica} donne:
-\[
-\begin{aligned}
-    g(x)=\frac{1}{{\nu\sigma^2(2\lambda-\nu\sigma^2)}}\Bigg[\sigma^2\left(-C_1 \left(2 \lambda +\nu ^2 \sigma ^2 x\right)^{1-\frac{2 \lambda }{\nu  \sigma ^2}}+C_2 \nu  \left(2 \lambda -\nu  \sigma ^2\right)-2 \nu  e^{\nu  x}\right) \\-2 e^{-\frac{2 \lambda }{\nu  \sigma ^2}} \left(2 \lambda +\nu ^2 \sigma ^2 x\right) E_{1-\frac{2 \lambda }{\nu  \sigma ^2}}\left(-\frac{2 \lambda }{\nu  \sigma ^2}-x \nu \right)\Bigg]
-\end{aligned}
-\]
-avec $E_n(x)$ la fonction intégrale exponentielle (voir annexe~\ref{special_functions}). \\
-Alors, la forme finale de l'expression de la fonction Dépassement Moyen est obtenue:
 \begin{equation}\label{sol_overshoot}
     \begin{aligned}
             D(x)=\frac{\lambda}{{\nu^2\sigma^2e^{\nu c}(2\lambda-\nu\sigma^2)}}\Bigg[\sigma^2\left(-C_1 \left(2 \lambda +\nu ^2 \sigma ^2 x\right)^{1-\frac{2 \lambda }{\nu  \sigma ^2}}+C_2 \nu  \left(2 \lambda -\nu  \sigma ^2\right)-2 \nu  e^{\nu  x}\right) \\-2 e^{-\frac{2 \lambda }{\nu  \sigma ^2}} \left(2 \lambda +\nu ^2 \sigma ^2 x\right) E_{1-\frac{2 \lambda }{\nu  \sigma ^2}}\left(-\frac{2 \lambda }{\nu  \sigma ^2}-x \nu \right)\Bigg]
     \end{aligned}
 \end{equation}
+avec $E_n(x)$ la fonction intégrale exponentielle (voir annexe~\ref{special_functions}).
 
 \paragraph{Détermination des constantes}\phantom{}\\
-Les conditions aux limites $g(0)=g(c)=0$ (et donc $D(0)=D(c)=0$) permettent de déterminer les deux constantes $C_1$ et $C_2$. Étant donné la longueur des expressions obtenues, celles-ci ne seront pas détaillées dans le présent document.
+Les conditions aux limites $D(0)=D(c)=0$ permettent de déterminer les deux constantes $C_1$ et $C_2$. Étant donné la longueur des expressions obtenues, celles-ci ne seront pas détaillées dans le présent document.
 
 \subsection{Validation de l'expression obtenue}
 \paragraph{Visualisation}\phantom{}\\
-Toujours dans la même optique de validation, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée pour différentes valeurs de la fréquence des sauts $\lambda\in\{2,3,6\}$ ainsi que le paramètre de longueur des sauts $\nu\in\{5,10,15\}$.
+Afin de valider le résultat, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée pour différentes valeurs de la fréquence des sauts $\lambda\in\{2,3,6\}$ ainsi que le paramètre de longueur des sauts $\nu\in\{5,10,15\}$.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{0.45\linewidth}
