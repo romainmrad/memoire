@@ -144,12 +144,20 @@ Ces résultats permettent donc de valider l'expression obtenue pour la probabili
 
 \section{Fonction Dépassement Moyen \textemdash~Sauts Exponentiels Ascendants}
 \subsection{Formulation générale du problème}
-D'abord, un processus de diffusion à sauts quelconque \(\{X(t),\,t\geq0\}\) vérifiant les conditions d'unicité trajectorielle (\ref{trajecotry_uniqueness}) est considéré:
+\paragraph{Théorème} 
+\textit{Soit \(\{X(t),\,t \geq 0\}\) un processus de diffusion à sauts vérifiant les conditions d'unicité des trajectoires (\ref{trajecotry_uniqueness}), et défini par:}
 \[
-X(t)=X(0)+\int_0^t \mu(X(s))ds+\int_0^t\sigma(X(s))dW(s)+J(t)
+X(t) = X(0) + \int_0^t \mu(X(s))\,ds + \int_0^t \sigma(X(s))\,dW(s) + J(t)
 \]
-avec une mesure d'intensité des sauts quelconque $\gamma(dy)$.
+\textit{où \(J(t)\) est un processus de sauts pur associé à une mesure d'intensité \(\gamma(dy)\).}  
 
+\textit{Alors, la fonction \(D(x)\) (\ref{overshoot}), représentant le dépassement moyen au-dessus de la frontière \(c\) au temps du premier passage \(\tau(x)\) (\ref{fpt_definition}), satisfait l'équation suivante:}
+\begin{equation}\label{general_overshoot_ide}
+    \mathcal{L}D(x) = -\int_{c - x}^{+\infty} (x + y - c)\,\gamma(dy)
+\end{equation}
+\textit{avec \(D(0) = D(c) = 0\) et \(\mathcal{L}\) le générateur infinitésimal du processus (voir~\ref{infinitesimal_generator}).}
+
+\paragraph{Démonstration}
 Soit $f(x)={(x-c)}_+$ la fonction mesurant un dépassement. En appliquant la formule de Dynkin (voir~\cite{dynkin1965}), il est possible d'écrire:
 \begin{equation}\label{initial_dynkin}
     \mathds{E}[f(X(\tau(x)))]=f(x)+\mathds{E}\left[\int_0^{\tau(x)}\mathcal{L}f(X(s))ds\right]
@@ -159,7 +167,7 @@ Pour $x\in(0,c)$:
     \item $f(x)={(x-c)}_+=0$
     \item $f'(x)=\mathds{1}_{x\geq c}=0\implies f''(x)=0$
 \end{itemize}
-Donc, le générateur infinitésimal devient:
+Le générateur infinitésimal (\ref{infinitesimal_generator}) devient:
 \[
 \begin{aligned}
     \mathcal{L}f(x) &= \frac{1}{2}\sigma^2(x)f''(x)+\mu(x)f'(x)+\int_{\mathds{R}}[f(x+y)-f(x)]\gamma(dy)\\
@@ -169,20 +177,30 @@ Donc, le générateur infinitésimal devient:
 \]
 Le dépassement moyen est donc:
 \[
-D(x)=\mathds{E}\left[{(X(\tau(x))-c)}_+\right]=\mathds{E}\left[\int_0^{\tau(x)}\left(\int_{c-x}^{+\infty}(X(s)+y-c)\gamma(dy)\right)ds\right]
+D(x):=\mathds{E}\left[{(X(\tau(x))-c)}_+\right]=\mathds{E}[f(X(\tau(x)))]=\mathds{E}\left[\int_0^{\tau(x)}\left(\int_{c-x}^{+\infty}(X(s)+y-c)\gamma(dy)\right)ds\right]
 \]
-Alors, pour tout processus \(X(t)\), il découle (voir~\cite{abundo2013}):
-\begin{equation}\label{general_overshoot_ide}
-    \mathcal{L}D(x)=-\int_{c-x}^{+\infty}(x+y-c)\gamma(dy)
-\end{equation}
-avec $D(0)=D(c)=0$ et $\mathcal{L}$ le générateur infinitésimal associé.
+Alors, Abundo~\cite{abundo2013} a montré que $D(x)$ satisfait:
+\[
+\mathcal{L}D(x) = -\int_{c - x}^{+\infty} (x + y - c)\,\gamma(dy)
+\]
+avec $D(0)=D(c)=0$.\hfill$\square$
 
 \subsection{Sauts exponentiels ascendants}
-Dans le cas où les sauts sont exponentiels, leur mesure d'intensité est:
+\paragraph{Lemme} 
+\textit{Sous les mêmes hypothèses que précédemment, et en supposant que les sauts suivent une loi exponentielle de paramètre \(\nu > 0\) avec une intensité \(\lambda > 0\), la fonction \(D(x)\) (\ref{overshoot}) satisfait l'équation différentielle homogène d'ordre trois suivante:}
+\begin{equation}\label{eq:general_ode_D}
+    \begin{aligned}
+        \sigma(x)^2 D'''(x)+D''(x) \left[2 \mu(x)+\sigma(x)(2\sigma'(x)-\nu  \sigma(x))\right]\\-2D'(x)[\lambda-\mu'(x)+\nu\mu(x)]=0
+    \end{aligned}
+\end{equation}
+\textit{avec \(D(0) = D(c) = 0\).}
+
+\paragraph{Démonstration}
+Si la mesure d'intensité s'écrit:
 \[
 \gamma(dy):=\lambda\nu e^{-\nu y}\mathds{1}_{y\geq0}dy
 \]
-Donc:
+Alors:
 \[
 \int_{c-x}^{+\infty}(x+y-c)\gamma(dy)=\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
 \]
@@ -243,13 +261,13 @@ Ensuite, il est possible de montrer que $\phi_1(x)=e^{-\nu x}$ est une solution 
     &=-u(x)
 \end{aligned}
 \]
-avec $u(x)$ une fonction à déterminer. En effectuant un changement de variable avec la solution particulière et en échangeant $u$ par $-D$, l'\acs{EDO} homogène d'ordre 3 suivante est obtenue, régissant le dépassement moyen au-dessus de la frontière $c$ pour un processus de diffusion à sauts quelconque: 
-\begin{equation}\label{eq:general_ode_D}
+avec $u(x)$ une fonction à déterminer. En effectuant un changement de variable avec la solution particulière et en échangeant $u$ par $-D$, l'\acs{EDO} homogène d'ordre 3 suivante est obtenue: 
+\[
     \begin{aligned}
         \sigma(x)^2 D'''(x)+D''(x) \left[2 \mu(x)+\sigma(x)(2\sigma'(x)-\nu  \sigma(x))\right]\\-2D'(x)[\lambda-\mu'(x)+\nu\mu(x)]=0
     \end{aligned}
-\end{equation}
-avec $D(0)=D(c)=0$.
+\]
+avec $D(0)=D(c)=0$.\hfill$\square$\\
 
 Cette équation permet donc de résoudre le problème pour tout processus \(\{X(t),\,t\geq0\}\). Dans la suite, le \acs{CIR} avec sauts exponentiels est considéré.
 \subsection{Application au CIR}
