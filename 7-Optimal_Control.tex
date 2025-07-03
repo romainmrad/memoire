@@ -113,17 +113,17 @@ Par ailleurs, le contrôle optimal est
 \begin{equation}\label{optimal_control_1}
     u^*(x)=-\frac{\beta}{\kappa}F'(x)
 \end{equation}
-
+L'expression complète de la fonction $u^*(x)$ étant assez lourde dû à la dérivée de $F(x)$, elle ne sera pas présentée dans ce mémoire.
 \subsection{P1 \textemdash~Visualisation}
 La fonction valeur $F(x)$ (\ref{sol_control_1},~\ref{control_constants}) et le contrôle optimal (\ref{optimal_control_1}) sont tracés. D'abord, tous les paramètres des coûts sont fixés: $\rho=\beta=\kappa=1$.
 \begin{figure}[htb]
     \centering
-    \begin{subfigure}{0.45\linewidth}
+    \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P1/p1_value.pdf}
         \caption{P1 \textemdash~Fonction Valeur $F(x)$}\label{fig:ValueVisualisation1}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.45\linewidth}
+    \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P1/p1_control.pdf}
         \caption{P1 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:ControlVisualisation1}
     \end{subfigure}
@@ -187,7 +187,7 @@ Les conditions (\ref{condition1},~\ref{condition2}) n'étant pas satisfaites, ce
 \rho^2x-\frac{\beta^2x}{2\kappa^2}{F'(x)}^2+\frac{1}{2}\sigma^2xF''(x)=0
 \]
 \textit{Mathematica} donne comme solution:
-\begin{equation}\label{sol_control_2}
+\begin{equation}
     F(x)=C_2-\frac{\kappa ^2 \sigma ^2 }{\beta ^2}\log \left[\cosh \left(\frac{\sqrt{2} \beta  \rho  \left(x-C_1 \kappa ^2 \sigma ^2\right)}{\kappa  \sigma ^2}\right)\right]
 \end{equation}
 Les conditions aux limites $F(0)=F(c)=0$ permettent de déterminer les constantes $C_1$ et $C_2$ en résolvant le système suivant:
@@ -198,11 +198,15 @@ Les conditions aux limites $F(0)=F(c)=0$ permettent de déterminer les constante
 \end{aligned}\right.
 \end{align*}
 Les constantes $C_1$ et $C_2$ s'écrivent donc:
-\begin{equation}\label{control_2_constants}
+\[
     \begin{aligned}
         C_1&=\frac{c}{2 \kappa ^2 \sigma ^2}\\
-        C_2&=\frac{\kappa ^2 \sigma ^2 }{\beta ^2}\log \left[\frac{\exp\left({\frac{\sqrt{2} \beta  c \rho }{\kappa  \sigma ^2}}\right)+1}{2 {\left(\exp{\left(\frac{\sqrt{2} \beta  c \rho }{\kappa  \sigma ^2}\right)}\right)}^{1/2}}\right]
+        C_2&=\frac{\kappa ^2 \sigma ^2 }{\beta ^2}\log \left[\cosh\left(\frac{\beta\rho c}{\sqrt{2}\kappa\sigma^2}\right)\right]
     \end{aligned}
+\]
+L'expression finale de la fonction valeur est donc:
+\begin{equation}\label{sol_control_2}
+    F(x)=\frac{\kappa ^2 \sigma ^2 }{\beta ^2}\left(\log \left[\cosh\left(\frac{\beta\rho c}{\sqrt{2}\kappa\sigma^2}\right)\right]-\log \left[\cosh \left(\frac{\sqrt{2} \beta  \rho  \left(x-\frac{c}{2}\right)}{\kappa  \sigma ^2}\right)\right]\right)
 \end{equation}
 Enfin, le contrôle optimal associé est:
 \begin{equation}\label{optimal_control2}
@@ -212,15 +216,15 @@ Enfin, le contrôle optimal associé est:
     \end{aligned}
 \end{equation}
 \subsection{P2 \textemdash~Visualisation}
-D'abord, et comme pour P1, les paramètres des coûts sont fixés à 1 et la fonction valeur (\ref{sol_control_2},~\ref{control_2_constants}) et la commande optimale (\ref{optimal_control2}) sont tracées.
+D'abord, et comme pour P1, les paramètres des coûts sont fixés à 1 et la fonction valeur (\ref{sol_control_2}) et la commande optimale (\ref{optimal_control2}) sont tracées.
 \begin{figure}[htb]
     \centering
-    \begin{subfigure}{0.45\linewidth}
+    \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P2/p2_value.pdf}
         \caption{P2 \textemdash~Fonction Valeur $F(x)$}\label{fig:ValueVisualisation2}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.45\linewidth}
+    \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P2/p2_control.pdf}
         \caption{P2 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:ControlVisualisation2}
     \end{subfigure}
@@ -294,12 +298,12 @@ La commande optimale est donc:
 La fonction valeur (\ref{sol_control_3}) ainsi que la commande optimale (\ref{optimal_control_3}) sont tracés.
 \begin{figure}[htb]
     \centering
-    \begin{subfigure}{0.45\linewidth}
+    \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P3/p3_value.pdf}
         \caption{P3 \textemdash~Fonction Valeur $F(x)$}\label{fig:ValueVisualisation3}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.45\linewidth}
+    \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P3/p3_control.pdf}
         \caption{P3 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:ControlVisualisation3}
     \end{subfigure}
@@ -339,12 +343,12 @@ La commande optimale associée est alors:
 La fonction valeur (\ref{sol_control_4}) ainsi que la commande optimale (\ref{optimal_control_4}) sont tracés.
 \begin{figure}[htb]
     \centering
-    \begin{subfigure}{0.45\linewidth}
+    \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P4/p4_value.pdf}
         \caption{P4 \textemdash~Fonction Valeur $F(x)$}\label{fig:ValueVisualisation4}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.45\linewidth}
+    \begin{subfigure}{0.49\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P4/p4_control.pdf}
         \caption{P4 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:ControlVisualisation4}
     \end{subfigure}
