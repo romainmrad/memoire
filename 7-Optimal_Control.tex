@@ -62,22 +62,22 @@ avec $F(0)=F(c)=0$ et $r(x)\neq0, b(x)\neq0, q(x)>0$.
 Il faut donc procéder à la résolution de l'équation (\ref{control_equation}). Whittle~\cite{whittle1982} a montré que la transformation: 
 \[F(x)=-K\log(\varphi(x))\]
 avec $\varphi(0)=\varphi(c)=1$ permet de linéariser l'équation si:
-\[
-K{b(x)}^2=\sigma^2xq(x),\quad K\in\mathds{R}
-\]
+\begin{equation}\label{condition1}
+    K{b(x)}^2=\sigma^2xq(x),\quad K\in\mathds{R}
+\end{equation}
 L'équation devient:
 \begin{equation}\label{linearised_equation}
     \frac{1}{2}\sigma^2 x\varphi''(x) + a(b - x)\varphi'(x) - \frac{r(x)}{K}\varphi(x) = 0
 \end{equation}
 Dans le cas où le terme suivant est constant:
-\begin{equation}\label{condition}
+\begin{equation}\label{condition2}
     \frac{r(x)}{K}\equiv k\in\mathds{R}\;\forall\;x
 \end{equation}
 l'équation (\ref{linearised_equation}) est identique à celle de la \acl{FGM} $M(x;\alpha)$ pour:
 \[
 \alpha\equiv\frac{r(x)}{K}
 \]
-Cela permet de résoudre une multitude de problèmes en supposant différentes formes pour $r(x)$, $b(x)$ et $q(x)$ tout en satisfaisant la condition (\ref{condition}). 
+Cela permet de résoudre une multitude de problèmes en supposant différentes formes pour $r(x)$, $b(x)$ et $q(x)$ tout en satisfaisant la condition (\ref{condition1},~\ref{condition2}). 
 
 Soit les coûts suivants:
 \begin{itemize}
@@ -175,17 +175,109 @@ La fonction valeur $F(x)$ (\ref{sol_control_1},~\ref{control_constants}) et le c
     \centering
     \includegraphics[width=0.9\linewidth]{img/validation/P1/p1_control_simulation.pdf}
     \caption{P1 \textemdash~Visualisation de l'effet de la commande optimale}\label{fig:Simulation1}
-\end{figure}\FloatBarrier\subsection{P2 \textemdash~Résolution}\label{p3}
+\end{figure}\FloatBarrier\pagebreak\subsection{P2 \textemdash~Résolution}\label{p2}
+Soit le problème suivant:
+\begin{itemize}
+    \item $r(x) = \rho^2x$: coût immédiat linéaire en $x$, indépendant du contrôle;
+    \item $b(x) = \beta\sqrt{x}$: coût du contrôle proportionnel à $\sqrt{x}$ (dynamique semblable à celle de la diffusion du \acs{CIR});
+    \item $q(x) = \kappa^2$: poids pénalisant l'intensité du contrôle constant.
+\end{itemize}
+Les conditions (\ref{condition1},~\ref{condition2}) n'étant pas satisfaites, ce problème ne permet pas une linéarisation facile. Il faut donc le résoudre d'une autre manière. En éliminant le retour à la moyenne ($a=0$) l'équation (\ref{control_equation}) devient:
+\[
+\rho^2x-\frac{\beta^2x}{2\kappa^2}{F'(x)}^2+\frac{1}{2}\sigma^2xF''(x)=0
+\]
+\textit{Mathematica} donne comme solution:
+\begin{equation}\label{sol_control_2}
+    F(x)=C_2-\frac{\kappa ^2 \sigma ^2 }{\beta ^2}\log \left[\cosh \left(\frac{\sqrt{2} \beta  \rho  \left(x-C_1 \kappa ^2 \sigma ^2\right)}{\kappa  \sigma ^2}\right)\right]
+\end{equation}
+Les conditions aux limites $F(0)=F(c)=0$ permettent de déterminer les constantes $C_1$ et $C_2$ en résolvant le système suivant:
+\begin{align*}
+\left\{\begin{aligned}
+    C_2-\frac{\kappa ^2 \sigma ^2 }{\beta ^2}\log \left[\cosh \left(\frac{\sqrt{2} \beta  \rho  \left(-C_1 \kappa ^2 \sigma ^2\right)}{\kappa  \sigma ^2}\right)\right]&=0\\
+    C_2-\frac{\kappa ^2 \sigma ^2 }{\beta ^2}\log \left[\cosh \left(\frac{\sqrt{2} \beta  \rho  \left(c-C_1 \kappa ^2 \sigma ^2\right)}{\kappa  \sigma ^2}\right)\right]&=0
+\end{aligned}\right.
+\end{align*}
+Les constantes $C_1$ et $C_2$ s'écrivent donc:
+\begin{equation}\label{control_2_constants}
+    \begin{aligned}
+        C_1&=\frac{c}{2 \kappa ^2 \sigma ^2}\\
+        C_2&=\frac{\kappa ^2 \sigma ^2 }{\beta ^2}\log \left[\frac{\exp\left({\frac{\sqrt{2} \beta  c \rho }{\kappa  \sigma ^2}}\right)+1}{2 {\left(\exp{\left(\frac{\sqrt{2} \beta  c \rho }{\kappa  \sigma ^2}\right)}\right)}^{1/2}}\right]
+    \end{aligned}
+\end{equation}
+Enfin, le contrôle optimal associé est:
+\begin{equation}\label{optimal_control2}
+    \begin{aligned}
+        u^*(x)&=-\frac{\beta\sqrt{x}}{\kappa^2}F'(x)\\
+        &=\frac{\sqrt{2} \rho}{\kappa}  \sqrt{x} \tanh \left[\frac{\sqrt{2} \beta  \rho  \left(x-\frac{c}{2}\right)}{\kappa  \sigma ^2}\right]
+    \end{aligned}
+\end{equation}
+\subsection{P2 \textemdash~Visualisation}
+D'abord, et comme pour P1, les paramètres des coûts sont fixés à 1 et la fonction valeur (\ref{sol_control_2},~\ref{control_2_constants}) et la commande optimale (\ref{optimal_control2}) sont tracées.
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_value.pdf}
+        \caption{P2 \textemdash~Fonction Valeur $F(x)$}\label{fig:ValueVisualisation2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_control.pdf}
+        \caption{P2 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:ControlVisualisation2}
+    \end{subfigure}
+    \caption{P2 \textemdash~Visualisation de la fonction valeur et du contrôle optimal}\label{fig:ValueControlComparison2}
+\end{figure}\FloatBarrier Ensuite, la sensibilité aux paramètres des coûts est visualisée.
+\begin{figure}[htb]
+    \centering
+    % Ligne 1 : Sensibilité à rho
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_R_value.pdf}
+        \caption{P2 \textemdash~Fonction Valeur $F(x)$, $r(x)=\rho^2x$}\label{fig:RhoValueVisualisation2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_R_control.pdf}
+        \caption{P2 \textemdash~Contrôle Optimal $u^*(x)$, $r(x)=\rho^2x$}\label{fig:RhoControlVisualisation2}
+    \end{subfigure}
+
+    % Ligne 2 : Sensibilité à beta
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_B_value.pdf}
+        \caption{P2 \textemdash~Fonction Valeur $F(x)$, $b(x)=\beta \sqrt{x}$}\label{fig:BetaValueVisualisation2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_B_control.pdf}
+        \caption{P2 \textemdash~Contrôle Optimal $u^*(x)$, $b(x)=\beta \sqrt{x}$}\label{fig:BetaControlVisualisation2}
+    \end{subfigure}
+
+    % Ligne 3 : Sensibilité à kappa
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_K_value.pdf}
+        \caption{P2 \textemdash~Fonction Valeur $F(x)$, $q(x)=\kappa^2$}\label{fig:KappaValueVisualisation2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P2/p2_K_control.pdf}
+        \caption{P2 \textemdash~Contrôle Optimal $u^*(x)$, $q(x)=\kappa^2$}\label{fig:KappaControlVisualisation2}
+    \end{subfigure}
+    \caption{P2 \textemdash~Sensibilité des fonctions valeur $F(x)$ et contrôle optimal $u^*(x)$}\label{fig:ParamSensitivityP2}
+\end{figure}
+\FloatBarrier Enfin, une simulation est effectuée avec le même tirage aléatoire.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/validation/P2/p2_control_simulation.pdf}
+    \caption{P2 \textemdash~Visualisation de l'effet de la commande optimale}\label{fig:Simulation2}
+\end{figure}\FloatBarrier\subsection{P3 \textemdash~Résolution}\label{p3}
 Soit le problème suivant:
 \begin{itemize}
     \item $r(x) = x^2$: coût immédiat quadratique en $x$, indépendant du contrôle;
     \item $b(x) = x$: coût du contrôle linéaire égal à $x$;
     \item $q(x) \equiv 1$: poids pénalisant l'intensité du contrôle constant.
 \end{itemize}
-La condition (\ref{condition}) n'étant pas satisfaite, ce problème ne permet pas une linéarisation facile. Il faut donc le résoudre d'une autre manière. En éliminant le retour à la moyenne ($a=0$) et en posant $\sigma=1$, l'équation (\ref{control_equation}) se réduit à:
-\begin{equation}\label{reduced_control_equation}
+Comme pour P2, la linéarisation n'est pas possible car les conditions (\ref{condition1},\ref{condition2}) ne sont pas satisfaites. En éliminant le retour à la moyenne ($a=0$) et en posant $\sigma=1$, l'équation (\ref{control_equation}) se réduit à:
+\[
     x^2-\frac{x^2}{2}{F'(x)}^2+\frac{1}{2}xF''(x)=0
-\end{equation}
+\]
 Le logiciel de calcul symbolique \textit{Maple} donne comme solution pour $F(0)=0$ (avec $C_1$ une constante à déterminer):
 \[
     F(x)=\int_0^x-\sqrt{2}\tanh\left(\frac{\sqrt{2}z^2}{2}+C_1\sqrt{2}\right)dz
@@ -198,36 +290,81 @@ La commande optimale est donc:
 \begin{equation}\label{optimal_control_3}
     u^*(x)\simeq x\sqrt{2}\tanh\left(\frac{\sqrt{2}x^2}{2}-0.1652\sqrt{2}\right)
 \end{equation}
-\subsection{P2 \textemdash~Visualisation}
+\subsection{P3 \textemdash~Visualisation}
 La fonction valeur (\ref{sol_control_3}) ainsi que la commande optimale (\ref{optimal_control_3}) sont tracés.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{0.45\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P3/p3_value.pdf}
-        \caption{P2 \textemdash~Fonction Valeur $F(x)$}\label{fig:ValueVisualisation3}
+        \caption{P3 \textemdash~Fonction Valeur $F(x)$}\label{fig:ValueVisualisation3}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.45\linewidth}
         \includegraphics[width=\linewidth]{img/validation/P3/p3_control.pdf}
-        \caption{P2 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:ControlVisualisation3}
+        \caption{P3 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:ControlVisualisation3}
     \end{subfigure}
-    \caption{P2 \textemdash~Visualisation de la fonction valeur et du contrôle optimal}\label{fig:ValueControlComparison3}
+    \caption{P3 \textemdash~Visualisation de la fonction valeur et du contrôle optimal}\label{fig:ValueControlComparison3}
 \end{figure}
-\FloatBarrier Enfin, une simulation est aussi effectuée. 
+\FloatBarrier Une simulation est aussi effectuée. 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/validation/P3/p3_control_simulation.pdf}
-    \caption{P2 \textemdash~Visualisation de l'effet de la commande optimale}\label{fig:Simulation3}
+    \caption{P3 \textemdash~Visualisation de l'effet de la commande optimale}\label{fig:Simulation3}
+\end{figure}\FloatBarrier\subsection{P4 \textemdash~Résolution}
+Soit le problème où tous les coûts sont constants:
+\begin{itemize}
+    \item $r(x)\equiv\rho^2$;
+    \item $b(x)\equiv\beta$;
+    \item $q(x)\equiv\kappa^2$.
+\end{itemize}
+Comme ce qui précède, cette configuration ne permet pas de linéariser l'équation de la fonction valeur. En éliminant le retour à la moyenne, cette dernière devient:
+\[
+\rho ^2-\frac{\beta ^2 {F'(x)}^2}{2 \kappa ^2}+\frac{1}{2} \sigma ^2 x F''(x)=0
+\]
+La solution donnée par \textit{Mathematica} est:
+\[
+    F(x)=\frac{\sqrt{2} \kappa  \rho  x }{\beta}\left[2 \; _2F_1\left(\begin{bmatrix}1\\\frac{\kappa  \sigma ^2}{2 \sqrt{2} \beta  \rho }\end{bmatrix},\frac{\kappa  \sigma ^2}{2 \sqrt{2} \beta  \rho }+1,-e^{-2 \sqrt{2} \beta  \kappa  \rho  C_1} x^{\frac{2 \sqrt{2} \beta  \rho }{\kappa  \sigma ^2}}\right)-1\right]+C_2
+\]
+avec $C_1$ et $C_2$ des constantes à déterminer et $_pF_q(\cdot,\cdot,\cdot)$ la fonction hypergéométrique généralisée (voir~\ref{special_functions}). En posant $\sigma=\rho=\beta=\kappa=1$, la solution devient:
+\begin{equation}\label{sol_control_4}
+    F(x)\simeq\sqrt{2} x \left[2 \; _2F_1\left(\begin{bmatrix}1\\\frac{1}{2 \sqrt{2}}\end{bmatrix},\frac{\sqrt{2}+4}{4} ,-9.76175 x^{2 \sqrt{2}}\right)-1\right]
+\end{equation}
+La commande optimale associée est alors:
+\begin{equation}\label{optimal_control_4}
+    \begin{aligned}
+        u^*(x)\simeq20.3985 x^{2 \sqrt{2}} \, _2F_1\left(\begin{bmatrix}2\\1+\frac{1}{2 \sqrt{2}}\end{bmatrix},\frac{\sqrt{2}+8}{4},-9.76175 x^{2 \sqrt{2}}\right)\\-\sqrt{2} \left[2 \; _2F_1\left(\begin{bmatrix}1\\\frac{1}{2 \sqrt{2}}\end{bmatrix},\frac{\sqrt{2}+4}{4} ,-9.76175 x^{2 \sqrt{2}}\right)-1\right]     
+    \end{aligned}
+\end{equation}
+\subsection{P4 \textemdash~Visualisation}
+La fonction valeur (\ref{sol_control_4}) ainsi que la commande optimale (\ref{optimal_control_4}) sont tracés.
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P4/p4_value.pdf}
+        \caption{P4 \textemdash~Fonction Valeur $F(x)$}\label{fig:ValueVisualisation4}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/P4/p4_control.pdf}
+        \caption{P4 \textemdash~Contrôle Optimal $u^*(x)$}\label{fig:ControlVisualisation4}
+    \end{subfigure}
+    \caption{P4 \textemdash~Visualisation de la fonction valeur et du contrôle optimal}\label{fig:ValueControlComparison4}
+\end{figure}
+\FloatBarrier Par ailleurs, une simulation est effectuée. 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/validation/P4/p4_control_simulation.pdf}
+    \caption{P4 \textemdash~Visualisation de l'effet de la commande optimale}\label{fig:Simulation4}
 \end{figure}\FloatBarrier\section{Validation}
-Il est important de souligner que, dans les deux problèmes étudiés et pour les différentes valeurs des paramètres considérés:
+Il est important de souligner que, dans les quatre problèmes étudiés et pour les différentes valeurs des paramètres considérés:
 \begin{itemize}
     \item Les conditions aux limites $F(0)=F(c)=0$ sont toujours respectées;
     \item La fonction valeur est toujours positive, le coût encouru étant nécessairement positif;
     \item Le contrôle optimal est négatif lorsque \( x \to 0^+ \), l'optimiseur cherchant à diriger rapidement le processus vers la frontière inférieure, plus proche. Inversement, pour \( x \to c^-\), le contrôle devient positif afin d'accélérer l'atteinte de la frontière supérieure;
-    \begin{sloppypar}\item Une augmentation du coût immédiat $\rho$, induisant une hausse du coût encouru (\ref{fig:RhoValueVisualisation1}), entraîne un renforcement du contrôle optimal ($|u^*(x)|$ augmente dans~\ref{fig:RhoControlVisualisation1}), traduisant ainsi une volonté accrue de quitter l'intervalle aussi rapidement que possible;\end{sloppypar}
-    \item Une hausse du coût du contrôle $\beta$ incite à intensifier le contrôle optimal (\ref{fig:BetaControlVisualisation1}) afin de quitter l'intervalle plus rapidement. Cette stratégie réduit la durée d'exposition au coût instantané, ce qui compense partiellement le surcoût du contrôle et diminue le coût total encouru $F(x)$ (\ref{fig:BetaValueVisualisation1});
-    \item Une augmentation du poids pénalisant le contrôle $\kappa$, induisant une hausse du coût encouru (\ref{fig:KappaValueVisualisation1}), entraîne une relaxation du contrôle optimal (\ref{fig:KappaControlVisualisation1}). En effet, plus le poids du contrôle est élevé, moins il est intéressant d'appliquer un contrôle fort;
-    \item Les simulations (\ref{fig:Simulation1},~\ref{fig:Simulation3}) mettent en évidence l'effet du contrôle optimal, qui accélère la sortie du processus par rapport au cas non contrôlé. Pour valider cette observation, 1000 trajectoires sont simulées pour chaque problème, et la durée moyenne jusqu'à la sortie est comparée. Un facteur d'accélération est ensuite estimé (voir annexe~\ref{control_simulations} pour les détails du calcul):
+    \begin{sloppypar}\item Une augmentation du coût immédiat $\rho$, induisant une hausse du coût encouru (\ref{fig:RhoValueVisualisation1},~\ref{fig:RhoValueVisualisation2}), entraîne un renforcement du contrôle optimal ($|u^*(x)|$ augmente dans~\ref{fig:RhoControlVisualisation1},~\ref{fig:RhoControlVisualisation2}), traduisant ainsi une volonté accrue de quitter l'intervalle aussi rapidement que possible;\end{sloppypar}
+    \item Une hausse du coût du contrôle $\beta$ incite à intensifier le contrôle optimal (\ref{fig:BetaControlVisualisation1},~\ref{fig:BetaControlVisualisation2}) afin de quitter l'intervalle plus rapidement. Cette stratégie réduit la durée d'exposition au coût instantané, ce qui compense partiellement le surcoût du contrôle et diminue le coût total encouru $F(x)$ (\ref{fig:BetaValueVisualisation1},~\ref{fig:BetaValueVisualisation2});
+    \item Une augmentation du poids pénalisant le contrôle $\kappa$, induisant une hausse du coût encouru (\ref{fig:KappaValueVisualisation1},~\ref{fig:KappaValueVisualisation2}), entraîne une relaxation du contrôle optimal (\ref{fig:KappaControlVisualisation1},~\ref{fig:KappaControlVisualisation2}). En effet, plus le poids du contrôle est élevé, moins il est intéressant d'appliquer un contrôle fort;
+    \item Les simulations (\ref{fig:Simulation1},~\ref{fig:Simulation2},~\ref{fig:Simulation3},~\ref{fig:Simulation4}) mettent en évidence l'effet du contrôle optimal, qui accélère la sortie du processus par rapport au cas non contrôlé. Pour valider cette observation, 1000 trajectoires sont simulées pour chaque problème, et la durée moyenne jusqu'à la sortie est comparée. Un facteur d'accélération est ensuite estimé (voir annexe~\ref{control_simulations} pour les détails du calcul):
     \begin{table}[htb]
         \centering
         \caption{Accélérations moyennes du temps de sortie}\label{tab:acceleration_results}
@@ -236,18 +373,21 @@ Il est important de souligner que, dans les deux problèmes étudiés et pour le
         \hline
         Problème & Accélération Moyenne \\\hline\hline
         P1 & 2.660552 \\
-        %P2 & 2.690582 \\
-        P2 & 1.065163 \\\hline
+        P2 & 1.254483 \\
+        P3 & 1.065163 \\
+        P4 & 2.284579 \\
+        \hline
         \end{tabular}
     \end{table}
 \end{itemize}\FloatBarrier Ainsi, les expressions obtenues pour la fonction valeur $F(x)$ et le contrôle optimal $u^*(x)$ sont validées.
 
 Ces observations générales fournissent un cadre d'interprétation cohérent pour les stratégies optimales. Ces dernières sont détaillées dans la partie qui suit.
 \section{Politiques Optimales}
-À partir des simulations réalisées, de l'analyse des profils des commandes optimales \( u^*(x) \) illustrés dans les figures~\ref{fig:ControlVisualisation1} et~\ref{fig:ControlVisualisation3}, ainsi que de leur mise en relation avec les structures de coûts propres à chaque configuration, il est possible de caractériser précisément les différentes stratégies de contrôle optimales associées à chacun des problèmes étudiés:
+À partir des simulations réalisées, de l'analyse des profils des commandes optimales \( u^*(x) \) illustrés dans les figures (\ref{fig:ControlVisualisation1},~\ref{fig:ControlVisualisation2},~\ref{fig:ControlVisualisation3} et~\ref{fig:ControlVisualisation4}), ainsi que de leur mise en relation avec les structures de coûts propres à chaque configuration, il est possible de caractériser précisément les différentes stratégies de contrôle optimales associées à chacun des problèmes étudiés:
 \begin{itemize}
-    \item \textbf{Stratégie P1}: La politique optimale en configuration P1 adopte une structure à seuil, avec un point critique situé autour de \(x^* \approx 0.33\). Pour \(x < x^*\), le contrôle diverge rapidement vers \(-\infty\), tirant agressivement le processus vers la borne inférieure. Ce comportement traduit une exploitation stratégique de la structure des coûts \(b(x) = q(x) = x\), qui tendent eux aussi vers zéro, rendant le contrôle intensif peu pénalisant dans cette région. Inversement, pour \(x > x^*\), le contrôle devient positif mais reste modéré, poussant le processus vers la borne supérieure de l'intervalle jusqu'à \(u(1)\approx1.4\).
+    \item \textbf{Stratégie P1}: La politique optimale en configuration P1 adopte une structure à seuil, avec un point critique situé autour de \(x^* \approx 0.33\). Pour \(x < x^*\), le contrôle diverge rapidement vers \(-\infty\), tirant agressivement le processus vers la borne inférieure. Ce comportement traduit une exploitation stratégique de la structure des coûts \(b(x) = q(x) = x\), qui tendent eux aussi vers zéro, rendant le contrôle intensif peu pénalisant dans cette région. Inversement, pour \(x > x^*\), le contrôle devient positif mais reste modéré, poussant le processus vers la borne supérieure de l'intervalle jusqu'à \(u(1)\approx1.4\). L'asymétrie du seuil observée dans cette politique s'explique par la nature du coût d'état constant \(r(x)\equiv1\) ainsi que deux mécanismes complémentaires. Premièrement, la dynamique du processus \acs{CIR} possède un terme de retour à la moyenne dirigé vers \(b\) (fixé ici à 0.9). Ainsi, dès que le processus est situé en dessous de cette valeur, il bénéficie naturellement d'une poussée ascendante, ce qui rend avantageux de renforcer cette tendance au-delà du seuil \(x^*\) par un contrôle positif. Deuxièmement, la diffusion du processus étant proportionnelle à \(\sqrt{X(t)}\), les perturbations aléatoires sont fortement atténuées près de zéro. Il est donc inefficace de chercher à atteindre la borne inférieure depuis une position trop éloignée, et le contrôle n'est justifié dans cette direction que pour des valeurs suffisamment petites de \(x\) (en-dessous du seuil $x^*$). Ce comportement est corroboré par une analyse empirique: sur 1000 trajectoires simulées, le processus s'échappe par la borne supérieure dans 67\,\% des cas (voir~\ref{tab:simulation_exit_frequency});
+    \item \textbf{Stratégie P2}: La politique optimale pour le problème P2 est aussi une politique à seuil $x^*\approx0.5$. Sans retour à la moyenne, le \acs{CIR} ne bénéficie d'aucune dérive, rendant ainsi le seuil d'inversion du contrôle au centre de l'intervalle \((0,c)\). D'un côté, lorsque le processus s'approche de 0, la commande \(u^*(x)\) s'annule, comme le coût d'état \(r(x)=\rho^2x\) et le coût de contrôle \(b(x)=\beta\sqrt{x}\) s'annulent aussi. L'optimiseur attend donc que la dynamique propre du \acs{CIR} entraîne la sortie. D'un autre côté, plus le processus s'approche de la borne supérieure, plus le contrôle augmente, comme le coût d'état devient conséquent. L'optimiseur cherche alors à provoquer une sortie le plus rapidement possible. Cependant, le contrôle appliqué dans les deux directions reste toujours modéré comme le poids pénalisant l'intensité du contrôle est constant \(q(x)=\kappa^2\). Cela est validé par le facteur d'accélération moyen d'environ 1.25 (\ref{tab:acceleration_results}), ce qui confirme une accélération de sortie modérée, ni excessive ni négligeable, cohérente avec l'intensité relativement stable du contrôle appliqué;
+    \item \textbf{Stratégie P3}: La politique optimale correspond à une stratégie d'évasion passive. Bien qu'un seuil \(x^*\approx0.574\) subsiste, marquant l'inversion du signe de la commande, l'amplitude de \(u^*(x)\) demeure globalement faible. En effet, comme pour P2,  le poids pénalisant l'intensité du contrôle étant constant \(q(x) \equiv 1\), l'optimiseur n'est pas particulièrement incité à appliquer une commande intensive. Celui-ci n'intervient donc qu'avec un contrôle faible, sans chercher à forcer activement la dynamique du processus. Ce comportement est confirmé par le faible facteur d'accélération observé, estimé à 1.06 (voir~\ref{tab:acceleration_results}), ainsi qu'une fréquence de sortie pour chaque frontière presque identique à celle du processus non-contrôlé (\ref{tab:simulation_exit_frequency}), indiquant une quasi-absence de différence entre les trajectoires contrôlées et non contrôlées;
+    \item \textbf{Stratégie P4}: Cette configuration correspond au cas où tous les coûts sont constants et où le processus \acs{CIR} est sans retour à la moyenne. La politique optimale est alors presque symétrique autour du seuil d'inversion $x^* \approx 0.44$ : le contrôle s'intensifie progressivement à mesure que le processus approche les frontières, sans pour autant diverger. Ce comportement est cohérent, car l'optimiseur supporte un coût uniforme quelle que soit la position du processus. On observe toutefois une légère asymétrie du seuil. Comme mentionné précédemment, l'optimiseur cherche à exploiter les perturbations aléatoires plus marquées lorsque $X(t) \to c$, du fait de la diffusion proportionnelle à $\sqrt{X(t)}$. Il est donc jugé optimal d'appliquer un contrôle positif (quoique modéré) dès que $X(t) > x^*$. En revanche, lorsque $X(t) \to 0$, le contrôle devient plus intense que dans la direction opposée, afin de compenser la diminution des fluctuations aléatoires. Les simulations confirment cette analyse avec une fréquence de sortie par zéro d'environ 53\,\% (voir~\ref{tab:simulation_exit_frequency}), ainsi qu'un facteur d'accélération moyen de 2.28 (voir~\ref{tab:acceleration_results}), traduisant une sortie significativement anticipée tout en restant dans un régime de contrôle modéré.
 
-    L'asymétrie du seuil observée dans cette politique s'explique par la nature du coût d'état constant \(r(x)\equiv1\) ainsi que deux mécanismes complémentaires. Premièrement, la dynamique du processus \acs{CIR} possède un terme de retour à la moyenne dirigé vers \(b\) (fixé ici à 0.9). Ainsi, dès que le processus est situé en dessous de cette valeur, il bénéficie naturellement d'une poussée ascendante, ce qui rend avantageux de renforcer cette tendance au-delà du seuil \(x^*\) par un contrôle positif. Deuxièmement, la diffusion du processus étant proportionnelle à \(\sqrt{X(t)}\), les perturbations aléatoires sont fortement atténuées près de zéro. Il est donc inefficace de chercher à atteindre la borne inférieure depuis une position trop éloignée, et le contrôle n'est justifié dans cette direction que pour des valeurs suffisamment petites de \(x\) (en-dessous du seuil $x^*$). Ce comportement est corroboré par une analyse empirique: sur 1000 trajectoires simulées, le processus s'échappe par la borne supérieure dans 67\,\% des cas (voir~\ref{tab:simulation_exit_frequency});
-    \item \textbf{Stratégie P2}: La politique optimale correspond à une stratégie d'évasion passive. Bien qu'un seuil \(x^*\approx0.574\) subsiste, marquant l'inversion du signe de la commande, l'amplitude de \(u(x)\) demeure globalement faible. En effet, avec un poids pénalisant l'intensité du contrôle constant \(q(x) \equiv 1\), l'optimiseur n'est pas particulièrement incité à appliquer une commande intensive. Celui-ci n'intervient donc qu'avec un contrôle faible, sans chercher à forcer activement la dynamique du processus. Ce comportement est confirmé par le faible facteur d'accélération observé, estimé à 1.06 (voir~\ref{tab:acceleration_results}), ainsi qu'une fréquence de sortie pour chaque frontière presque identique à celle du processus non-contrôlé (\ref{tab:simulation_exit_frequency}), indiquant une quasi-absence de différence entre les trajectoires contrôlées et non contrôlées.
 \end{itemize}

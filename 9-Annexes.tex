@@ -51,7 +51,7 @@ Le symbole de Pochhammer (ou factoriel ascendant) est défini par:
     \]
     \item La fonction hypergéométrique généralisée est définie par:
     \[
-    _p F_q\left([s_1,\dots s_p],\,[t_1\dots t_q],\,z\right):=\sum_{n=0}^\infty\frac{{(s_1)}_n\cdots{(s_p)}_n}{{(t_1)}_n\cdots {(t_q)}_n}\frac{z^n}{n!}
+    _p F_q\left(\begin{bmatrix}s_1\\\vdots\\s_p\end{bmatrix},\begin{bmatrix}t_1\\\vdots\\t_q\end{bmatrix},\,z\right):=\sum_{n=0}^\infty\frac{{(s_1)}_n\cdots{(s_p)}_n}{{(t_1)}_n\cdots {(t_q)}_n}\frac{z^n}{n!}
     \]
     Il est intéressant de noter que la fonction hypergéométrique confluente de première espèce $\Phi(\cdot,\cdot,\cdot)$ n'est autre que le cas particulier $_1F_1(\cdot,\cdot,\cdot)$.
 \end{itemize}
@@ -167,29 +167,37 @@ Les longueurs moyennes des trajectoires avec et sans contrôle simulées pour ch
         Longueur moyenne CIR contrôlé \\
         \hline\hline
         P1 & 6904.4004 & 2595.1005 \\
-        %P2 & 7539.4178 & 2802.1509 \\
-        P2 & 7004.5290 & 6576.0133 \\
+        P2 & 6927.486 & 5522.185 \\
+        P3 & 7004.5290 & 6576.0133 \\
+        P4 & 7291.346 & 3191.549 \\
         \hline
         \end{tabular}
 \end{table}\FloatBarrier Ces dernières sont mesurées en discrétisant la trajectoire avec des pas temporels de longueur $10^{-4}$. Il est donc possible d'estimer un facteur d'accélération moyenne pour le temps de sortie comme suit: 
 \[
-\text{Accélération}=\frac{\text{Longueur moyenne CIR non contrôlé}}{\text{Longueur moyenne CIR contrôlé}}
+\text{Accélération}:=\frac{\text{Longueur moyenne CIR non contrôlé}}{\text{Longueur moyenne CIR contrôlé}}
 \]
-
+\pagebreak
 \section*{Statistiques de sortie}
-La fréquence de sortie par chaque frontière peut être estimée pour chaque configuration étudiée:
+La fréquence de sortie par chaque frontière peut être estimée pour chaque configuration étudiée. Sur 1000 simulations, le calcul est:
+\begin{itemize}
+    \item Fréquence de sortie en 0:
+    \[\bar{f_0}:=\frac{1}{1000}\sum_{i=1}^{1000}\mathds{1}_{X(\tau(x))=0}\]
+    \item Fréquence de sortie en $c$:
+    \[\bar{f_c}:=1-\bar{f_0}\]
+\end{itemize}
 \begin{table}[htb]
     \centering
     \caption{Fréquence de sortie des trajectoires simulées}\label{tab:simulation_exit_frequency}
     \renewcommand{\arraystretch}{1.4}
     \begin{tabular}{||c|c|c||}
         \hline
-        Configuration & Fréquence de Sortie en 0 & Fréquence de Sortie en $c=1$ \\
+        Configuration & Fréquence de sortie en 0 $\bar{f_0}$ & Fréquence de sortie en $c=1$ $\bar{f_c}$ \\
         \hline\hline
         Sans contrôle & 44.4\,\% & 55.6\,\% \\
         P1 & 33\,\% & 67\,\% \\
-        %P2 & 66.7\,\% & 33,3\,\% \\
-        P2 & 45.2\,\% & 54.8\,\% \\
+        P2 & 48.2\,\% & 51.8\,\% \\
+        P3 & 45.2\,\% & 54.8\,\% \\
+        P4 & 52.9\,\% & 47.1\,\% \\
         \hline
     \end{tabular}
 \end{table}
