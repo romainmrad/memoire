@@ -276,75 +276,22 @@ En reprenant les termes de dérive et de diffusion du \acs{CIR} (\ref{cir_eq}), 
 \sigma ^2 x D'''(x)+D''(x) \left[2 a (b-x)+\sigma ^2-\nu  \sigma ^2x\right]-2 D'(x) [a \nu  (b-x)+a+\lambda ]=0
 \]
 Cependant, une expression explicite pour $D(x)$, si elle existe, est très difficile à obtenir. Cela rend donc la résolution du problème général assez compliqué. 
-\paragraph{Résolution exacte pour $a=0$}\phantom{}\\
+\paragraph{Résolution pour $a=0$}\phantom{}\\
 En considérant le cas du \acs{CIR} à sauts sans retour à la moyenne ($a=0$) et en posant \(\sigma=c=\lambda=\nu=1\), \textit{Maple}  donne l'expression suivante:
 \begin{equation}\label{overshoot_exact_sol}
     D(x)=2xe^{x}\left[E_1(x)-E_1(1)\right]
 \end{equation}
 avec $E_n(x)$ la fonction intégrale exponentielle généralisée (voir annexe~\ref{special_functions}).
-\paragraph{Résolution approximative pour $a=0$}\phantom{}\\
-En remplaçant $D(x+y)$ dans (\ref{initial_overshoot_ide}) par un développement de Taylor, il est possible de réécrire l'intégrale comme suit:
-\[
-\begin{aligned}
-    \lambda\int_0^{+\infty}\left[D(x+y)-D(x)\right]\nu e^{-\nu y}dy&=\lambda\int_0^{+\infty}\left[\sum_{n=0}^{+\infty}\frac{y^n}{n!}\frac{d^n}{dx^n}D(x)-D(x)\right]\nu e^{-\nu y}dy\\
-    &=\lambda\int_0^{+\infty}\left[\sum_{n=1}^{+\infty}\frac{y^n}{n!}\frac{d^n}{dx^n}D(x)\right]\nu e^{-\nu y}dy
-\end{aligned}
-\]
-Ensuite, en échangeant la série et l'intégrale, le $n$-ème moment des sauts exponentiels apparaît, permettant ainsi de simplifier l'expression:
-\[
-\begin{aligned}
-    \lambda\int_0^{+\infty}\left[\sum_{n=1}^{+\infty}\frac{y^n}{n!}\frac{d^n}{dx^n}D(x)\right]\nu e^{-\nu y}dy&=\lambda\sum_{n=0}^{+\infty}\left[\frac{1}{n!}\frac{d^n}{dx^n}D(x)\int_0^{+\infty}y^n\nu e^{-\nu y}dy\right]\\
-    &=\lambda\sum_{n=0}^{+\infty}\frac{1}{n!}\frac{d^n}{dx^n}D(x)\mathds{E}\left[Y_i^n\right]\\
-    &=\lambda\sum_{n=0}^{+\infty}\frac{1}{\nu^n}\frac{d^n}{dx^n}D(x)
-\end{aligned}
-\]
-Par ailleurs, en supposant que les sauts sont petits ($\nu$ est grand), il est possible d'approximer la somme obtenue de la façon suivante:
-\[
-\sum_{n=0}^{+\infty}\frac{1}{\nu^n}\frac{d^n}{dx^n}D(x)\approx\frac{1}{\nu}D'(x)+\frac{1}{\nu^2}D''(x)
-\]
-L'équation (\ref{initial_overshoot_ide}) devient:
-\begin{equation}\label{final_overshoot_ode}
-    \left(\frac{1}{2}\sigma^2x+\frac{\lambda}{\nu^2}\right)D''(x)+\left[a(b-x)+\frac{\lambda}{\nu}\right]D'(x) =-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
-\end{equation}
-Cette \acs{EDO} de second ordre est non homogène avec des coefficients polynomiaux et un terme exponentiel. La solution explicite, si elle existe, est difficile à obtenir. Dans la suite, un cas particulier du problème est considéré.
-
-En éliminant le retour à la moyenne ($a=0$), l'\acs{EDO} (\ref{final_overshoot_ode}) devient:
-\begin{equation}\label{particular_overshoot_ode}
-    \left(\frac{1}{2}\sigma^2x+\frac{\lambda}{\nu^2}\right)D''(x)+\frac{\lambda}{\nu}D'(x) =-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
-\end{equation}
-\textit{Wolfram Mathematica} donne:
-\begin{equation}\label{sol_overshoot}
-    \begin{aligned}
-            D(x)=\frac{\lambda}{{\nu^2\sigma^2e^{\nu c}(2\lambda-\nu\sigma^2)}}\Bigg[\sigma^2\left(-C_1 \left(2 \lambda +\nu ^2 \sigma ^2 x\right)^{1-\frac{2 \lambda }{\nu  \sigma ^2}}+C_2 \nu  \left(2 \lambda -\nu  \sigma ^2\right)-2 \nu  e^{\nu  x}\right) \\-2 e^{-\frac{2 \lambda }{\nu  \sigma ^2}} \left(2 \lambda +\nu ^2 \sigma ^2 x\right) E_{1-\frac{2 \lambda }{\nu  \sigma ^2}}\left(-\frac{2 \lambda }{\nu  \sigma ^2}-x \nu \right)\Bigg]
-    \end{aligned}
-\end{equation}
-avec $E_n(x)$ la fonction intégrale exponentielle généralisée (voir annexe~\ref{special_functions}).
-
 \paragraph{Détermination des constantes}\phantom{}\\
 Les conditions aux limites $D(0)=D(c)=0$ permettent de déterminer les deux constantes $C_1$ et $C_2$. Étant donné la longueur des expressions obtenues, celles-ci ne seront pas détaillées dans le présent document.
 
 \subsection{Validation de l'expression obtenue}
 \paragraph{Visualisation}\phantom{}\\
-Afin de valider les résultat, les différentes fonctions sont tracées. D'abord, l'expression obtenue lors de la résolution exacte (\ref{overshoot_exact_sol}) est visualisée.
+Afin de valider le résultat, l'expression obtenue pour $D(x)$ (\ref{overshoot_exact_sol}) est tracée.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.5\linewidth]{img/validation/Ovs/exact.pdf}
     \caption{Visualisation de la fonction Dépassement Moyen $D(x)$}\label{fig:OvershootExactSol}
-\end{figure}
-\FloatBarrier Ensuite, la fonction approximative obtenue pour $D(x)$ en (\ref{sol_overshoot}) est tracée pour différentes valeurs de la fréquence des sauts $\lambda\in\{1,2,4\}$ ainsi que le paramètre de longueur des sauts $\nu\in\{10,15,20\}$.
-\begin{figure}[htb]
-    \centering
-    \begin{subfigure}{0.45\linewidth}
-        \includegraphics[width=\linewidth]{img/validation/Ovs/overshoot_lambda.pdf}
-        \caption{Sensibilité de la fréquence des sauts $\lambda,\;\forall\;\lambda\in\{1,2,4\}$ \textendash~$\nu=10$}\label{fig:Overshoot_lambda_visualisation}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\linewidth}
-        \includegraphics[width=\linewidth]{img/validation/Ovs/overshoot_nu.pdf}
-        \caption{Sensibilité de la taille des sauts $\nu,\;\forall\;\nu\in\{10,15,20\}$  \textendash~$\lambda=1$}\label{fig:Overshoot_nu_visualisation}
-    \end{subfigure}
-    \hfill
-    \caption{Visualisation de la fonction Dépassement Moyen $D(x)$}\label{fig:OvershootVisualisation}
 \end{figure}
 \FloatBarrier\paragraph{Analyse}\phantom{}\\
 Les différents points suivants sont relevés:
@@ -352,7 +299,6 @@ Les différents points suivants sont relevés:
     \item Les conditions aux limites $D(0)=D(c)=0$ sont respectées;
     \item La fonction représente un \textit{dépassement moyen}, elle doit donc être positive pour toute valeur $x$ dans $[0,c]$;
     \item Une augmentation de la fréquence des sauts $\lambda$ induit une augmentation du dépassement moyen. En effet, il devient plus probable que le processus effectue un saut juste avant d'atteindre la frontière, ce qui augmente les chances de la franchir avec un certain excès;
-    \item Une réduction de la taille des sauts (traduite par une augmentation de $\nu$) induit une diminution du dépassement moyen. En effet, même si un saut survient à proximité de la frontière, sa faible amplitude limite la distance franchie au-delà de celle-ci.
 \end{itemize}
 La fonction Dépassement Moyen $D(x)$ est donc validée.
 

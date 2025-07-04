@@ -13,9 +13,7 @@ Les résultats relatifs à la fonction génératrice des moments, à l'aire moye
 
 \section{Limitations}
 
-Les résultats présentés dans ce mémoire reposent sur des hypothèses spécifiques concernant les paramètres du processus CIR et la structure des coûts dans les problèmes de commande optimale. En particulier, les paramètres \(a\), \(b\) et \(\sigma\) du processus \acs{CIR} sont supposés constants dans le cadre de cette étude. Cette hypothèse permet de simplifier les équations différentielles associées, mais elle peut s'avérer restrictive lorsque ces paramètres varient en fonction du temps ou de l'état du processus. 
-
-De plus, bien que les solutions analytiques proposées soient valides dans ces contextes particuliers, comme le \acs{CIR} sans retour à la moyenne, elles peuvent perdre en pertinence dans des configurations plus complexes ou lorsque les hypothèses sur les fonctions de coût sont modifiées. En effet, si ces dernières sont non linéaires ou aléatoires, l'équation \acs{HJB} ne permet plus une linéarisation facile (comme dans~\cite{whittle1982}).
+Les résultats présentés dans ce mémoire reposent sur des hypothèses spécifiques concernant les paramètres du processus CIR et la structure des coûts dans les problèmes de commande optimale. En particulier, les paramètres \(a\), \(b\) et \(\sigma\) du processus \acs{CIR} sont supposés constants dans le cadre de cette étude. Cette hypothèse permet de simplifier les équations différentielles associées, mais elle peut s'avérer restrictive lorsque ces paramètres varient en fonction du temps ou de l'état du processus. De plus, bien que les solutions analytiques proposées soient valides dans ces contextes particuliers, comme le \acs{CIR} sans retour à la moyenne, elles peuvent perdre en pertinence lorsque la dérive est non-négligeable. Par ailleurs, les configurations de coûts étudiées en commande optimale réduisent le problème général à des cas spécifiques. Dans le cas où les coûts sont plus complexes, obtenir des formes fermées pour les solutions devient presque impossible.
 
 \section{Perspectives et améliorations futures}
 
