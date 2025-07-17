@@ -77,7 +77,7 @@ l'équation (\ref{linearised_equation}) est identique à celle de la \acl{FGM} $
 \[
 \alpha\equiv\frac{r(x)}{K}
 \]
-Cela permet de résoudre une multitude de problèmes en supposant différentes formes pour $r(x)$, $b(x)$ et $q(x)$ tout en satisfaisant la condition (\ref{condition1},~\ref{condition2}). 
+Cela permet de résoudre une multitude de problèmes en supposant différentes formes pour $r(x)$, $b(x)$ et $q(x)$ tout en satisfaisant les conditions (\ref{condition1},~\ref{condition2}). 
 
 Soit les coûts suivants:
 \begin{itemize}
@@ -182,7 +182,7 @@ Soit le problème suivant:
     \item $b(x) = \beta\sqrt{x}$: coût du contrôle proportionnel à $\sqrt{x}$ (dynamique semblable à celle de la diffusion du \acs{CIR});
     \item $q(x) = \kappa^2$: poids pénalisant l'intensité du contrôle constant.
 \end{itemize}
-Les conditions (\ref{condition1},~\ref{condition2}) n'étant pas satisfaites, ce problème ne permet pas une linéarisation facile. Il faut donc le résoudre d'une autre manière. En éliminant le retour à la moyenne ($a=0$) l'équation (\ref{control_equation}) devient:
+En éliminant le retour à la moyenne ($a=0$) l'équation (\ref{control_equation}) devient:
 \[
 \rho^2x-\frac{\beta^2x}{2\kappa^2}{F'(x)}^2+\frac{1}{2}\sigma^2xF''(x)=0
 \]
@@ -274,19 +274,19 @@ D'abord, et comme pour P1, les paramètres des coûts sont fixés à 1 et la fon
 \end{figure}\FloatBarrier\subsection{P3 \textemdash~Résolution}\label{p3}
 Soit le problème suivant:
 \begin{itemize}
-    \item $r(x) = x^2$: coût immédiat quadratique en $x$, indépendant du contrôle;
-    \item $b(x) = x$: coût du contrôle linéaire égal à $x$;
-    \item $q(x) \equiv 1$: poids pénalisant l'intensité du contrôle constant.
+    \item $r(x) = {(\rho x)}^2$: coût immédiat quadratique en $x$, indépendant du contrôle;
+    \item $b(x) = \beta x$: coût du contrôle linéaire égal à $x$;
+    \item $q(x) \equiv \kappa^2$: poids pénalisant l'intensité du contrôle constant.
 \end{itemize}
-Comme pour P2, la linéarisation n'est pas possible car les conditions (\ref{condition1},\ref{condition2}) ne sont pas satisfaites. En éliminant le retour à la moyenne ($a=0$) et en posant $\sigma=1$, l'équation (\ref{control_equation}) se réduit à:
+Les conditions (\ref{condition1},~\ref{condition2}) n'étant pas satisfaites, la linéarisation facile n'est pas possible. En éliminant le retour à la moyenne ($a=0$), l'équation (\ref{control_equation}) se réduit à:
 \[
-    x^2-\frac{x^2}{2}{F'(x)}^2+\frac{1}{2}xF''(x)=0
+    {(\rho x)}^2-\frac{{(\beta x)}^2}{2\kappa^2}{F'(x)}^2+\frac{1}{2}\sigma^2xF''(x)=0
 \]
-Le logiciel de calcul symbolique \textit{Maple} donne comme solution pour $F(0)=0$ (avec $C_1$ une constante à déterminer):
+Le logiciel de calcul symbolique \textit{Maple} donne comme solution:
 \[
-    F(x)=\int_0^x-\sqrt{2}\tanh\left(\frac{\sqrt{2}z^2}{2}+C_1\sqrt{2}\right)dz
+    F(x)=C_2+\int_0^x\frac{\sqrt{2} \kappa  \rho  }{\beta }\tanh \left(-\frac{\sqrt{2} \beta  \rho  z^2}{2\kappa  \sigma ^2}+\sqrt{2} \beta  C_1 \kappa  \rho\right)dz
 \]
-En posant $c=1$, la valeur de $C_1$ qui satisfait $F(c)=F(1)=0$ est $C_1\simeq -0.1652$. Donc, la forme finale de la fonction valeur est obtenue:
+avec $C_1$ et $C_2$ des constantes à déterminer. En posant $\sigma=\rho=\beta=\kappa=c=1$, la solution qui satisfait \(F(0)=F(c)=0\) est:
 \begin{equation}\label{sol_control_3}
     F(x)\simeq \int_0^x-\sqrt{2}\tanh\left(\frac{\sqrt{2}z^2}{2}-0.1652\sqrt{2}\right)dz
 \end{equation}
@@ -329,7 +329,7 @@ La solution donnée par \textit{Mathematica} est:
 \[
     F(x)=\frac{\sqrt{2} \kappa  \rho  x }{\beta}\left[2 \; _2F_1\left(\begin{bmatrix}1\\\frac{\kappa  \sigma ^2}{2 \sqrt{2} \beta  \rho }\end{bmatrix},\frac{\kappa  \sigma ^2}{2 \sqrt{2} \beta  \rho }+1,-e^{-2 \sqrt{2} \beta  \kappa  \rho  C_1} x^{\frac{2 \sqrt{2} \beta  \rho }{\kappa  \sigma ^2}}\right)-1\right]+C_2
 \]
-avec $C_1$ et $C_2$ des constantes à déterminer et $_pF_q(\cdot,\cdot,\cdot)$ la fonction hypergéométrique généralisée (voir~\ref{special_functions}). En posant $\sigma=\rho=\beta=\kappa=1$, la solution devient:
+avec $C_1$ et $C_2$ des constantes à déterminer et $_pF_q(\cdot,\cdot,\cdot)$ la fonction hypergéométrique généralisée (voir~\ref{special_functions}). En posant $\sigma=\rho=\beta=\kappa=c=1$, la solution qui satisfait \(F(0)=F(c)=0\) est:
 \begin{equation}\label{sol_control_4}
     F(x)\simeq\sqrt{2} x \left[2 \; _2F_1\left(\begin{bmatrix}1\\\frac{1}{2 \sqrt{2}}\end{bmatrix},\frac{\sqrt{2}+4}{4} ,-9.76175 x^{2 \sqrt{2}}\right)-1\right]
 \end{equation}
