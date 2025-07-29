@@ -7,16 +7,18 @@
 \addcontentsline{toc}{compteur}{ABSTRACT}
 %
 \begin{otherlanguage}{english}
-
-The \ac{CIR} diffusion process is defined by the stochastic differential equation
+This work focuses on first-passage-time properties of the Cox-Ingersoll-Ross (CIR) diffusion, a stochastic process governed by the equation:
 \[
-dX(t) = a[b - X(t)]\,dt + \sigma \sqrt{X(t)}\,dW(t)
+dX(t) = a[b - X(t)]\,dt + \sigma \sqrt{X(t)}\,dW(t),
 \]
-where \(W(t)\) is a standard Brownian motion. This study focuses on the first passage time
+where \(W(t)\) denotes a standard Brownian motion. The quantity of interest is the exit time from the interval \((0, c)\), defined as:
 \[
-\tau(x) = \inf\{ t \geq 0 : X(t) \notin (0, c) \mid X(0) = x \in (0, c) \}
+\tau(x) = \inf\{ t \geq 0 : X(t) \notin (0, c) \mid X(0) = x \in (0, c) \}.
 \]
-that is, the first time the process exits the interval \((0, c)\). Explicit expressions for the moment-generating function, the expected value of \(\tau(x)\) and the average area under the process are derived. In addition, a stochastic control problem is studied. Furthermore, jumps are added to the process with the aim to analyse the probability of hitting the lower boundary first and the mean exit time. Finally, the average overshoot above the $c$ frontier is characterised.
+Analytical expressions are obtained for the Laplace transform of the exit time \( \mathds{E}[e^{-\alpha \tau(x)}] \), its expectation \( \mathds{E}[\tau(x)] \), and the average area under the path prior to exit.
 
+The framework is extended to incorporate jumps into the dynamics. This generalization enables the study of the probability of hitting the lower boundary under downward jumps, the expected overshoot beyond the upper boundary in the presence of upward jumps, and the modification of the mean exit time due to the jump component.
+
+Optimal control problems are also considered in the purely diffusive setting. The associated value function and the optimal control minimizing a given cost functional are characterized. This setup corresponds to a homing-type control problem, where the trajectory is influenced to reach or remain within a target region under optimal intervention.
 
 \end{otherlanguage}

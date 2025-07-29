@@ -27,7 +27,7 @@ Ce mémoire s'intéresse à l'analyse conjointe des temps de franchissement et d
 Avant d'approfondir le sujet, il est essentiel de poser clairement les fondements théoriques sur lesquels repose cette étude.\\
 L'élément central à introduire en premier lieu est le \textit{mouvement Brownien standard}, pierre angulaire des processus de diffusion.
 \paragraph{Définition: Le \acl{MBS}}\mbox{}\\ 
-Un processus stochastique $\{W(t),\;t\geq0\}$ est un mouvement Brownien standard s'il vérifie:
+Un processus stochastique $\{W(t),\;t\geq0\}$ est un mouvement Brownien standard s'il vérifie~\cite{lefebvre2007}:
 \begin{itemize}
     \item $W(0) = 0$;
     \item les trajectoires $t \mapsto W(t)$ sont continues presque sûrement;
@@ -63,24 +63,27 @@ De plus, il est important de noter que les termes de dérive et de diffusion peu
 
 Par ailleurs, Il est parfois intéressant d'enrichir les processus d'Itô en leur ajoutant une composante de sauts, gouvernée par un processus de Poisson (processus de comptage classique modélisant une file d'attente).
 \paragraph{Définition: Processus de Poisson}\mbox{}\\
-Un processus $\{N(t),\;t\geq0\}$ est un processus de Poisson de taux $\lambda$ s'il vérifie:
+Un processus $\{N(t),\;t\geq0\}$ est un processus de Poisson de taux $\lambda>0$ s'il vérifie~\cite{lefebvre2007}:
 \begin{itemize}
     \item Pour des intervalles de temps disjoints, le nombre d'occurrences est indépendant: pour tout $0 \leq t_0 < t_1 < \cdots < t_n$, les variables aléatoires ${\left(N(t_i) - N(t_{i-1})\right)}_{i=1}^n$ sont indépendantes;
-    \item La probabilité d'une occurrence dans un petit intervalle de temps dépend de la longueur de l'intervalle: $\underset{h\to0^+}{\lim}\mathds{P}[N(t+h)-N(t)=1]=\lambda h+o(h)$;
-    \item La probabilité qu'il y ait plus d'une occurrence au sein d'un petit intervalle est négligeable: $\underset{h\to0^+}{\lim}\mathds{P}[N(t+h)-N(t)>1]=o(h)$;
-    \item Le nombre d'occurrences dans un intervalle de longueur $t$ suit une loi poisson: $N(t)\sim \text{Poi}(\lambda t)$;
-    \item Le temps d'arrivé du $n$-ème événement $T_n$ suis une loi exponentielle: $T_n\sim\text{Exp}(\lambda)$.
+    \item La probabilité d'une occurrence dans un intervalle de temps de petite taille dépend de la longueur de l'intervalle: \(\underset{h\to0^+}{\lim}\mathds{P}[N(t+h)-N(t)=1]=\lambda h+o(h)\);
+    \item La probabilité d'observer plus d'une occurrence dans un intervalle de petite taille est négligeable: \(\underset{h\to0^+}{\lim}\mathds{P}[N(t+h)-N(t)>1]=o(h)\);
+    \item Le nombre d'occurrences dans un intervalle de longueur $t$ suit une loi poisson: \(\quad N(t)\sim \text{Poi}(\lambda t)\);
+    \item Le temps d'arrivé du $n$-ème événement $T_n$ suis une loi exponentielle: \(T_n\sim\text{Exp}(\lambda)\).
 \end{itemize}
 En utilisant un processus de Poisson, il est donc possible de définir un processus de sauts pur.
-\paragraph{Définition: Processus de Sauts}\mbox{}\\
-Soit \( N(ds,dy) \) une mesure de Poisson sur \( (0, \infty) \times \mathds{R} \), représentant les sauts aléatoires, avec une mesure d'intensité donnée par \(\gamma(dy)ds\). On définit le processus de sauts \(\{J(t),\,t \geq 0\}\) par:
+\paragraph{Définition: Processus de sauts pur}\mbox{}\\
+Soit \(N(ds,dy)\) une mesure de Poisson sur \((0, \infty) \times \mathds{R}\), représentant les occurrences d'événements aléatoires en temps et en amplitude. On suppose que les sauts ont une loi de probabilité \(f_Y(y)\) et se produisent à un taux constant \(\lambda > 0\). La mesure d'intensité associée est alors donnée par:
+\[
+\gamma(dy) := \lambda f_Y(y)\,dy
+\]
+Un processus de sauts pur \(\{J(t),\,t \geq 0\}\) est défini comme:
 \begin{equation}\label{jump_def}
-    J(t) := \int_0^t \int_{\mathds{R}}y\,N(ds,dy)
+    J(t) := \int_0^t \int_{\mathds{R}} y\,N(ds,dy)
 \end{equation}
-
 La figure ci-dessous visualise différentes réalisation d'un processus de sauts gouverné par un processus de Poisson de paramètre $\lambda=2$. La taille des sauts correspond à des réalisations d'une variable aléatoire exponentielle de paramètre $\nu=1.5$. La mesure d'intensité des sauts est donc donnée par:
 \[
-\gamma(dy):=\lambda\nu e^{-\nu y}\mathds{1}_{y\geq0}dy
+\gamma(dy)=2\times1.5 e^{-1.5 y}\mathds{1}_{y\geq0}dy
 \]
 \begin{figure}[htb]
     \centering
@@ -107,33 +110,23 @@ où:
     \item $\sigma > 0$ est volatilité instantanée;
     \item $W(t)$ désigne un mouvement brownien standard.
 \end{itemize}
-Ce processus est particulièrement adapté à la modélisation des taux d'intérêt en raison de plusieurs propriétés clés:
-\begin{itemize}
-    \item Le terme de dérive $\mu(t, X(t)) \equiv \mu(X(t))= a[b - X(t)]$ induit un mécanisme de retour vers la moyenne $b$, avec une vitesse déterminée par $a$. Dans le contexte de modélisation des taux, cela reflète l'idée que ces derniers tendent à revenir vers un niveau de long terme après des déviations temporaires;
-    \item Le terme de diffusion $\sigma(t, X(t))\equiv \sigma(X(t)) = \sigma \sqrt{X(t)}$ garantit la non-négativité du processus grâce à la racine carrée. Ceci est essentiel comme un taux négatif serait irréaliste dans de nombreux contextes économiques, en particulier pour les modèles de taux à court terme comme le CIR;
-    \item Le comportement à proximité de zéro est gouverné par la \textit{condition de Feller}, selon laquelle:
-    \[
-    \mathds{P} \Big[ \exists\;t < \infty:X(t) = 0 \Big] = 1 \quad \text{si et seulement si} \quad \sigma^2 > 2ab
-    \]
-    Cela signifie que le processus peut atteindre zéro en un temps fini si la \textit{diffusion} domine la \textit{dérive}.
-\end{itemize}
+Ce processus est particulièrement adapté à la modélisation des taux d'intérêt en raison de plusieurs propriétés clés. Premièrement, le terme de dérive \(\mu(t, X(t)) \equiv \mu(X(t))= a[b - X(t)]\) induit un mécanisme de retour vers la moyenne $b$, avec une vitesse déterminée par $a$. Dans le contexte de modélisation des taux, cela reflète l'idée que ces derniers tendent à revenir vers un niveau de long terme après des déviations temporaires. Deuxièmement, le terme de diffusion \(\sigma(t, X(t))\equiv \sigma(X(t)) = \sigma \sqrt{X(t)}\) garantit la non-négativité du processus grâce à la racine carrée. Ceci est essentiel comme un taux négatif serait irréaliste dans de nombreux contextes économiques, en particulier pour les modèles de taux à court terme comme le \acs{CIR}. Troisièmement, le comportement à proximité de zéro est gouverné par la \textit{condition de Feller}, selon laquelle:
+\[
+\mathds{P} \Big[ \exists\;t < \infty:X(t) = 0 \Big] = 1 \quad \text{si et seulement si} \quad \sigma^2 > 2ab
+\]
+Cela signifie que le processus peut atteindre zéro en un temps fini si la \textit{diffusion} domine la \textit{dérive}.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/intro/path_cir_combined.pdf}
     \caption{Une trajectoire du processus \acs{CIR} avec $a=1.1$, $b=0.7$, $\sigma=\sqrt{2}$}\label{fig:TrajCIR}
 \end{figure}
-\FloatBarrier La figure ci-dessus présente une trajectoire simulée du processus \acs{CIR}, accompagnée d'une représentation discrétisée de la force de rappel vers la moyenne (flèches vertes). Il est intéressant de noter les points suivants:
-\begin{itemize}
-    \item  Plus le processus s'éloigne de la moyenne $b$, plus l'intensité de cette force augmente;
-    \item Lorsque le processus se trouve à proximité de zéro, les fluctuations aléatoires sont atténuées, tandis qu'elles deviennent plus marquées lorsque la position augmente. Ce comportement s'explique par la présence du terme \(\sqrt{X(t)}\) dans le coefficient de diffusion, permettant ainsi de moduler l'amplitude stochastique en fonction de la position;
-    \item La trajectoire passe par 0 plusieurs fois comme la \textit{condition de Feller} est satisfaite:
-    \[
-    \left\{\begin{aligned}
-        \sigma^2&=2\\
-        2ab&=1.54
-    \end{aligned}\right.\implies\sigma^2 > 2ab
-    \]
-\end{itemize}
+\FloatBarrier La figure ci-dessus présente une trajectoire simulée du processus \acs{CIR}, accompagnée d'une représentation discrétisée de la force de rappel vers la moyenne (flèches vertes). Il est intéressant de noter que plus le processus s'éloigne de la moyenne $b$, plus l'intensité de cette force augmente. Aussi, lorsque le processus se trouve à proximité de zéro, les fluctuations aléatoires sont atténuées, tandis qu'elles deviennent plus marquées lorsqu'il s'éloigne. Ce comportement s'explique par la présence du terme \(\sqrt{X(t)}\) dans le coefficient de diffusion, permettant ainsi de moduler l'amplitude stochastique en fonction de la position. En outre, la trajectoire passe par 0 plusieurs fois comme la \textit{condition de Feller} est satisfaite:
+\[
+\left\{\begin{aligned}
+    \sigma^2&=2\\
+    2ab&=1.54
+\end{aligned}\right.\implies\sigma^2 > 2ab
+\]
 Le prochain élément de problématique à introduire dans le cadre de cette étude est celui du \textit{temps de premier passage}.
 \paragraph{Définition: Temps de premier passage}\mbox{}\\
 Soit $\{X(t),\, t \geq 0\}$ un processus \acs{CIR}. Le \textit{temps de premier passage à deux frontières} est défini, pour un seuil $c > 0$, par:
@@ -142,11 +135,7 @@ Soit $\{X(t),\, t \geq 0\}$ un processus \acs{CIR}. Le \textit{temps de premier 
 \end{equation}
 Autrement dit, $\tau(x)$ correspond au premier instant où le processus atteint l'une des bornes de l'intervalle $(0, c)$. 
 
-L'étude de ce temps d'arrêt est particulièrement pertinente dans le cadre du processus \acs{CIR}, pour plusieurs raisons:
-\begin{itemize}
-    \item \textbf{Modélisation du passage aux taux négatifs:} lors de la crise économique japonaise de 2016, des taux d'intérêt négatifs ont été instaurés pour stimuler l'activité. Or, le processus \acs{CIR}, à valeurs strictement positives, ne permet pas de modéliser ce phénomène. Introduire une barrière à zéro permet de considérer le franchissement de ce seuil, au-delà duquel les taux deviennent négatifs;
-    \item \textbf{Surveillance des taux élevés:} en gestion des risques, il est crucial de modéliser l'éventualité d'une hausse brutale ou excessive des taux d'intérêt. L'introduction d'un seuil supérieur $c$ permet de caractériser ces situations critiques et de quantifier leur probabilité d'occurrence via le temps de franchissement.
-\end{itemize}
+L'étude de ce temps d'arrêt est particulièrement pertinente dans le cadre du processus \acs{CIR}, pour plusieurs raisons. D'une part, cela permet la modélisation du passage aux taux négatifs. En effet, lors de la crise économique japonaise de 2016, des taux d'intérêt négatifs ont été instaurés pour stimuler l'activité. Or, le processus \acs{CIR}, à valeurs strictement positives, ne permet pas de modéliser ce phénomène. Introduire une barrière à zéro permet de considérer le franchissement de ce seuil, au-delà duquel les taux deviennent négatifs. D'autre part, ce temps d'arrêt permet une surveillance des taux élevés, aspect important en gestion des risques où il est crucial de modéliser l'éventualité d'une hausse brutale ou excessive. L'introduction d'un seuil supérieur $c$ permet de caractériser ces situations critiques et de quantifier leur probabilité d'occurrence via le temps de franchissement.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/intro/cir_first_passage.pdf}
@@ -155,23 +144,24 @@ L'étude de ce temps d'arrêt est particulièrement pertinente dans le cadre du 
 \FloatBarrier L'étude portera principalement sur le processus \acs{CIR}, noté $X(t)$, ainsi que sur la variable aléatoire associée au temps de premier passage $\tau(x)$.\\
 Nous introduisons à présent les fonctions analytiques qui feront l'objet de l'analyse. La première est la \textit{fonction génératrice des moments}, outil central pour caractériser la distribution du temps d'arrêt.\pagebreak
 \paragraph{Définition: \ac{FGM}}\mbox{}\\
-La fonction génératrice des moments du temps de premier passage $\tau(x)$ est définie, pour tout $\alpha > 0$, par:
+La fonction génératrice des moments du temps de premier passage $\tau(x)$ est définie pour tout \(x\in[0,c]\) par:
 \begin{equation}\label{fgm}
     M(x;\alpha):= \mathds{E} \left[ e^{-\alpha \tau(x)} \right]
 \end{equation}
+avec \(\alpha>0\).
 Cette fonction permet de résumer l'information probabiliste sur la variable $\tau(x)$, en particulier sa distribution. De plus, elle encode l'ensemble des moments de $\tau(x)$, lorsque ceux-ci existent, via dérivation en $\alpha$. 
 
 La deuxième fonction d'intérêt est celle du \textit{temps moyen de premier passage}, qui correspond à l'espérance de la variable aléatoire $\tau(x)$.
 \paragraph{Définition: Temps Moyen de Premier Passage}\mbox{}\\
-Le temps moyen de premier passage est défini par:
+Le temps moyen de premier passage est défini pour tout \(x\in[0,c]\) par:
 \begin{equation}\label{mean}
     m(x):= \mathds{E}[\tau(x)]
 \end{equation}
-Il représente le temps moyen que met le processus \acs{CIR}, partant d'un niveau initial $x \in (0,c)$, pour atteindre l'une des deux bornes de l'intervalle $(0,c)$.
+Il représente le temps moyen que met le processus \acs{CIR}, partant d'un niveau initial $x \in (0,c)$, pour atteindre l'une des deux bornes de l'intervalle.
 
 La troisième fonction étudiée est celle de l'\textit{aire moyenne sous la trajectoire} jusqu'au temps de sortie.
 \paragraph{Définition: Aire Moyenne}\mbox{}\\
-La fonction d'aire moyenne est définie par:
+La fonction d'aire moyenne est définie pour tout \(x\in[0,c]\) par:
 \begin{equation}\label{area}
     A(x):= \mathds{E} \left[ \int_0^{\tau(x)} X(t)\,dt \right]
 \end{equation}
@@ -179,7 +169,7 @@ En finance, l'aire moyenne peut représenter l'accumulation moyenne d'un taux d'
 
 La quatrième fonction étudiée est celle de la \textit{probabilité toucher la frontière inférieure}.
 \paragraph{Définition: Probabilité de Sortie en Zéro}\mbox{}\\
-La fonction de probabilité de sortie est définie par:
+La fonction de probabilité de sortie est définie pour tout \(x\in[0,c]\) par:
 \begin{equation}\label{zero_exit_probability}
     p(x):=\mathds{P}[X(\tau(x))=0]
 \end{equation}
@@ -187,11 +177,12 @@ Elle caractérise la probabilité que le processus, partant d'une position initi
 
 La cinquième fonction étudiée est celle du \textit{dépassement moyen}, en ajoutant des sauts au \acs{CIR}.
 \paragraph{Définition: Dépassement Moyen}\mbox{}\\
-La fonction dépassement moyen est définie par: 
+La fonction dépassement moyen est définie pour tout \(x\in[0,c]\) par: 
 \begin{equation}\label{overshoot}
     D(x):=\mathds{E}\left[{(X(\tau(x))-c)}_+\right]
 \end{equation}
-Elle quantifie le dépassement moyen au-dessus de la frontière \( c \), à partir d'une condition initiale \( X(0) = x \in (0, c) \). Il est essentiel de souligner que cette fonction ne présente un intérêt que dans le cas où le processus comporte des sauts. En effet, dans le cadre purement continu, la trajectoire atteint la frontière exactement, sans possibilité de la franchir.
+avec \({(x-c)}_+=\max\{x-c,0\}\).
+Cette fonction quantifie le dépassement moyen au-dessus de la frontière \(c\), à partir d'une condition initiale \(X(0)=x\in(0,c)\). Pour tout \(x>c,\;D(x)=0\) comme le dépassement est déterministe, et la fonction perd donc son sens. Il est aussi essentiel de souligner que cette fonction ne présente un intérêt que dans le cas où le processus comporte des sauts. En effet, dans le cadre purement continu, la trajectoire atteint la frontière exactement, sans possibilité de la franchir.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{img/intro/overshoot.pdf}
@@ -201,14 +192,14 @@ Elle quantifie le dépassement moyen au-dessus de la frontière \( c \), à part
 
 En complément de l'étude des temps de premier passage, ce mémoire s'intéresse également à un problème de \textit{commande optimale stochastique} appliqué au processus \acs{CIR}.
 \paragraph{Définition: Problème de commande optimale \textemdash~Homing Problem}\label{definition_optimal_control}\mbox{}\\
-Le \textit{Homing problem} consiste à piloter un processus stochastique dynamiquement jusqu'à ce qu'il atteigne un ensemble d'arrêt donné, tout en optimisant un objectif. La configuration étudiée dans ce mémoire correspond à un processus \acs{CIR} contrôlé \( \{X_u(t),\, t \geq 0\} \) évoluant dans l'intervalle \( (0, c) \), avec un arrêt déclenché dès que la trajectoire atteint l'une des deux frontières. Ce processus est défini par:
+Le \textit{Homing problem}~\cite{whittle1982} consiste à piloter un processus stochastique dynamiquement jusqu'à ce qu'il atteigne un ensemble d'arrêt donné, tout en optimisant un objectif. La configuration étudiée dans ce mémoire correspond à un processus \acs{CIR} contrôlé \( \{X_u(t),\, t \geq 0\} \) évoluant dans l'intervalle \( (0, c) \), avec un arrêt déclenché dès que la trajectoire atteint l'une des deux frontières. Ce processus est défini par:
 \begin{equation}\label{controlled_process}
     dX_u(t) = a[b - X_u(t)]dt + b[X_u(t)]u[X_u(t)]dt + \sigma \sqrt{X_u(t)} dW(t)
 \end{equation}
 où \( u(\cdot) \) est une stratégie de contrôle.
 
 Le processus est contrôlé jusqu'à l'instant d'arrêt $\tau(x)$ défini précédemment (\ref{fpt_definition}).
-Par ailleurs, l'objectif est de minimiser une fonction coût de type intégral, définie par:
+Par ailleurs, l'objectif est de minimiser une fonction coût de type intégral, définie pour tout \(x\in[0,c]\) par:
 \begin{equation}\label{cost_function}
     J(x) := \int_0^{\tau(x)} \left( \frac{1}{2}q[X_u(t)]u^2[X_u(t)] + r[X_u(t)] \right) dt
 \end{equation}
@@ -239,30 +230,14 @@ Le problème consiste à déterminer une stratégie optimale \( u^*(x) \) minimi
 \section{Objectifs de recherche}  % 0.5 page
 
 Après avoir posé les bases théoriques de l'étude, nous pouvons à présent formuler avec précision les objectifs de ce mémoire. Ceux-ci s'articulent autour de trois axes: l'analyse des temps de premier passage pour le processus \acs{CIR} en l'absence de sauts, l'étude de ce même problème lorsque des sauts sont introduits, et enfin l'exploration de la commande optimale associée.
-\paragraph{Objectifs pour le processus de diffusion}
-\begin{itemize}
-    \item Obtenir une expression explicite de la fonction génératrice des moments du temps de premier passage à deux frontières \( M(x;\alpha) = \mathds{E}[e^{-\alpha \tau(x)}] \);
-    \item Expliciter une formule analytique pour le temps moyen de premier passage, \( m(x) = \mathds{E}[\tau(x)] \), pour une entrée initiale \( x \in (0,c) \);
-    \item Déduire l'aire moyenne sous la trajectoire $A(x)$ jusqu'au franchissement de l'intervalle \( (0,c) \);
-\end{itemize}
-\paragraph{Objectifs pour le processus de diffusion avec sauts}
-\begin{itemize}
-    \item Obtenir une expression analytique du temps moyen de sortie dans ce nouveau cadre, en tenant compte de l'impact des sauts sur la dynamique du processus;
-    \item Établir une forme explicite de la probabilité de sortie par zéro:
-    \(
-    p(x) = \mathds{P}[X(\tau(x)) = 0],
-    \)
-    dans le cas de sauts uniformes descendants;
-    \item Déterminer le dépassement moyen à l'instant du franchissement supérieur \( c \), défini par:
-    \(
-    D(x) = \mathds{E}[(X(\tau(x)) - c)_+]
-    \)
-    afin d'évaluer l'intensité des excursions au-delà de la borne supérieure, dans le cas de sauts exponentiels ascendants.
-\end{itemize}
-\paragraph{Objectif pour la commande optimale}
-\begin{itemize}
-    \item Résoudre différentes formes d'un \textit{Homing problem} associé au processus diffusif, en déterminant la fonction valeur \( F(x) = \underset{u}{\inf}\,\mathds{E}[J(x)] \), ainsi que la politique de contrôle optimal $u^*(x)$.
-\end{itemize}
+\paragraph{Objectifs pour le processus de diffusion}\phantom{}\\
+L'objectif est d'abord d'obtenir une expression explicite de la fonction génératrice des moments du temps de premier passage à deux frontières, notée \( M(x;\alpha) = \mathds{E}[e^{-\alpha \tau(x)}] \). Il s'agit ensuite d'expliciter une formule analytique pour le temps moyen de premier passage, \( m(x) = \mathds{E}[\tau(x)] \), pour une condition initiale \( x \in (0,c) \). Enfin, il faudra déduire l'aire moyenne sous la trajectoire \( A(x) \) jusqu'au franchissement de l'intervalle \( (0,c) \).
+
+\paragraph{Objectifs pour le processus de diffusion avec sauts}\phantom{}\\
+Il s'agit d'abord d'obtenir une expression analytique du temps moyen de sortie dans ce nouveau cadre, en tenant compte de l'impact des sauts sur la dynamique du processus. Dans le même contexte, il est pertinent d'établir une forme explicite de la probabilité de sortie par zéro, \( p(x) = \mathds{P}[X(\tau(x)) = 0] \). Enfin, il convient de déterminer le dépassement moyen à l'instant du franchissement supérieur \( c \), défini par \( D(x) = \mathds{E}[{(X(\tau(x)) - c)}_+] \), afin d'évaluer l'intensité des excursions au-delà de la borne supérieure, dans le cas de sauts exponentiels ascendants.
+
+\paragraph{Objectif pour la commande optimale}\phantom{}\\
+L'objectif est de résoudre différentes formes d'un problème de type \textit{Homing problem} associé au processus diffusif, en déterminant la fonction valeur \( F(x) = \underset{u}{\inf}\,\mathds{E}[J(x)] \), ainsi que la politique de contrôle optimal \( u^*(x) \).
 
 %%
 %% PLAN DU MEMOIRE / THESIS OUTLINE
@@ -272,12 +247,7 @@ Afin de répondre aux objectifs de recherche définis précédemment, ce mémoir
 
 Dans un premier temps, une revue de la littérature est proposée afin de replacer l'étude dans le cadre des travaux existants sur les temps de premier passage et les problèmes de dépassement, avec une attention particulière portée au processus \acs{CIR} et à ses extensions.
 
-La suite du mémoire est consacrée à l'étude analytique des fonctions caractéristiques associées au processus. L'analyse se divise en trois parties distinctes: 
-\begin{itemize}
-    \item la première porte sur les problèmes de premier passage pour le processus \acs{CIR} en diffusion pure;
-    \item la seconde examine sa version modifiée par l'introduction de sauts discrets;
-    \item la troisième se consacre à l'étude de la commande optimale appliquée au \acs{CIR} diffusif.
-\end{itemize}
+La suite du mémoire est consacrée à l'étude analytique des fonctions caractéristiques associées au processus. L'analyse se divise en trois parties distinctes. D'abord, la première porte sur les problèmes de premier passage pour le processus \acs{CIR} en diffusion pure. Ensuite, la seconde examine sa version modifiée par l'introduction de sauts discrets. Enfin, la troisième se consacre à l'étude de la commande optimale appliquée au \acs{CIR} diffusif.
 
 Chaque section est accompagnée d'une analyse des résultats obtenus, permettant de vérifier la cohérence des solutions, d'en évaluer la sensibilité aux paramètres du modèle, et de comparer les dynamiques avec et sans sauts.
 

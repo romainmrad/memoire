@@ -66,16 +66,12 @@ Il convient de valider le comportement de la \acl{FGM} $M(x;\alpha)$ définie pa
 \end{itemize}
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{img/validation/fgm.pdf}
+    \includegraphics[width=0.7\linewidth]{img/validation/fgm.pdf}
     \caption{Visualisation de la \acl{FGM} $M(x;\alpha)$}\label{fig:FGMVisualisation}
 \end{figure}
 \FloatBarrier\paragraph{Analyse}\phantom{}\\
-Il est important de souligner les points suivants:
-\begin{itemize}
-    \item Les conditions aux limites $M(0; \alpha) = M(c; \alpha) = 1$ sont respectées;
-    \item Puisque $\alpha$ est par définition un paramètre positif (\ref{fgm}), la fonction est bien comprise dans l'intervalle $(0, 1)$, car elle correspond à l'exponentielle d'un nombre négatif;
-    \item Par ailleurs, et pour la même raison, lorsque $\alpha$ augmente, la fonction diminue.
-\end{itemize}
+Il est important de souligner que les conditions aux limites \(M(0; \alpha) = M(c; \alpha) = 1\) sont respectées. Par ailleurs, puisque $\alpha$ est par définition un paramètre positif (\ref{fgm}), la fonction est bien comprise dans l'intervalle $(0, 1)$, car elle correspond à l'exponentielle d'un nombre négatif; et pour la même raison, lorsque $\alpha$ augmente, la valeur de la fonction diminue.
+
 L'expression obtenue pour la \acl{FGM} est ainsi validée. 
 \section{Fonction Temps Moyen}\label{section_mean_eq}
 \subsection{Résolution du problème}
@@ -92,7 +88,7 @@ En injectant (\ref{taylor_fgm}) dans l'équation (\ref{ode_fgm}), et en reprenan
 \begin{equation}\label{ode_mean}
     \frac{1}{2}\sigma^2xm''(x)+a(b-x)m'(x)=-1   
 \end{equation}
-avec $m(0)=m(c)=0$. En résolvant cette équation, une expression analytique de la fonction temps moyen est obtenue. 
+avec $m(0)=m(c)=0$. En résolvant cette équation, une expression analytique de la fonction temps moyen est obtenue. Étant donné que le logiciel de calcul symbolique \textit{Mathematica} ne parvient pas à déterminer une solution en forme fermée, l'équation doit être résolue manuellement.
 
 \paragraph{Réduction d'ordre}\phantom{}\\
 D'abord, afin d'alléger la notation, soit:
@@ -230,13 +226,7 @@ Enfin, il est nécessaire de valider le comportement de la fonction Temps Moyen 
     \caption{Visualisation de la fonction Temps Moyen $m(x)$}\label{fig:MeanVisualisation}
 \end{figure}
 \FloatBarrier\paragraph{Analyse}\phantom{}\\
-Il est important de noter les points suivants:
-\begin{itemize}
-    \item Les conditions aux limites $m(0)=m(c)=0$ sont respectées;
-    \item Cette fonction représente un \textit{temps moyen de premier passage}, elle doit donc être positive pour toute valeur de $x$ dans $[0,c]$;
-    \item Une augmentation de la vitesse de retour $a$ entraîne une hausse du temps moyen de sortie de l'intervalle. En effet, plus la force de rappel vers la moyenne est forte (i.e., $a$ élevé), plus une déviation significative et peu probable est nécessaire pour franchir les bornes de l'intervalle;
-    \item À l'inverse, une augmentation de la volatilité infinitésimale $\sigma$ diminue le temps moyen de sortie. Cela s'explique naturellement: des fluctuations plus intenses accroissent la probabilité de quitter rapidement l'intervalle.
-\end{itemize}
+Il est important de noter que les conditions aux limites $m(0)=m(c)=0$ sont respectées. Aussi, cette fonction représente un \textit{temps moyen de premier passage}, elle doit donc être positive pour toute valeur de $x$ dans $[0,c]$. Par ailleurs, une augmentation de la vitesse de retour $a$ entraîne une hausse du temps moyen de sortie de l'intervalle. En effet, plus la force de rappel vers la moyenne est forte (i.e., $a$ élevé), plus une déviation significative et peu probable est nécessaire pour franchir les bornes de l'intervalle. À l'inverse, une augmentation de la volatilité infinitésimale $\sigma$ diminue le temps moyen de sortie. Cela s'explique naturellement: des fluctuations plus intenses accroissent la probabilité de quitter rapidement l'intervalle.
 
 L'expression obtenue pour la fonction de temps moyen de premier passage est ainsi validée.
 
@@ -311,12 +301,6 @@ Par ailleurs, la même démarche de validation est effectuée pour la fonction A
     \caption{Visualisation de la fonction Aire Moyenne $A(x)$}\label{fig:AreaVisualisation}
 \end{figure}
 \FloatBarrier\paragraph{Analyse}\phantom{}\\
-Il convient de souligner les points suivants:
-\begin{itemize}
-    \item Les conditions aux limites $A(0)=A(c)=0$ sont respectées;
-    \item Cette fonction représente une \textit{aire moyenne} sous un processus positif, elle doit donc être positive pour toute valeur de $x$ dans $[0,c]$;
-    \item Une augmentation de la vitesse de retour $a$ entraîne une augmentation de l'aire moyenne sous le processus avant la sortie de l'intervalle. En effet, une force de rappel plus intense maintient le processus autour de sa moyenne plus longtemps, retardant la sortie et augmentant ainsi l'accumulation totale;
-    \item À l'inverse, une augmentation de la volatilité infinitésimale $\sigma$ réduit l'aire moyenne. Des fluctuations plus fortes rendent les sorties plus précoces, limitant la durée pendant laquelle le processus peut contribuer à l'intégrale.
-\end{itemize}
+Il convient de souligner que les conditions aux limites $A(0)=A(c)=0$ sont respectées. De plus, la fonction est bien positive sur \([0,c]\) comme elle représente une \textit{aire moyenne} sous un processus positif. Par ailleurs, une augmentation de la vitesse de retour $a$ entraîne une augmentation de l'aire moyenne sous le processus avant la sortie de l'intervalle. En effet, une force de rappel plus intense maintient le processus autour de sa moyenne plus longtemps, retardant la sortie et augmentant ainsi l'accumulation totale. À l'inverse, une augmentation de la volatilité infinitésimale $\sigma$ réduit l'aire moyenne. Des fluctuations plus fortes rendent les sorties plus précoces, limitant la durée pendant laquelle le processus peut contribuer à l'intégrale.
 
 L'expression obtenue pour la fonction Aire Moyenne est ainsi validée.

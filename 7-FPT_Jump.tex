@@ -7,7 +7,7 @@ avec
 \begin{itemize}
     \item $X(0)=x$;
     \item $W(t)$ un \acs{MBS};
-    \item $J(t)$ un processus de sauts pur comme défini en (\ref{jump_def}).
+    \item $J(t)$ un processus de sauts pur (\ref{jump_def}) avec une mesure d'intensité des sauts \(\gamma(dy)\).
 \end{itemize}
 
 \section{Fonction Temps Moyen \textemdash~Sauts Uniformes Descendants}\label{subsection_mean_jumps}
@@ -18,7 +18,7 @@ Dans cette section, la variante du \ac{CIR} avec sauts considérée est celle av
 \]
 
 \paragraph{Dérivation de l'équation à résoudre}\phantom{}\\
-En reprenant ce qui avait été fait en (\ref{section_fgm_eq}) pour dériver l'\acs{EDO} régissant la \acl{FGM} de $\tau(x)$, il est possible d'écrire:
+En reprenant ce qui avait été fait en (\ref{section_fgm_eq}) pour dériver l'\acs{EDO} régissant la \acl{FGM} de $\tau(x)$ (voir~\cite{cox2017} ou~\cite{lefebvre2007}), il est possible d'écrire:
 \[
 \frac{1}{2}\sigma^2 xM''(x;\alpha)+a(b-x)M'(x;\alpha)+\lambda\left\{\frac{1}{x}\int_{-x}^0M(x+y;\alpha)dy-M(x;\alpha)\right\}-\alpha M(x;\alpha)=0
 \]
@@ -34,7 +34,7 @@ Soit le changement de variable suivant:
 \begin{equation}\label{variable_change_mean}
     \int_{-x}^0m(x+y)dy=\int_0^x m(z)dz
 \end{equation}
-La formule de Leibniz permet d'écrire:
+La formule de Leibniz (voir annexe~\ref{special_formulas}) permet d'écrire:
 \[
 \frac{d}{dx}\left(\int_0^x m(z)dz\right)=m(x)
 \]
@@ -79,12 +79,8 @@ Les fonctions \( m(x) \) (avec sauts) et \( m_0(x) \) (sans sauts), données res
     \caption{Visualisation des temps moyens de sortie $m(x)$ et $m_0(x)$}\label{fig:JumpsMeanVisualisation}
 \end{figure}
 \FloatBarrier\paragraph{Analyse}\phantom{}\\
-Il convient de souligner les observations suivantes:
-\begin{itemize}
-    \item Les conditions aux limites \( m(0) = m(c) = m_0(0) = m_0(c) = 0 \) sont bien vérifiées;
-    \item Le temps moyen de sortie en présence de sauts ($m(x)$ en bleu) est inférieur à celui observé sans sauts ($m_0(x)$ en orange), ce qui illustre l'accélération du processus induite par ces derniers;
-    \item Une augmentation de la fréquence des sauts $\lambda$ induit une diminution du temps moyen de sortie. Ce comportement est attendu comme les sauts augmente la probabilité que le \acs{CIR} quitte l'intervalle rapidement.
-\end{itemize}
+Il convient de souligner que les conditions aux limites \( m(0) = m(c) = m_0(0) = m_0(c) = 0 \) sont bien vérifiées. De plus, le temps moyen de sortie en présence de sauts ($m(x)$ en bleu) est inférieur à celui observé sans sauts ($m_0(x)$ en orange), ce qui illustre l'accélération du processus induite par ces derniers. En outre, une augmentation de la fréquence des sauts $\lambda$ induit une diminution du temps moyen de sortie. Ce comportement est attendu comme les sauts augmente la probabilité que le \acs{CIR} quitte l'intervalle rapidement.
+
 La fonction obtenue pour le temps moyen de sortie avec sauts est donc validée.
 
 \section{Fonction Probabilité de Sortie en Zéro \textemdash~Sauts Uniformes Descendants}\label{subsection_probability_jumps}
@@ -134,22 +130,18 @@ Les fonctions \( p(x) \) (avec sauts) et \( p_0(x) \) (sans sauts), correspondan
     \caption{Visualisation des probabilités de sortir en zéro $p(x)$ et $p_0(x)$}\label{fig:JumpsProbabilityVisualisation}
 \end{figure}
 \FloatBarrier\paragraph{Analyse}\mbox{}\\
-Les observations suivantes peuvent être formulées:
-\begin{itemize}
-    \item Les conditions aux limites sont correctement satisfaites, à savoir \( p(0) = p_0(0) = 1 \) et \( p(c) = p_0(c) = 0 \);
-    \item Les sauts étant négatifs, ils favorisent une sortie par la borne inférieure. La probabilité de franchissement par zéro est donc plus élevée dans le cas avec sauts ($p(x)$ en bleu);
-    \item Une augmentation de la fréquence des sauts $\lambda$ entraîne une augmentation considérable de la probabilité de sortir par zéro. En effet, la multiplication des sauts tend à entraîner le processus vers la borne inférieure.
-\end{itemize}
+D'abord, les conditions aux limites sont correctement satisfaites, à savoir \( p(0) = p_0(0) = 1 \) et \( p(c) = p_0(c) = 0 \). Ensuite, les sauts étant négatifs, ils favorisent une sortie par la borne inférieure. La probabilité de franchissement par zéro est donc plus élevée dans le cas avec sauts ($p(x)$ en bleu). Enfin, une augmentation de la fréquence des sauts $\lambda$ entraîne une augmentation considérable de la probabilité de sortir par zéro. En effet, la multiplication des sauts tend à entraîner le processus vers la borne inférieure.
+
 Ces résultats permettent donc de valider l'expression obtenue pour la probabilité de sortie en zéro.
 
 \section{Fonction Dépassement Moyen \textemdash~Sauts Exponentiels Ascendants}
 \subsection{Formulation générale du problème}
 \paragraph{Théorème} 
-\textit{Soit \(\{X(t),\,t \geq 0\}\) un processus de diffusion à sauts vérifiant les conditions d'unicité des trajectoires (\ref{trajecotry_uniqueness}), et défini par:}
+\textit{Soit \(\{X(t),\,t \geq 0\}\) un processus de diffusion à sauts vérifiant les conditions d'unicité trajectorielle (voir annexe~\ref{trajecotry_uniqueness}), et défini par:}
 \[
 X(t) = X(0) + \int_0^t \mu(X(s))\,ds + \int_0^t \sigma(X(s))\,dW(s) + J(t)
 \]
-\textit{où \(J(t)\) est un processus de sauts pur associé à une mesure d'intensité \(\gamma(dy)\).}  
+\textit{où \(J(t)\) est un processus de sauts pur (\ref{jump_def}) associé à une mesure d'intensité \(\gamma(dy)\).}  
 
 \textit{Alors, la fonction \(D(x)\) (\ref{overshoot}), représentant le dépassement moyen au-dessus de la frontière \(c\) au temps du premier passage \(\tau(x)\) (\ref{fpt_definition}), satisfait l'équation suivante:}
 \begin{equation}\label{general_overshoot_ide}
@@ -158,7 +150,7 @@ X(t) = X(0) + \int_0^t \mu(X(s))\,ds + \int_0^t \sigma(X(s))\,dW(s) + J(t)
 \textit{avec \(D(0) = D(c) = 0\) et \(\mathcal{L}\) le générateur infinitésimal du processus (voir~\ref{infinitesimal_generator}).}
 
 \paragraph{Démonstration}
-Soit $f(x)={(x-c)}_+$ la fonction mesurant un dépassement. En appliquant la formule de Dynkin (voir~\cite{dynkin1965}), il est possible d'écrire:
+Soit $f(x)={(x-c)}_+\in C^2([0,c))$ la fonction mesurant un dépassement. En appliquant la formule de Dynkin (voir annexe~\ref{special_formulas}), il est possible d'écrire:
 \begin{equation}\label{initial_dynkin}
     \mathds{E}[f(X(\tau(x)))]=f(x)+\mathds{E}\left[\int_0^{\tau(x)}\mathcal{L}f(X(s))ds\right]
 \end{equation}
@@ -167,7 +159,7 @@ Pour $x\in(0,c)$:
     \item $f(x)={(x-c)}_+=0$
     \item $f'(x)=\mathds{1}_{x\geq c}=0\implies f''(x)=0$
 \end{itemize}
-Le générateur infinitésimal (\ref{infinitesimal_generator}) devient:
+Le générateur infinitésimal (voir annexe~\ref{infinitesimal_generator}) devient pour \(x\in(0,c)\):
 \[
 \begin{aligned}
     \mathcal{L}f(x) &= \frac{1}{2}\sigma^2(x)f''(x)+\mu(x)f'(x)+\int_{\mathds{R}}[f(x+y)-f(x)]\gamma(dy)\\
@@ -177,57 +169,74 @@ Le générateur infinitésimal (\ref{infinitesimal_generator}) devient:
 \]
 Le dépassement moyen est donc:
 \[
-D(x):=\mathds{E}\left[{(X(\tau(x))-c)}_+\right]=\mathds{E}[f(X(\tau(x)))]=\mathds{E}\left[\int_0^{\tau(x)}\left(\int_{c-x}^{+\infty}(X(s)+y-c)\gamma(dy)\right)ds\right]
+D(x):=\mathds{E}\left[{(X(\tau(x))-c)}_+\right]=\mathds{E}[f(X(\tau(x)))]=\mathds{E}\left[\int_0^{\tau(x)}U(X(s))ds\right]
+\]
+avec:
+\[
+U(x):=\int_{c-x}^{+\infty}(x+y-c)\gamma(dy)
 \]
 Alors, Abundo~\cite{abundo2013} a montré que $D(x)$ satisfait:
-\[
-\mathcal{L}D(x) = -\int_{c - x}^{+\infty} (x + y - c)\,\gamma(dy)
-\]
+\begin{equation}\label{general_ide}
+    \mathcal{L}D(x) = -U(x)
+\end{equation}
 avec $D(0)=D(c)=0$.\hfill$\square$
 
 \subsection{Sauts exponentiels ascendants}
-\paragraph{Lemme} 
-\textit{Sous les mêmes hypothèses que précédemment, et en supposant que les sauts suivent une loi exponentielle de paramètre \(\nu > 0\) avec une intensité \(\lambda > 0\), la fonction \(D(x)\) (\ref{overshoot}) satisfait l'équation différentielle homogène d'ordre trois suivante:}
+\paragraph{Proposition} 
+\textit{Sous les mêmes hypothèses que précédemment, et en supposant que les sauts suivent une loi exponentielle de paramètre \(\nu > 0\) avec un taux d'arrivé \(\lambda > 0\), la fonction \(D(x)\) (\ref{overshoot}) satisfait l'équation différentielle homogène d'ordre trois suivante:}
 \begin{equation}\label{eq:general_ode_D}
     \begin{aligned}
-        \sigma(x)^2 D'''(x)+D''(x) \left[2 \mu(x)+\sigma(x)(2\sigma'(x)-\nu  \sigma(x))\right]\\-2D'(x)[\lambda-\mu'(x)+\nu\mu(x)]=0
+        \sigma(x)^2 D'''(x)+D''(x) \big[2 \mu(x)+\sigma(x)(2\sigma'(x)-\nu  \sigma(x))\big]\\-2D'(x)\big[\lambda-\mu'(x)+\nu\mu(x)\big]=0
     \end{aligned}
 \end{equation}
 \textit{avec \(D(0) = D(c) = 0\).}
 
-\paragraph{Démonstration}
-Si la mesure d'intensité s'écrit:
+\paragraph{Démonstration} Si la mesure d'intensité s'écrit:
 \[
 \gamma(dy):=\lambda\nu e^{-\nu y}\mathds{1}_{y\geq0}dy
 \]
-Alors:
-\[
-\int_{c-x}^{+\infty}(x+y-c)\gamma(dy)=\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
-\]
-L'équation (\ref{general_overshoot_ide}) devient:
-\begin{equation}\label{initial_overshoot_ide}
-    \frac{1}{2}\sigma^2(x)D''(x)+\mu(x)D'(x)+\lambda\int_0^\infty[D(x+y)-D(x)]\nu e^{-\nu y}dy=-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
+Alors, l'équation (\ref{general_ide}) devient:
+\begin{equation}\label{initial_ide}
+    \begin{aligned}
+        \frac{1}{2}\sigma^2(x)D''(x)+\mu(x)D'(x)+\lambda\int_0^\infty[D(x+y)-D(x)]\nu e^{-\nu y}dy\\=-\lambda\int_{c-x}^{+\infty}(x+y-c)\nu e^{-\nu y}dy
+    \end{aligned}
 \end{equation}
-D'abord, l'intégrale peut être simplifiée: 
-\begin{equation}\label{simplified_overshoot_ide}
-    \frac{1}{2}\sigma^2(x)D''(x)+\mu(x)D'(x)+\lambda\int_0^\infty D(x+y)\nu e^{-\nu y}dy-\lambda D(x)=-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
+D'abord, l'intégrale peut être séparée en deux:
+\[
+\lambda\int_0^\infty[D(x+y)-D(x)]\nu e^{-\nu y}dy=\lambda\int_0^\infty D(x+y)\nu e^{-\nu y}dy-\lambda D(x)
+\]
+Ensuite, par définition de la fonction Dépassement Moyen (\ref{overshoot}), \(D(x)=0\) pour tout \(x>c\). Cela permet de réduire l'intervalle d'intégration:
+\[
+\lambda\int_0^\infty D(x+y)\nu e^{-\nu y}dy=\lambda\int_0^{c-x}D(x+y)\nu e^{-\nu y}dy
+\]
+Alors, l'équation (\ref{initial_ide}) devient:
+\[
+\frac{1}{2}\sigma^2(x)D''(x)+\mu(x)D'(x)+\lambda\int_0^{c-x}D(x+y)\nu e^{-\nu y}dy-\lambda D(x)=-\lambda\int_{c-x}^{+\infty}(x+y-c)\nu e^{-\nu y}dy
+\]
+Le terme de droite s'écrit:
+\[
+-\lambda\int_{c-x}^{+\infty}(x+y-c)\gamma(dy)=\frac{-\lambda}{\nu e^{\nu c}}e^{\nu x}
+\]
+L'équation devient alors:
+\begin{equation}\label{final_ide}
+    \frac{1}{2}\sigma^2(x)D''(x)+\mu(x)D'(x)+\lambda\int_0^{c-x}D(x+y)\nu e^{-\nu y}dy-\lambda D(x)=-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
 \end{equation}
 Le changement de variable $z=x+y$ donne:
 \[
 \begin{aligned}
-    \int_0^\infty D(x+y)\nu e^{-\nu y}dy&=\int_x^\infty D(z)\nu e^{-\nu(z-x)}dz\\
-    &=\nu e^{\nu x}\int_x^\infty D(z)e^{-\nu z}dz
+    \int_0^{c-x} D(x+y)\nu e^{-\nu y}dy&=\int_x^c D(z)\nu e^{-\nu(z-x)}dz\\
+    &=\nu e^{\nu x}\int_x^c D(z)e^{-\nu z}dz
 \end{aligned}
 \]
 Soit:
 \[
-\Phi(x):=\int_x^\infty D(z)e^{-\nu z}dz
+\Phi(x):=\int_x^c D(z)e^{-\nu z}dz
 \]
-L'équation (\ref{simplified_overshoot_ide}) devient:
+L'équation (\ref{final_ide}) devient:
 \begin{equation}\label{ODE_Phi_D}
     \frac{1}{2}\sigma^2(x)D''(x)+\mu(x)D'(x)+\lambda\nu e^{\nu x}\Phi(x)-\lambda D(x)=-\frac{\lambda}{\nu e^{\nu c}}e^{\nu x}
 \end{equation}
-D'une part, la dérivée de $\Phi(x)$ est (règle de Leibniz):
+D'une part, la dérivée de $\Phi(x)$ est (règle de Leibniz, voir annexe~\ref{special_formulas}):
 \begin{equation}\label{Leibniz_rule}
     \Phi'(x)=-D(x)e^{-\nu x}\implies D(x)=-e^{\nu x }\Phi'(x)
 \end{equation}
@@ -241,13 +250,13 @@ D'autre part, les dérivées de $D(x)$ s'écrivent:
 En injectant (\ref{eq:d_derivees}) dans (\ref{ODE_Phi_D}) et en éliminant les termes $-e^{\nu x}$, il découle l'\acs{EDO} d'ordre 3 suivante: 
 \begin{equation}\label{general_ode_Phi}
     \begin{aligned}
-        \frac{1}{2}\sigma^2(x)\Phi'''(x)+\Phi''(x)\left[\nu\sigma^2(x)+\mu(x)\right]\\+\Phi'(x)\left[\frac{1}{2}\nu^2\sigma^2(x)+\nu\mu(x)-\lambda\right]-\lambda\nu\Phi(x)=\frac{\lambda}{\nu e^{\nu c}}
+        \frac{1}{2}\sigma^2(x)\Phi'''(x)+\Phi''(x)\bigg[\nu\sigma^2(x)+\mu(x)\bigg]\\+\Phi'(x)\bigg[\frac{1}{2}\nu^2\sigma^2(x)+\nu\mu(x)-\lambda\bigg]-\lambda\nu\Phi(x)=\frac{\lambda}{\nu e^{\nu c}}
     \end{aligned}
 \end{equation}
 Comme $D(x)$ ne dépend que de $\Phi'(x)$ (\ref{Leibniz_rule}), il est intéressant de dériver l'équation ci-dessus (\ref{general_ode_Phi}) en posant $\phi(x)=\Phi'(x)$ pour obtenir l'\acs{EDO} homogène suivante:
 \begin{equation}\label{general_ode_phi}
     \begin{aligned}
-        \sigma(x)^2 \phi'''(x)+2 \phi''(x) \left[\mu(x)+\sigma(x) \left(\sigma'(x)+\nu  \sigma(x)\right)\right]\\+\phi'(x) \left[-2 \lambda +2 \mu'(x)+2 \nu\mu(x)+\nu  \sigma(x) \left(4 \sigma'(x)+\nu  \sigma(x)\right)\right]\\+2 \nu  \phi(x) \left[-\lambda +\mu'(x)+\nu  \sigma(x) \sigma'(x)\right]=0
+        \sigma(x)^2 \phi'''(x)+2 \phi''(x) \big[\mu(x)+\sigma(x) \left(\sigma'(x)+\nu  \sigma(x)\right)\big]\\+\phi'(x) \big[-2 \lambda +2 \mu'(x)+2 \nu\mu(x)+\nu  \sigma(x) \left(4 \sigma'(x)+\nu  \sigma(x)\right)\big]\\+2 \nu  \phi(x) \big[-\lambda +\mu'(x)+\nu  \sigma(x) \sigma'(x)\big]=0
     \end{aligned}
 \end{equation}
 avec $D(x)=-e^{\nu x}\Phi'(x)=-e^{\nu x}\phi(x)$ et $\phi(0)=\phi(c)=0$.
@@ -261,10 +270,10 @@ Ensuite, il est possible de montrer que $\phi_1(x)=e^{-\nu x}$ est une solution 
     &=-u(x)
 \end{aligned}
 \]
-avec $u(x)$ une fonction à déterminer. En effectuant un changement de variable avec la solution particulière et en échangeant $u$ par $-D$, l'\acs{EDO} homogène d'ordre 3 suivante est obtenue: 
+avec $u(x)$ une fonction à déterminer. En effectuant un changement de variable avec la solution particulière et en échangeant $u(x)$ par $-D(x)$, l'\acs{EDO} homogène d'ordre 3 suivante est obtenue: 
 \[
     \begin{aligned}
-        \sigma(x)^2 D'''(x)+D''(x) \left[2 \mu(x)+\sigma(x)(2\sigma'(x)-\nu  \sigma(x))\right]\\-2D'(x)[\lambda-\mu'(x)+\nu\mu(x)]=0
+        \sigma(x)^2 D'''(x)+D''(x) \big[2 \mu(x)+\sigma(x)(2\sigma'(x)-\nu  \sigma(x))\big]\\-2D'(x)\big[\lambda-\mu'(x)+\nu\mu(x)\big]=0
     \end{aligned}
 \]
 avec $D(0)=D(c)=0$.\hfill$\square$\\
@@ -273,32 +282,68 @@ Cette équation permet donc de résoudre le problème pour tout processus \(\{X(
 \subsection{Application au CIR}
 En reprenant les termes de dérive et de diffusion du \acs{CIR} (\ref{cir_eq}), l'équation (\ref{eq:general_ode_D}) devient:
 \[
-\sigma ^2 x D'''(x)+D''(x) \left[2 a (b-x)+\sigma ^2-\nu  \sigma ^2x\right]-2 D'(x) [a \nu  (b-x)+a+\lambda ]=0
+\sigma ^2 x D'''(x)+D''(x) \big[2 a (b-x)+\sigma ^2-\nu  \sigma ^2x\big]-2 D'(x) \big[a \nu  (b-x)+a+\lambda \big]=0
 \]
 Cependant, une expression explicite pour $D(x)$, si elle existe, est très difficile à obtenir. Cela rend donc la résolution du problème général assez compliqué. 
 \paragraph{Résolution pour $a=0$}\phantom{}\\
-En considérant le cas du \acs{CIR} à sauts sans retour à la moyenne ($a=0$) et en posant \(\sigma=c=\lambda=\nu=1\), \textit{Maple}  donne l'expression suivante:
-\begin{equation}\label{overshoot_exact_sol}
-    D(x)=2xe^{x}\left[E_1(x)-E_1(1)\right]
+En considérant le cas du \acs{CIR} à sauts sans retour à la moyenne ($a=0$), les équations (\ref{final_ide}, \ref{eq:general_ode_D}) deviennent:
+\begin{equation}\label{overshoot_equations}
+    \begin{aligned}
+        xD'''(x)-(\nu x-1) D''(x)-2\frac{\lambda}{\sigma^2} D'(x)&=0 \\
+        \frac{1}{2}\sigma^2xD''(x)+\lambda\int_0^{1-x}D(x+y)\nu e^{-\nu y}dy-\lambda D(x)&=-\frac{\lambda}{\nu}e^{\nu(c-x)}
+    \end{aligned}
 \end{equation}
-avec $E_n(x)$ la fonction intégrale exponentielle généralisée (voir annexe~\ref{special_functions}).
+Il est intéressant de noter que l'\acs{EDO} d'ordre 3 ci-dessus est une équation de Kummer pour \(D'(x)\) dont la solution est connue (voir~\cite{magnus1966}):
+\begin{equation}\label{overshoot_derivative}
+    D'(x)=C_1\Phi\left(\frac{2\lambda}{\nu\sigma^2},1,\frac{x}{\nu}\right)+C_2\Psi\left(\frac{2\lambda}{\nu\sigma^2},1,\frac{x}{\nu}\right)
+\end{equation}
+où $C_1$ et $C_2$ sont des constantes à déterminer, et $\Phi(\cdot, \cdot, \cdot)$ et $\Psi(\cdot, \cdot, \cdot)$ sont les fonctions hypergéométriques confluentes de première et seconde espèce (voir annexe~\ref{special_functions}). Enfin, l'expression pour \(D(x)\) est obtenue en intégrant l'expression (\ref{overshoot_derivative}) avec \textit{Mathematica}:
+\[
+\begin{aligned}
+    D(x)&=\int D'(x)dx+C_3\\
+    &=C_1 x \Phi\left(\frac{2 \lambda }{\nu \sigma^2},2,\frac{x}{\nu }\right)+C_2 \frac{\nu^2\sigma^2}{\nu\sigma^2-2\lambda}\Psi\left(\frac{2 \lambda }{\nu \sigma^2}-1,0,\frac{x}{\nu }\right)+C_3
+\end{aligned}
+\]
 \paragraph{Détermination des constantes}\phantom{}\\
-Les conditions aux limites $D(0)=D(c)=0$ permettent de déterminer les deux constantes $C_1$ et $C_2$. Étant donné la longueur des expressions obtenues, celles-ci ne seront pas détaillées dans le présent document.
+Les conditions aux limites \(D(0)=D(c)=0\) sont imposées ainsi qu'une troisième condition \(D(c/2)=r\) pour obtenir le système suivant:
+\[
+\begin{cases}
+    C_3+C_2\frac{ \nu^2\sigma^2  }{\nu  \sigma ^2-2 \lambda}\,{\left(\frac{2 \lambda }{\nu  \sigma ^2}\right)}_{1-\frac{2 \lambda }{\nu  \sigma ^2}}=0\\
+    C_1c \Phi\left(\frac{2 \lambda }{\nu \sigma^2},2,\frac{c}{\nu }\right)+C_2 \frac{\nu^2\sigma^2}{\nu\sigma^2-2\lambda}\Psi\left(\frac{2 \lambda }{\nu \sigma^2}-1,0,\frac{c}{\nu }\right)+C_3=0\\
+    C_1 \frac{c}{2} \Phi\left(\frac{2 \lambda }{\nu \sigma^2},2,\frac{c}{2\nu }\right)+C_2 \frac{\nu^2\sigma^2}{\nu\sigma^2-2\lambda}\Psi\left(\frac{2 \lambda }{\nu \sigma^2}-1,0,\frac{c}{2\nu }\right)+C_3=r
+\end{cases}
+\]
+avec \({(a)}_n\) le symbole de Pochhammer (voir~\ref{special_functions}). En résolvant ce système, les 3 constantes $C_1$, $C_2$ et $C_3$ sont déterminées. Il en découle l'expression finale pour la fonction de Dépassement Moyen:
+\begin{equation}\label{overshoot_exact_sol}
+    D(x)=\frac{2 r \left\{C_0 x \Phi\left(\frac{2 \lambda }{\nu  \sigma ^2},2,\frac{x}{\nu }\right) +c \Phi\left(\frac{2 \lambda }{\nu  \sigma ^2},2,\frac{c}{\nu }\right) \left[x \Gamma \left(\frac{2 \lambda }{\nu  \sigma ^2}\right) \Psi\left(\frac{2 \lambda }{\nu  \sigma ^2},2,\frac{x}{\nu }\right)-\nu \right]\right\}}{c \left\{C_0\Phi\left(\frac{2 \lambda }{\nu  \sigma ^2},2,\frac{c}{2 \nu }\right)+\Phi\left(\frac{2 \lambda }{\nu  \sigma ^2},2,\frac{c}{\nu }\right) \left[c \Gamma \left(\frac{2 \lambda }{\nu  \sigma ^2}\right) \Psi\left(\frac{2 \lambda }{\nu  \sigma ^2},2,\frac{c}{2 \nu }\right)-2 \nu \right]\right\}}
+\end{equation}
+avec 
+\[
+C_0:=\nu -c \Gamma \left(\frac{2 \lambda }{\nu  \sigma ^2}\right) \Psi\left(\frac{2 \lambda }{\nu  \sigma ^2},2,\frac{c}{\nu }\right)
+\]
+et où \(\Gamma(\cdot)\) est la fonction Gamma (voir~\ref{special_functions}).
+Afin de déterminer $r$, il suffit de fixer \(\lambda,\nu,\sigma\) et $c$ et d'injecter l'expression ci-dessus dans l'\acs{EID} en (\ref{overshoot_equations}). Pour \(\lambda=\nu=\sigma=c=1\), la fonction se simplifie considérablement:
+\[
+D(x)=xe^x\big[\text{Ei}(-1)-\text{Ei}(-x)\big]
+\]
+avec $\text{Ei}(x)$ la fonction intégrale exponentielle (voir~\ref{special_functions}).
 
 \subsection{Validation de l'expression obtenue}
 \paragraph{Visualisation}\phantom{}\\
-Afin de valider le résultat, l'expression obtenue pour $D(x)$ (\ref{overshoot_exact_sol}) est tracée.
+Afin de valider le résultat, l'expression obtenue pour $D(x)$ (\ref{overshoot_exact_sol}) est comparée à des simulations (voir annexe~\ref{overshoot_simulations} pour plus de détails). Il est aussi intéressant de visualiser l'effet de la variation de la fréquence des sauts.
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{img/validation/Ovs/exact.pdf}
-    \caption{Visualisation de la fonction Dépassement Moyen $D(x)$}\label{fig:OvershootExactSol}
-\end{figure}
-\FloatBarrier\paragraph{Analyse}\phantom{}\\
-Les différents points suivants sont relevés:
-\begin{itemize}
-    \item Les conditions aux limites $D(0)=D(c)=0$ sont respectées;
-    \item La fonction représente un \textit{dépassement moyen}, elle doit donc être positive pour toute valeur $x$ dans $[0,c]$;
-    \item Une augmentation de la fréquence des sauts $\lambda$ induit une augmentation du dépassement moyen. En effet, il devient plus probable que le processus effectue un saut juste avant d'atteindre la frontière, ce qui augmente les chances de la franchir avec un certain excès;
-\end{itemize}
-La fonction Dépassement Moyen $D(x)$ est donc validée.
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Ovs/lambda.pdf}
+        \caption{Fonction exacte $D(x)$}\label{fig:OvershootLambda}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \includegraphics[width=\linewidth]{img/validation/Ovs/simulation_lambda.pdf}
+        \caption{Simulations du dépassement moyen}\label{fig:OvershootSimulationLambda}
+    \end{subfigure}
+    \caption{Visualisation de la fonction Dépassement Moyen \(D(x)\)}\label{fig:OvershootSensibility}
+\end{figure}\FloatBarrier\paragraph{Analyse}\phantom{}\\
+D'abord, les conditions aux limites $D(0)=D(c)=0$ sont respectées. Ensuite, la fonction représente un \textit{dépassement moyen}, elle doit donc être positive pour toute valeur $x$ dans $[0,c]$. De plus, lorsque la fréquence des sauts \(\lambda\) augmente, le dépassement moyen augmente. En effet, une multiplication de ces derniers augmente la probabilité de dépasser la frontière supérieure. Enfin, l'allure et l'échelle de \(D(x)\) (\ref{fig:OvershootLambda}) coïncident parfaitement avec la courbe empirique (\ref{fig:OvershootSimulationLambda}). 
 
+La fonction Dépassement Moyen $D(x)$ est donc validée.

@@ -27,6 +27,10 @@ Cette annexe contient une définition de toutes les fonctions spéciales utilis�
             \Gamma(n)&:=(n-1)!
         \end{aligned}
     \]
+    Elle permet de généraliser la notion de factoriel:
+    \[
+    \forall\;z\in\mathds{R}\setminus\mathds{Z}^-,\Gamma(z+1)=z\Gamma(z)
+    \]
     \item Les fonction Gamma incomplètes sont définies par:
     \[
     \begin{aligned}
@@ -86,6 +90,45 @@ Le symbole de Pochhammer (ou factoriel ascendant) est défini par:
     \]
 \end{itemize}
 
+\Annexe{Formules Spéciales}\label{special_formulas}
+
+\section*{Formule de Leibniz}
+La formule de Leibniz~\cite{abramowitz1964} permet de dériver une fonction sous le signe de l'intégrale:
+\[
+\frac{d}{dx}\left(\int_{a(x)}^{b(x)}f(x,t)dt\right)=f(x,b(x))\frac{d}{dx}b(x)-f(x,a(x))\frac{d}{dx}a(x)+\int_{a(x)}^{b(x)}\frac{\partial}{\partial x}f(x,t)dt
+\]
+
+\section*{Formule de Dynkin}
+La formule de Dynkin~\cite{dynkin1965} permet de déterminer l'espérance d'une fonction \(f(x)\in C^2\) d'un processus stochastique \(X(t)\) évaluée en un temps d'arrêt \(\tau(x)\) où \(X(0)=x\). Cette formule est:
+\[
+\mathds{E}[f(X(\tau(x)))]=f(x)+\mathds{E}\left[\int_0^{\tau(x)}\mathcal{L}f(X(s))ds\right]
+\]
+Elle découle de l'application de l'espérance à la forme intégrale de la formule d'Itô (voir ci-dessous).
+
+\section*{Développement de Taylor}
+La développement de Taylor~\cite{banner2007} permet de réécrire une fonction \(f(x)\in C^\infty\) en une série de ses dérivées évaluées en un point \(a\):
+\[
+f(x)=\sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}{(x-a)}^n
+\]
+avec \(f^{(n)}(a)\) la dérivée d'ordre $n$.
+
+\section*{Formule d'Itô}
+La formule d'Itô~\cite{ito1944} permet de caractériser une fonction \(f(t,x)\in C^{1,2}\) d'un processus stochastique \(X(t)\) défini par l'\acs{EDS}:
+\[
+dX(t)=\mu(t,X(t))dt+\sigma(t,X(t))dW(t)
+\]
+\begin{itemize}
+    \item Forme intégrale:
+    \[
+    f(t,X(t))=X(0)+\int_0^t\frac{\partial}{\partial t}f(s,X(s))ds+\int_0^t\frac{\partial}{\partial x}f(s,X(s))dX(s)+\frac{1}{2}\int_0^t\frac{\partial^2}{\partial x^2}f(s,X(s))d{\langle X\rangle}_s
+    \]
+    \item Forme différentielle:
+    \[
+    df(t,X(t))=\frac{\partial}{\partial t}f(t,X(t))dt+\frac{\partial}{\partial x}f(t,X(t))dX(t)+\frac{1}{2}\frac{\partial^2}{\partial x^2}f(t,X(t))d{\langle X\rangle}_t
+    \]
+\end{itemize}
+où \({\langle X\rangle}_t\) dénote la variation quadratique du processus \(X(t)\) (voir annexe~\ref{quadratic_variation}).
+
 \Annexe{Générateur Infinitésimal}\label{infinitesimal_generator}
 
 Le générateur infinitésimal \( \mathcal{L} \) associé à un processus \( \{X(t), t\geq0\} \) est défini, pour toute fonction \( f \in C^2(\mathds{R}) \), par:
@@ -113,11 +156,11 @@ Soit \( \{X(t),\, t \geq 0\} \) un processus de diffusion avec sauts à valeurs 
 \end{equation}
 avec \( N(ds,dy) \) une mesure de Poisson sur \( (0, \infty) \times \mathds{R} \), représentant les sauts aléatoires indépendants de \( X \), avec une mesure d'intensité donnée par:
 \[
-\nu(dy)\,ds
+\gamma(dy)\,ds
 \]
 Sous des hypothèses standards d'unicité trajectorielle, le générateur infinitésimal s'écrit:
 \[
-    \mathcal{L}f(x) = \mu(x) f'(x) + \frac{1}{2} \sigma^2(x) f''(x) + \int_{\mathds{R}} \left[f(x+y) - f(x)\right] \nu(dy)
+    \mathcal{L}f(x) = \mu(x) f'(x) + \frac{1}{2} \sigma^2(x) f''(x) + \int_{\mathds{R}} \left[f(x+y) - f(x)\right] \gamma(dy)
 \]
 
 \Annexe{Unicité Trajectorielle}\label{trajecotry_uniqueness}
@@ -146,9 +189,37 @@ $X(t)$ est alors l'unique solution forte, càdlàg, non-explosive  et adaptée d
 Soit un processus \( \{X(t),\, t \geq 0\} \) défini par~\ref{jump_diffusion_sde}.
 Si les conditions d'unicité trajectorielle associées à la diffusion sont satisfaites (dérive Lipschitz, diffusion Hölder, croissance au plus linéaire), et si la mesure \( \nu \), modélisant la loi des tailles des sauts, vérifie la \textbf{Condition de Lévy minimale}:
 \[
-\int_{\mathds{R}}\min(1, y^2)\, \nu(dy) < \infty
+\int_{\mathds{R}}\min(1, y^2)\, \gamma(dy) < \infty
 \]
 $X(t)$ est alors l'unique solution forte, càdlàg, non-explosive et adaptée de l'équation (\ref{jump_diffusion_sde}).
+
+\Annexe{Variation Quadratique d'un Processus d'Itô}\label{quadratic_variation}
+
+Le mouvement brownien standard \(W(t) \sim \mathcal{N}(0,t)\) est un processus de variance infinie, mais de variation quadratique finie, donnée par \({\langle W\rangle}_t = t\). 
+
+Ce résultat se généralise à un processus d'Itô \(X(t)\) défini par l'\acs{EDS} suivante:
+\[
+dX(t) = \mu(t,X(t))\,dt + \sigma(t,X(t))\,dW(t)
+\]
+La variation quadratique de \(X(t)\) peut s'exprimer de deux façons~\cite{ito1944}:
+\begin{itemize}
+    \item En forme intégrale:
+    \[
+    {\langle X\rangle}_t = \int_0^t {\sigma(s,X(s))}^2\,ds
+    \]
+    \item En forme différentielle:
+    \[
+    d{\langle X\rangle}_t = {\sigma(t,X(t))}^2\,dt
+    \]
+\end{itemize}
+
+\Annexe{Simulations pour le Dépassement Moyen}\label{overshoot_simulations}
+
+Afin de générer la courbe (\ref{fig:OvershootSimulationLambda}), l'intervalle \([0,c]\) est discrétisé en \(N_{x_0}\) points. Pour chaque point de départ \(x_i\), \(N_{\text{sim}}\) trajectoires sont simulées jusqu'à une sortie par 0 ou $c$. Ensuite, le dépassement moyen est calculé comme suit:
+\[
+\bar{D}(x_i)=\frac{1}{N_{\text{sim}}}\sum_{k=0}^{N_{\text{sim}}}{(X_k(\tau(x_i))-c)}_+
+\]
+où \(X_k(\tau(x_i))\) correspond à la $k$-ème trajectoire simulée partant de $x_i$. Enfin, les valeurs $(x_i,\bar{D}(x_i))$ sont tracées.
 
 \Annexe{Simulations en Commande Optimale}\label{control_simulations}
 

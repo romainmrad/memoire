@@ -17,17 +17,9 @@ Les résultats présentés dans ce mémoire reposent sur des hypothèses spécif
 
 \section{Perspectives et améliorations futures}
 
-Afin de surmonter les limitations identifiées, plusieurs pistes de recherche peuvent être explorées. Une première perspective consisterait à étendre l'étude au processus de Chen~\cite{chen1996}:
-\[
-\begin{aligned}
-    dX(t) &= \kappa[\theta(t)-X(t)]dt+\sqrt{\sigma(t)X(t)}dW_1(t) \\
-    d\theta(t) &= \nu[\zeta-\theta(t)]dt+\alpha\sqrt{\theta(t)}dW_2(t) \\
-    d\sigma(t) &= \mu[\beta-\sigma(t)]dt+\eta\sqrt{\sigma(t)}dW_3(t)
-\end{aligned}
-\]
-dans lequel la volatilité et la moyenne long-terme du processus sont stochastiques
+Afin de surmonter les limitations identifiées, plusieurs pistes de recherche peuvent être explorées. Une première perspective consisterait à étendre l'étude au processus de Chen~\cite{chen1996} dans lequel la volatilité et la moyenne long-terme du processus sont stochastiques. D'autres extensions du \acs{CIR} à étudier seraient celles qui permettent au processus de prend des valeurs négatives comme le CIR\#~\cite{orlando2019}, le CIR- et le CIR-{}-(~\cite{difrancesco2021},\cite{difrancesco2022}).
 
-Une deuxième piste pourrait consister à explorer des méthodes numériques permettant de compléter les résultats analytiques dans des situations où les solutions exactes ne sont pas accessibles. L'utilisation de techniques de simulation Monte Carlo ou de méthodes numériques pour la résolution des équations de \acs{HJB} pourrait permettre de mieux appréhender les comportements dans des cadres plus réalistes.
+Une deuxième piste pourrait consister à explorer des méthodes numériques permettant de compléter les résultats analytiques dans des situations où les solutions exactes ne sont pas accessibles. L'utilisation de techniques de simulation Monte Carlo comme lors de l'étude du dépassement moyen (\ref{fig:OvershootSimulationLambda}) ou de méthodes numériques pour la résolution des équations de \acs{HJB} pourrait permettre de mieux appréhender les comportements dans des cadres plus réalistes.
 
 Enfin, l'extension des modèles de commande optimale pour inclure des coûts non linéaires ou des contraintes supplémentaires pourrait offrir de nouvelles perspectives, en particulier dans le cadre de la gestion de portefeuille ou de la couverture d'actifs financiers sous contraintes réglementaires. Cependant, la complexité des équations associées augmentera considérablement.
 
