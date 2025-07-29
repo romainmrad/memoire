@@ -163,7 +163,7 @@ Le générateur infinitésimal (voir annexe~\ref{infinitesimal_generator}) devie
 \[
 \begin{aligned}
     \mathcal{L}f(x) &= \frac{1}{2}\sigma^2(x)f''(x)+\mu(x)f'(x)+\int_{\mathds{R}}[f(x+y)-f(x)]\gamma(dy)\\
-    &=\int_{\mathds{R}}(x+y-c)_+\,\gamma(dy) \\
+    &=\int_{\mathds{R}}{(x+y-c)}_+\,\gamma(dy) \\
     &=\int_{c-x}^{+\infty}(x+y-c)\gamma(dy)
 \end{aligned}
 \]
@@ -286,7 +286,7 @@ En reprenant les termes de dérive et de diffusion du \acs{CIR} (\ref{cir_eq}), 
 \]
 Cependant, une expression explicite pour $D(x)$, si elle existe, est très difficile à obtenir. Cela rend donc la résolution du problème général assez compliqué. 
 \paragraph{Résolution pour $a=0$}\phantom{}\\
-En considérant le cas du \acs{CIR} à sauts sans retour à la moyenne ($a=0$), les équations (\ref{final_ide}, \ref{eq:general_ode_D}) deviennent:
+En considérant le cas du \acs{CIR} à sauts sans retour à la moyenne ($a=0$), les équations (\ref{final_ide},~\ref{eq:general_ode_D}) deviennent:
 \begin{equation}\label{overshoot_equations}
     \begin{aligned}
         xD'''(x)-(\nu x-1) D''(x)-2\frac{\lambda}{\sigma^2} D'(x)&=0 \\
